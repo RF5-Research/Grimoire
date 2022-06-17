@@ -1,12 +1,12 @@
 using Avalonia.Controls;
-using Grimoire.UI.Views;
+using Grimoire.GUI.Views;
 using ReactiveUI;
 using RF5Game.Define;
 using System;
 using System.Collections.ObjectModel;
 
 
-namespace Grimoire.UI.ViewModels
+namespace Grimoire.GUI.ViewModels
 {
 
     public class AdvScriptWindowViewModel : ViewModelBase

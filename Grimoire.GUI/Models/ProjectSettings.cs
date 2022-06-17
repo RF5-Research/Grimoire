@@ -1,7 +1,7 @@
 ﻿using PropertyChanged;
 using System.ComponentModel;
 
-namespace Grimoire.UI.Models
+namespace Grimoire.GUI.Models
 {
     public class ProjectSettings : INotifyPropertyChanged
     {

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire", "Grimoire\Grimoire.csproj", "{2C06124C-CA11-4671-AB50-9E182222CE27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.UI", "Grimoire.UI\Grimoire.UI.csproj", "{4C064155-6519-4974-9D9C-6700D53B7D74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.GUI", "Grimoire.GUI\Grimoire.GUI.csproj", "{4C064155-6519-4974-9D9C-6700D53B7D74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grimoire.Unity", "Grimoire.Unity\Grimoire.Unity.csproj", "{2550C339-1B15-4227-9A7E-870F1E82F035}"
 EndProject

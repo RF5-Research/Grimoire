@@ -1,14 +1,14 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Grimoire.UI.Models;
-using Grimoire.UI.ViewModels;
+using Grimoire.GUI.Models;
+using Grimoire.GUI.ViewModels;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
 
-namespace Grimoire.UI.Views
+namespace Grimoire.GUI.Views
 {
     [DoNotNotify]
     public partial class MainWindow : Window

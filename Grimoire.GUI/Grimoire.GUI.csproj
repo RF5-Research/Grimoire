@@ -6,8 +6,8 @@
     <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
     <TrimMode>copyused</TrimMode>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <AssemblyName>Grimoire.UI</AssemblyName>
-    <RootNamespace>Grimoire.UI</RootNamespace>
+    <AssemblyName>Grimoire.GUI</AssemblyName>
+    <RootNamespace>Grimoire.GUI</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />

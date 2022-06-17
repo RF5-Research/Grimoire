@@ -1,26 +1,23 @@
 using Avalonia;
 using Avalonia.Controls;
-using Grimoire.UI.Models;
+using Grimoire.GUI.Models;
 using PropertyChanged;
 using System.IO;
 
-namespace Grimoire.UI.Views
+namespace Grimoire.GUI.Views
 {
     [DoNotNotify]
-    public partial class EditProjectWindow : Window
+    public partial class CreateProjectWindow : Window
     {
-        public new MainWindow Parent;
-        private ProjectSettings Settings;
-        public EditProjectWindow(ProjectSettings settings)
+        private new MainWindow Parent;
+        
+        public CreateProjectWindow(MainWindow parent)
         {
             Setup();
-            Settings = settings;
-            NameTextBox.Text = Settings.Name;
-            ROMPathTextBox.Text = Settings.ROMPath;
-            ProjectPathTextBox.Text = Settings.ProjectPath;
+            Parent = parent;
         }
 
-        public EditProjectWindow()
+        public CreateProjectWindow()
         {
             Setup();
         }
@@ -34,20 +31,17 @@ namespace Grimoire.UI.Views
             ROMPathBrowseButton.Click += ROMPathBrowseButton_Click;
             ProjectPathBrowseButton.Click += ProjectPathBrowseButton_Click;
             CancelButton.Click += CancelButton_Click;
-            SaveButton.Click += SaveButton_Click;
-
+            CreateButton.Click += CreateButton_Click;
         }
-
-        private void SaveButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private void CreateButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             if (!Directory.Exists(ProjectPathTextBox.Text))
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
-            Settings.Name = NameTextBox.Text;
-            Settings.ROMPath = ROMPathTextBox.Text;
-            Settings.ProjectPath = ProjectPathTextBox.Text;
-
-            Close();
+            Parent.ProjectSettings.Add(
+                new ProjectSettings(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text)
+            );
+            Parent.Close();
         }
 
         private void CancelButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

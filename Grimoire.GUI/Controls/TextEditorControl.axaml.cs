@@ -20,7 +20,7 @@ using AvaloniaEdit.TextMate;
 using PropertyChanged;
 using TextMateSharp.Grammars;
 
-namespace Grimoire.UI.Controls
+namespace Grimoire.GUI.Controls
 {
     using Pair = KeyValuePair<int, IControl>;
     [DoNotNotify]

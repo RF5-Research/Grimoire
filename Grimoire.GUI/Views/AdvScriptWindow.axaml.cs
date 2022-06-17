@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 
-namespace Grimoire.UI.Views
+namespace Grimoire.GUI.Views
 {
     [DoNotNotify]
     public partial class AdvScriptWindow : Window

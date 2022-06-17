@@ -3,7 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 using System;
 
-namespace Grimoire.UI
+namespace Grimoire.GUI
 {
     class Program
     {

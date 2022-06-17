@@ -1,9 +1,9 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Grimoire.UI.ViewModels;
+using Grimoire.GUI.ViewModels;
 using System;
 
-namespace Grimoire.UI
+namespace Grimoire.GUI
 {
     public class ViewLocator : IDataTemplate
     {

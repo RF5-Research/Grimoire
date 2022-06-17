@@ -1,11 +1,11 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Grimoire.UI.ViewModels;
-using Grimoire.UI.Views;
+using Grimoire.GUI.ViewModels;
+using Grimoire.GUI.Views;
 using PropertyChanged;
 
-namespace Grimoire.UI
+namespace Grimoire.GUI
 {
     [DoNotNotify]
     public partial class App : Application
