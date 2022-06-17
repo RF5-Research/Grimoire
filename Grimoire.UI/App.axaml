@@ -1,0 +1,69 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:Grimoire.UI"
+             xmlns:cc="clr-namespace:AvaloniaEdit.CodeCompletion;assembly=AvaloniaEdit"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             x:Class="Grimoire.UI.App">
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+	<Application.Resources>
+		<themes:BundledTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Amber"/>
+	</Application.Resources>
+	<Application.Styles>
+		<StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
+		<StyleInclude Source="avares://Material.DataGrid/DataGrid.xaml" />
+
+	</Application.Styles>
+
+	
+	<Application.Styles>
+
+		<Style Selector="Window">
+			<Setter Property="Padding" Value="10"/>
+		</Style>
+		
+		<Style Selector="StackPanel">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<!--<Setter Property="Spacing" Value="10"/>-->
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="10"/>
+		</Style>
+
+		<Style Selector="TextBox">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+
+		<Style Selector="Button">
+			<Setter Property="Margin" Value="10"/>
+		</Style>
+
+
+
+		<StyleInclude Source="avares://AvaloniaEdit/AvaloniaEdit.xaml" />
+
+		<Style Selector="cc|CompletionList">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<cc:CompletionListBox Name="PART_ListBox" Background="Gray" BorderThickness="1" BorderBrush="LightGray" >
+						<cc:CompletionListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="18">
+									<Image Source="{Binding Image}"
+										   Width="15"
+										   Height="15"                          />
+									<TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Content}" FontSize="15" FontFamily="Consolas" Foreground="#eeeeee"/>
+								</StackPanel>
+							</DataTemplate>
+						</cc:CompletionListBox.ItemTemplate>
+					</cc:CompletionListBox>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+
+	</Application.Styles>
+</Application>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Grimoire</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Grimoire.RF5\Grimoire.RF5.csproj" />
+    <ProjectReference Include="..\Grimoire.Unity\Grimoire.Unity.csproj" />
+  </ItemGroup>
+
+</Project>

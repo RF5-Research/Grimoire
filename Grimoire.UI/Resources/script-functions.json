@@ -1,0 +1,2151 @@
+[
+  {
+    "Name": "None",
+    "ID": 0,
+    "Args": {}
+  },
+  {
+    "Name": "NpcCutin",
+    "ID": 1,
+    "Args": {
+      "npcID": "i32",
+      "variationID": "i32",
+      "positionID": "i32",
+      "motionID": "i32"
+    }
+  },
+  {
+    "Name": "NpcCutout",
+    "ID": 2,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "NpcFace",
+    "ID": 3,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "Chatwindow",
+    "ID": 4,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Shake",
+    "ID": 5,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "2DpartClose",
+    "ID": 6,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Fade",
+    "ID": 7,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "2DUiShow",
+    "ID": 8,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "2DUiHide",
+    "ID": 9,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "2DEmotionId",
+    "ID": 10,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "Message",
+    "ID": 11,
+    "Args": {
+      "nameTextID": "String",
+      "npcID": "i32",
+      "variationID": "i32",
+      "positionID": "i32",
+      "message": "String",
+      "playVoice": "String",
+      "emotePositionID": "i32",
+      "number": "i32",
+      "isLoop": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "MessageRand",
+    "ID": 12,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32"
+    }
+  },
+  {
+    "Name": "MessagePlayerGender",
+    "ID": 13,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "MessageChildPersonality",
+    "ID": 14,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "Message3Dvoice",
+    "ID": 15,
+    "Args": {}
+  },
+  {
+    "Name": "SelectMessage",
+    "ID": 21,
+    "Args": {
+      "nameTextID": "String",
+      "groupID": "i32",
+      "answerID": "i32",
+      "message": "String",
+      "nextStep": "i32",
+      "useCancelButton": "bool",
+      "npcID": "i32",
+      "unk_8": "i32"
+    }
+  },
+  {
+    "Name": "InputPlayerName",
+    "ID": 22,
+    "Args": {}
+  },
+  {
+    "Name": "InputPlayerBirth",
+    "ID": 23,
+    "Args": {}
+  },
+  {
+    "Name": "InputChildName",
+    "ID": 24,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SelectChild2BoyPersonal",
+    "ID": 25,
+    "Args": {}
+  },
+  {
+    "Name": "SelectChild2GirlPersonal",
+    "ID": 26,
+    "Args": {}
+  },
+  {
+    "Name": "InputMonsterhomeName",
+    "ID": 27,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SelectMessageHint",
+    "ID": 28,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "2DUiDispsetting",
+    "ID": 29,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "GotoStepNext",
+    "ID": 31,
+    "Args": {
+      "nextStep": "i32"
+    }
+  },
+  {
+    "Name": "GotoStepCurrent",
+    "ID": 32,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "GotoTargetNpcStep",
+    "ID": 35,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "JumpReserve",
+    "ID": 36,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "GotoJumpReserve",
+    "ID": 37,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "GenderlessCheck",
+    "ID": 39,
+    "Args": {
+      "npcID": "i32",
+      "scriptName": "String"
+    }
+  },
+  {
+    "Name": "3DMotionId",
+    "ID": 41,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "3DEmotionId",
+    "ID": 42,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String",
+      "unk_4": "String"
+    }
+  },
+  {
+    "Name": "3DMotionName",
+    "ID": 43,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "3DEmotionName",
+    "ID": 44,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "String",
+      "unk_4": "String"
+    }
+  },
+  {
+    "Name": "3DFacePattern",
+    "ID": 45,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "3DLookat",
+    "ID": 46,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String"
+    }
+  },
+  {
+    "Name": "SpringboneStop",
+    "ID": 47,
+    "Args": {}
+  },
+  {
+    "Name": "SpringboneStart",
+    "ID": 48,
+    "Args": {}
+  },
+  {
+    "Name": "3DPoseId",
+    "ID": 51,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "3DPoseName",
+    "ID": 52,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "3DPositionId",
+    "ID": 53,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String"
+    }
+  },
+  {
+    "Name": "3DPositionName",
+    "ID": 54,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String"
+    }
+  },
+  {
+    "Name": "3DPositionMoveId",
+    "ID": 55,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "3DPositionMoveName",
+    "ID": 56,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "3DRelativePositionId",
+    "ID": 57,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String"
+    }
+  },
+  {
+    "Name": "3DRelativePositionName",
+    "ID": 58,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String"
+    }
+  },
+  {
+    "Name": "3DRelativePositionMoveId",
+    "ID": 59,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "3DRelativePositionMoveName",
+    "ID": 60,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "NpcFadein",
+    "ID": 61,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "NpcFadeout",
+    "ID": 62,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "NpcChangemodel",
+    "ID": 63,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "Reward",
+    "ID": 65,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String"
+    }
+  },
+  {
+    "Name": "3DpartStartIdNopreload",
+    "ID": 66,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "NpcFadein2",
+    "ID": 67,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "NpcFadeout2",
+    "ID": 68,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "End",
+    "ID": 71,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "Wait",
+    "ID": 72,
+    "Args": {
+      "waitTime_1": "String",
+      "waitTime_2": "String"
+    }
+  },
+  {
+    "Name": "Pause",
+    "ID": 73,
+    "Args": {}
+  },
+  {
+    "Name": "3DpartStartId",
+    "ID": 74,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "3DpartStartName",
+    "ID": 75,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "3DpartEndId",
+    "ID": 76,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "3DpartEndName",
+    "ID": 77,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "ChangeTime",
+    "ID": 78,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32"
+    }
+  },
+  {
+    "Name": "StopTime",
+    "ID": 79,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32"
+    }
+  },
+  {
+    "Name": "RestartTime",
+    "ID": 80,
+    "Args": {}
+  },
+  {
+    "Name": "If",
+    "ID": 81,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "IfWait",
+    "ID": 82,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "SetEventTrigger",
+    "ID": 83,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String",
+      "unk_4": "String"
+    }
+  },
+  {
+    "Name": "ReduseEventTrigger",
+    "ID": 84,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "CheckQuest",
+    "ID": 85,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32"
+    }
+  },
+  {
+    "Name": "CheckScenarioPoint",
+    "ID": 86,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "AchievedScenarioPoint",
+    "ID": 87,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "CheckEventflagPoint",
+    "ID": 88,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "AchievedEventflagPoint",
+    "ID": 89,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "AchievedScriptTime",
+    "ID": 90,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "AddPoint",
+    "ID": 91,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "Ai",
+    "ID": 92,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "Navmesh",
+    "ID": 93,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "NavmeshOther",
+    "ID": 94,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "CameraPosition",
+    "ID": 95,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String"
+    }
+  },
+  {
+    "Name": "CameraPositionMove",
+    "ID": 96,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String"
+    }
+  },
+  {
+    "Name": "CameraAction",
+    "ID": 97,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String"
+    }
+  },
+  {
+    "Name": "UseShortplayCamera",
+    "ID": 98,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "UsePlayerCamera",
+    "ID": 99,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "DepthOfField",
+    "ID": 100,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "QuestOrder",
+    "ID": 101,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "QuestReward",
+    "ID": 102,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "EventLoad",
+    "ID": 201,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "PlayBgm",
+    "ID": 210,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "StopBgm",
+    "ID": 211,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "PlaySe",
+    "ID": 212,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "StopSe",
+    "ID": 213,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "PlayVoice",
+    "ID": 214,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "StopVoice",
+    "ID": 215,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "Timeline",
+    "ID": 231,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "Movie",
+    "ID": 232,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "TimelineMsg",
+    "ID": 233,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "WorldstreamerTarget",
+    "ID": 234,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "DisableAutoWorldstreamerTarget",
+    "ID": 235,
+    "Args": {}
+  },
+  {
+    "Name": "EnableAutoWorldstreamerTarget",
+    "ID": 236,
+    "Args": {}
+  },
+  {
+    "Name": "ObjectCreate",
+    "ID": 241,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "i32",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "ObjectMove",
+    "ID": 242,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "i32",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "ObjectDelete",
+    "ID": 243,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "EffectPlay",
+    "ID": 244,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "i32",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "EffectMove",
+    "ID": 245,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "i32",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String"
+    }
+  },
+  {
+    "Name": "EffectStop",
+    "ID": 246,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "ObjectOnoffId",
+    "ID": 247,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "ObjectOnoffName",
+    "ID": 248,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "CreateShortplayItem",
+    "ID": 249,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "i32",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "CreateShortplayonlyItem",
+    "ID": 250,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "i32",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "String"
+    }
+  },
+  {
+    "Name": "UneqiupTool",
+    "ID": 251,
+    "Args": {}
+  },
+  {
+    "Name": "EqiupTool",
+    "ID": 252,
+    "Args": {}
+  },
+  {
+    "Name": "EqiupBeforetool",
+    "ID": 253,
+    "Args": {}
+  },
+  {
+    "Name": "ReduceCrystal",
+    "ID": 254,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "AllnpcDisable",
+    "ID": 290,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "NpcSubtalkReserve",
+    "ID": 291,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "NpcSubtalkRelease",
+    "ID": 292,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "ChangeEventIdstep",
+    "ID": 293,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "StopEvent",
+    "ID": 294,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FestivalJoin",
+    "ID": 295,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "TreasureBox",
+    "ID": 296,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FestivalAppeal",
+    "ID": 297,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FesPresentSend",
+    "ID": 298,
+    "Args": {}
+  },
+  {
+    "Name": "FesPresentRecv",
+    "ID": 299,
+    "Args": {}
+  },
+  {
+    "Name": "FesDateReserve",
+    "ID": 300,
+    "Args": {}
+  },
+  {
+    "Name": "ChangeScene",
+    "ID": 301,
+    "Args": {
+      "unk_1": "String",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "SkipAble",
+    "ID": 302,
+    "Args": {}
+  },
+  {
+    "Name": "SkipNotable",
+    "ID": 303,
+    "Args": {}
+  },
+  {
+    "Name": "SkipEnd",
+    "ID": 304,
+    "Args": {}
+  },
+  {
+    "Name": "SpawnEnemy",
+    "ID": 310,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String",
+      "unk_4": "String",
+      "unk_5": "String",
+      "unk_6": "String",
+      "unk_7": "String",
+      "unk_8": "String",
+      "unk_9": "String",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "SpawnBoss",
+    "ID": 311,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "FesWinnerCandidateMsg",
+    "ID": 320,
+    "Args": {}
+  },
+  {
+    "Name": "FesNo1Msg",
+    "ID": 321,
+    "Args": {}
+  },
+  {
+    "Name": "FesNo2Msg",
+    "ID": 322,
+    "Args": {}
+  },
+  {
+    "Name": "FesNo3Msg",
+    "ID": 323,
+    "Args": {}
+  },
+  {
+    "Name": "FesResultCheers1Msg",
+    "ID": 324,
+    "Args": {}
+  },
+  {
+    "Name": "FesResultCheers2Msg",
+    "ID": 325,
+    "Args": {}
+  },
+  {
+    "Name": "FesResultCheers3Msg",
+    "ID": 326,
+    "Args": {}
+  },
+  {
+    "Name": "FesJudgeChildMsg",
+    "ID": 327,
+    "Args": {}
+  },
+  {
+    "Name": "FesVegetablesCheersMsg",
+    "ID": 328,
+    "Args": {}
+  },
+  {
+    "Name": "FesVegetablesQuestionMsg1",
+    "ID": 329,
+    "Args": {}
+  },
+  {
+    "Name": "FesVegetablesQuestionMsg2",
+    "ID": 330,
+    "Args": {}
+  },
+  {
+    "Name": "FesVegetablesQuestionMsg3",
+    "ID": 331,
+    "Args": {}
+  },
+  {
+    "Name": "FesItemBack",
+    "ID": 332,
+    "Args": {}
+  },
+  {
+    "Name": "FesAlreadyDate",
+    "ID": 333,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "FesInvitedDate",
+    "ID": 334,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "FesNearCandidate",
+    "ID": 335,
+    "Args": {}
+  },
+  {
+    "Name": "FesNo3In",
+    "ID": 336,
+    "Args": {}
+  },
+  {
+    "Name": "TodayFes",
+    "ID": 337,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String",
+      "unk_3": "String"
+    }
+  },
+  {
+    "Name": "BedNearChilds",
+    "ID": 340,
+    "Args": {}
+  },
+  {
+    "Name": "ForceWeather",
+    "ID": 350,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "ChangeGold",
+    "ID": 360,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "NpcShopopen",
+    "ID": 370,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FesHotarubiDateselect",
+    "ID": 380,
+    "Args": {}
+  },
+  {
+    "Name": "FesHotarubiDatecheck",
+    "ID": 381,
+    "Args": {}
+  },
+  {
+    "Name": "ChangeSubeventIdstep",
+    "ID": 401,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32"
+    }
+  },
+  {
+    "Name": "SubeventComplete",
+    "ID": 402,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvOn",
+    "ID": 403,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvOff",
+    "ID": 404,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvStepKeep",
+    "ID": 405,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvStepRelease",
+    "ID": 406,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "SubeventDatingReservation",
+    "ID": 407,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "SubeventMarriage",
+    "ID": 408,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SubeventBecomelover",
+    "ID": 409,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SubeventGivebirth",
+    "ID": 410,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SubeventDatingPartner",
+    "ID": 411,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SubeventDatingPartnerRelease",
+    "ID": 412,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "SubeventDatingBroke",
+    "ID": 413,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "EventPictureDisplay",
+    "ID": 414,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "EventPictureHidden",
+    "ID": 415,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "NpcJealousyOnoff",
+    "ID": 416,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "NpcAngryProceed",
+    "ID": 417,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "SubeventFailure",
+    "ID": 418,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "DateEnd",
+    "ID": 419,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "NpcItempresent",
+    "ID": 421,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "SkillLvup",
+    "ID": 422,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "GetRecipe",
+    "ID": 423,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "HealBadStatus",
+    "ID": 424,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "BythewayTopartnerResultStep",
+    "ID": 431,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32"
+    }
+  },
+  {
+    "Name": "BythewayInvitedateSelectMessage",
+    "ID": 432,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "BythewayInvitedateBranch",
+    "ID": 433,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "BythewayNpcSuggestion",
+    "ID": 434,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "BythewaySelectMessage",
+    "ID": 435,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "DateTalkStart",
+    "ID": 441,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "SelectDatePhysicalContact",
+    "ID": 442,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32"
+    }
+  },
+  {
+    "Name": "CheckLovEventflagPoint",
+    "ID": 451,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "SetLovEventflagPoint",
+    "ID": 452,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "CheckNpcmanageEventflagPoint",
+    "ID": 453,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "SetNpcmanageEventflagPoint",
+    "ID": 454,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "ToPartner",
+    "ID": 461,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "PartnerRelease",
+    "ID": 462,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "PartnerReleaseImmediate",
+    "ID": 463,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "TakeLicense",
+    "ID": 471,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "MakingOpen",
+    "ID": 472,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "ChangeDifficulty",
+    "ID": 473,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Child1DecisionPregnant",
+    "ID": 481,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Child1DecisionGender",
+    "ID": 482,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Child1DecisionPersonality",
+    "ID": 483,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Child2DecisionPregnant",
+    "ID": 484,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Child2DecisionBoyPersonality",
+    "ID": 485,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "Child2DecisionGirlPersonality",
+    "ID": 486,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "StaffrollPlay",
+    "ID": 490,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String"
+    }
+  },
+  {
+    "Name": "StaffrollStop",
+    "ID": 491,
+    "Args": {}
+  },
+  {
+    "Name": "FacilityCheckBuyRecipepan",
+    "ID": 501,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "FacilityBuyRecipepan",
+    "ID": 502,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckRecieveClothshop",
+    "ID": 503,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckBuyClothshop",
+    "ID": 504,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "FacilityBuyClothshop",
+    "ID": 505,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckBuyHotspring",
+    "ID": 506,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityBuyHotspring",
+    "ID": 507,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckBuyVaccination",
+    "ID": 508,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityBuyVaccination",
+    "ID": 509,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityShowlistAdvshop",
+    "ID": 510,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "String",
+      "unk_5": "i32"
+    }
+  },
+  {
+    "Name": "FacilityTradeCrystal",
+    "ID": 511,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityOpenWanted",
+    "ID": 512,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckFreeHotspring",
+    "ID": 513,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "FacilitySeedRankUp",
+    "ID": 514,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FacilityGetBadge",
+    "ID": 515,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FacilityOpenWantedReport",
+    "ID": 516,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckHotspringPresent",
+    "ID": 517,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckHotspringPresentRe",
+    "ID": 518,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityWantedReportNext",
+    "ID": 519,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FacilityWantedReportComplete",
+    "ID": 520,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FacilityEquipAppraisalSelect",
+    "ID": 521,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityCheckEquipAppraisal",
+    "ID": 522,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "FacilityEquipBaseLevelNext",
+    "ID": 523,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32"
+    }
+  },
+  {
+    "Name": "FacilityEquipMaterialLevelNext",
+    "ID": 524,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32"
+    }
+  },
+  {
+    "Name": "MagicPowerUp",
+    "ID": 525,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "AddSeedPoint",
+    "ID": 526,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "AddSeedbadge",
+    "ID": 527,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "FurnitureCommand",
+    "ID": 551,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "Dualwork",
+    "ID": 552,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "DoorClose",
+    "ID": 553,
+    "Args": {
+      "unk_1": "String"
+    }
+  },
+  {
+    "Name": "FacilitySetHotspring",
+    "ID": 554,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "MonsterDoctorAmount",
+    "ID": 561,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "MonsterDoctorScale",
+    "ID": 562,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "MonsterDoctorBonus",
+    "ID": 563,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32",
+      "unk_5": "i32",
+      "unk_6": "i32",
+      "unk_7": "i32",
+      "unk_8": "i32",
+      "unk_9": "i32",
+      "unk_10": "i32"
+    }
+  },
+  {
+    "Name": "MonsterDoctorLevel",
+    "ID": 564,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32"
+    }
+  },
+  {
+    "Name": "MonsterDoctorLove",
+    "ID": 565,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "RenameA",
+    "ID": 571,
+    "Args": {
+      "unk_1": "i32"
+    }
+  },
+  {
+    "Name": "EventPictureDisplayWithtime",
+    "ID": 572,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32",
+      "unk_3": "i32",
+      "unk_4": "i32"
+    }
+  },
+  {
+    "Name": "EventPictureHiddenWithtime",
+    "ID": 573,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "i32"
+    }
+  },
+  {
+    "Name": "CharaSetPositionId",
+    "ID": 580,
+    "Args": {
+      "unk_1": "i32",
+      "unk_2": "String"
+    }
+  }
+]
