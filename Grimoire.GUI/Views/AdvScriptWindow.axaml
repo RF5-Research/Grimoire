@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grimoire.GUI.Views.AdvScriptWindow"
-        xmlns:Controls="clr-namespace:Grimoire.GUI.Controls;assembly=Grimoire.GUI"
+        xmlns:Controls="clr-namespace:Grimoire.GUI.Controls"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Grimoire.GUI">
+		Padding="0"
+        Title="Script Editor">
 
     <!--<Design.DataContext>
         <vm:AdvScriptWindowViewModel/>
     </Design.DataContext>-->
 
-	<DockPanel>
-		<StackPanel DockPanel.Dock="Left">
+	<Grid ColumnDefinitions="Auto,*">
+		<StackPanel Margin="0" Spacing="0" Grid.Column="0">
 			<ListBox Items="{Binding ScriptNamesList}" SelectedIndex="{Binding SelectedIndex}" Width="300">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
@@ -23,7 +24,7 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</StackPanel>
-		<Controls:TextEditorControl Name="Editor" Text="{Binding ScriptText}" DockPanel.Dock="Right"/>
+			<Controls:TextEditorControl Grid.Column="1" Name="Editor" Text="{Binding ScriptText}" DockPanel.Dock="Right"/>
 		<!--<TextBox AcceptsReturn="True" FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简" TextWrapping="Wrap" Text="{Binding ScriptText}" Height="500" Width="800"/>-->
-	</DockPanel>
+	</Grid>
 </Window>

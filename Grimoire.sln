@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire", "Grimoire\Grimoire.csproj", "{2C06124C-CA11-4671-AB50-9E182222CE27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.Core", "Grimoire.Core\Grimoire.Core.csproj", "{2C06124C-CA11-4671-AB50-9E182222CE27}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.GUI", "Grimoire.GUI\Grimoire.GUI.csproj", "{4C064155-6519-4974-9D9C-6700D53B7D74}"
 EndProject

@@ -6,12 +6,11 @@ using System.IO;
 
 namespace Grimoire.GUI.Views
 {
-    [DoNotNotify]
-    public partial class EditProjectWindow : Window
+    public partial class ProjectSettingsWindow : Window
     {
         public new MainWindow Parent;
-        private ProjectSettings Settings;
-        public EditProjectWindow(ProjectSettings settings)
+        private Project Settings;
+        public ProjectSettingsWindow(Project settings)
         {
             Setup();
             Settings = settings;
@@ -20,7 +19,7 @@ namespace Grimoire.GUI.Views
             ProjectPathTextBox.Text = Settings.ProjectPath;
         }
 
-        public EditProjectWindow()
+        public ProjectSettingsWindow()
         {
             Setup();
         }

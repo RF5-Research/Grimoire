@@ -23,7 +23,7 @@ using TextMateSharp.Grammars;
 namespace Grimoire.GUI.Controls
 {
     using Pair = KeyValuePair<int, IControl>;
-    [DoNotNotify]
+
     public partial class TextEditorControl : UserControl
     {
         private ElementGenerator _generator = new ElementGenerator();

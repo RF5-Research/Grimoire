@@ -25,6 +25,11 @@ namespace Grimoire.Unity.Addressables.ResourceLocators
         /// </summary>
         public string LocatorId { get; private set; }
 
+        //public void Locate(string key, Type type, out object locs)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         ///// <summary>
         ///// Construct a new ResourceLocationMap object with a list of locations.
         ///// </summary>

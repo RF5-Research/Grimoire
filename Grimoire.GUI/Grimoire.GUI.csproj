@@ -2,12 +2,20 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <Nullable>enable</Nullable>
+	<Nullable>enable</Nullable>
     <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
     <TrimMode>copyused</TrimMode>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <AssemblyName>Grimoire.GUI</AssemblyName>
+    <AssemblyName>Grimoire</AssemblyName>
     <RootNamespace>Grimoire.GUI</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
@@ -26,6 +34,7 @@
     <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AssetsTools.NET" Version="2.0.12" />
     <PackageReference Include="Avalonia" Version="0.10.15" />
     <PackageReference Include="Avalonia.AvaloniaEdit" Version="0.10.12.2" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.15" />
@@ -44,7 +53,8 @@
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Grimoire\Grimoire.csproj" />
+    <ProjectReference Include="..\Grimoire.Core\Grimoire.Core.csproj" />
+    <ProjectReference Include="..\Grimoire.RF5\Grimoire.RF5.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Controls\TextEditorControl.axaml.cs">
@@ -53,8 +63,8 @@
     <Compile Update="Views\AdvScriptWindow.axaml.cs">
       <DependentUpon>AdvScriptWindow.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\EditProjectWindow.axaml.cs">
-      <DependentUpon>EditProjectWindow.axaml</DependentUpon>
+    <Compile Update="Views\ProjectSettingsWindow.axaml.cs">
+      <DependentUpon>ProjectSettingsWindow.axaml</DependentUpon>
     </Compile>
     <Compile Update="Views\CreateProjectWindow.axaml.cs">
       <DependentUpon>CreateProjectWindow.axaml</DependentUpon>

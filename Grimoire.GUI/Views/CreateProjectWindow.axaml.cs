@@ -6,23 +6,9 @@ using System.IO;
 
 namespace Grimoire.GUI.Views
 {
-    [DoNotNotify]
     public partial class CreateProjectWindow : Window
-    {
-        private new MainWindow Parent;
-        
-        public CreateProjectWindow(MainWindow parent)
-        {
-            Setup();
-            Parent = parent;
-        }
-
+    {        
         public CreateProjectWindow()
-        {
-            Setup();
-        }
-
-        private void Setup()
         {
             InitializeComponent();
 #if DEBUG
@@ -33,15 +19,16 @@ namespace Grimoire.GUI.Views
             CancelButton.Click += CancelButton_Click;
             CreateButton.Click += CreateButton_Click;
         }
+
         private void CreateButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             if (!Directory.Exists(ProjectPathTextBox.Text))
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
-            Parent.ProjectSettings.Add(
-                new ProjectSettings(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text)
-            );
-            Parent.Close();
+            var project = new Project(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text);
+            ((MainWindow)Owner)!.Projects.Add(project);
+            _ = ((MainWindow)Owner).OpenProject(project);
+            Close();
         }
 
         private void CancelButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

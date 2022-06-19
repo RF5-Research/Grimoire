@@ -7,14 +7,16 @@ using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Grimoire.GUI.Views
 {
-    [DoNotNotify]
     public partial class MainWindow : Window
     {
-        internal ObservableCollection<ProjectSettings> ProjectSettings;
-        private const string ProjectSettingsFilename = "settings.json";
+        internal Settings Settings;
+        internal ObservableCollection<Project> Projects;
+        private const string SettingsFilename = "settings.json";
 
         public MainWindow()
         {
@@ -22,20 +24,32 @@ namespace Grimoire.GUI.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
-            //DataContext = new MainWindowViewModel();
-            //((MainWindowViewModel)DataContext).ProjectSettings = new ObservableCollection<ProjectSettings>();
-            //MyDataGrid.Items = ((MainWindowViewModel)DataContext).ProjectSettings;
-            if (File.Exists(ProjectSettingsFilename))
+            DataContext = new MainWindowViewModel();
+            if (File.Exists(SettingsFilename))
             {
-                using (var fs = new FileStream(ProjectSettingsFilename, FileMode.Open, FileAccess.Read))
+                using (var fs = new FileStream(SettingsFilename, FileMode.Open, FileAccess.Read))
                 using (var reader = new StreamReader(fs))
-                    ProjectSettings = JsonSerializer.Deserialize<ObservableCollection<ProjectSettings>>(reader.ReadToEnd());
+                {
+                    Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
+                    Projects = Settings.Projects;
+
+                    //try
+                    //{
+                    //    Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
+                    //    Projects = Settings.Projects;
+                    //}
+                    //catch
+                    //{
+                    //    Settings = new Settings();
+                    //    Projects = new ObservableCollection<Project>();
+                    //}
+                }
             }
             else
             {
-                ProjectSettings = new ObservableCollection<ProjectSettings>();
+                Projects = new ObservableCollection<Project>();
             }
-            ProjectDataGrid.Items = ProjectSettings;
+            ProjectDataGrid.Items = Projects;
 
             NewProjectButton.Click += NewProjectButton_Click;
             OpenProjectButton.Click += OpenProjectButton_Click;
@@ -51,32 +65,48 @@ namespace Grimoire.GUI.Views
 
         private async void ProjectSettingsButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var dialog = new EditProjectWindow(ProjectSettings[ProjectDataGrid.SelectedIndex]);
+            var dialog = new ProjectSettingsWindow(Projects[ProjectDataGrid.SelectedIndex]);
             await dialog.ShowDialog(this);
         }
 
         private void DeleteProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            ProjectSettings.RemoveAt(ProjectDataGrid.SelectedIndex);
+            Projects.RemoveAt(ProjectDataGrid.SelectedIndex);
         }
 
         private void OpenProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            _ = OpenProject(Projects[ProjectDataGrid.SelectedIndex]);
         }
 
         private async void NewProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var dialog = new CreateProjectWindow(this);
+            var dialog = new CreateProjectWindow();
             await dialog.ShowDialog(this);
         }
 
         internal void SaveSettings()
         {
-            using (var fs = new FileStream(ProjectSettingsFilename, FileMode.Create, FileAccess.Write))
+            using (var fs = new FileStream(SettingsFilename, FileMode.Create, FileAccess.Write))
             using (var writer = new StreamWriter(fs))
-                writer.Write(JsonSerializer.Serialize(ProjectSettings));
-            //writer.Write(JsonSerializer.Serialize(ProjectSettings));
+                writer.Write(JsonSerializer.Serialize(Settings));
+        }
+
+        internal async Task OpenProject(Project project)
+        {
+            var window = new ProjectMainWindow();
+            var dialog = new LoadingWindow();
+            _ = dialog.ShowDialog(this);
+
+            var cancellationToken = new CancellationTokenSource();
+            dialog.Closed += (object? sender, System.EventArgs e) => cancellationToken.Cancel();
+            await Task.Run(() => ProjectManager.Initialize(project), cancellationToken.Token);
+
+            if (cancellationToken.IsCancellationRequested != true)
+            {
+                window.Show();
+                Close();
+            }
         }
     }
 }

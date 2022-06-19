@@ -2,6 +2,10 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 using System;
+using PropertyChanged;
+
+[assembly: FilterType("Grimoire.GUI.Models.")]
+[assembly: FilterType("Grimoire.GUI.ViewModels.")]
 
 namespace Grimoire.GUI
 {
