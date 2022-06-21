@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Grimoire.GUI.Models
 {
     public static class ProjectManager
     {
         public static Project Project { get; private set; }
-
+        //Prob add all refs to services here
         public static string DataPath { get => $"{Project.ROMPath}/Data"; }
 
         public static string StreamingAssetsPath { get => $"{DataPath}/StreamingAssets"; }
@@ -21,13 +15,13 @@ namespace Grimoire.GUI.Models
         public static async Task Initialize(Project project)
         {
             Project = project;
-            await InitializeGlobalManagers();
+            await InitializeGlobalServices();
         }
 
-        public static async Task InitializeGlobalManagers()
+        public static async Task InitializeGlobalServices()
         {
             await Task.WhenAll(
-                AddressablesManager.InitializeAsync($"{AddressableAssetsPath}/catalog.json", AddressableAssetsPath)
+                AddressablesService.InitializeAsync($"{AddressableAssetsPath}/catalog.json", AddressableAssetsPath)
             );
         }
     }

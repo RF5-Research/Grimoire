@@ -5,10 +5,23 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grimoire.GUI.Views.ProjectMainWindow"
         Title="Grimoire">
-	<Grid>
-		<StackPanel>
-			<Button Content="View Assets"/>
-			<Button Name="ScriptEditorButton" Content="Script Editor"/>
-		</StackPanel>
-	</Grid>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="_File">
+				<MenuItem Header="_Open..."/>
+				<Separator/>
+				<MenuItem Header="_Exit"/>
+			</MenuItem>
+			<MenuItem Header="_Edit">
+				<MenuItem Header="Copy"/>
+				<MenuItem Header="Paste"/>
+			</MenuItem>
+		</Menu>
+		<Grid>
+			<StackPanel>
+				<Button Content="View Assets"/>
+				<Button Name="ScriptEditorButton" Content="Script Editor"/>
+			</StackPanel>
+		</Grid>
+	</DockPanel>
 </Window>

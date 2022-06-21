@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Grimoire.Core;
 using Grimoire.GUI.Models;
 using Grimoire.GUI.ViewModels;
 using PropertyChanged;
@@ -15,7 +16,7 @@ namespace Grimoire.GUI.Views
     public partial class MainWindow : Window
     {
         internal Settings Settings;
-        internal ObservableCollection<Project> Projects;
+        //internal ObservableCollection<Project> Projects;
         private const string SettingsFilename = "settings.json";
 
         public MainWindow()
@@ -31,8 +32,6 @@ namespace Grimoire.GUI.Views
                 using (var reader = new StreamReader(fs))
                 {
                     Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
-                    Projects = Settings.Projects;
-
                     //try
                     //{
                     //    Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
@@ -47,9 +46,9 @@ namespace Grimoire.GUI.Views
             }
             else
             {
-                Projects = new ObservableCollection<Project>();
+                Settings = new();
             }
-            ProjectDataGrid.Items = Projects;
+            ProjectDataGrid.Items = Settings.Projects;
 
             NewProjectButton.Click += NewProjectButton_Click;
             OpenProjectButton.Click += OpenProjectButton_Click;
@@ -65,18 +64,18 @@ namespace Grimoire.GUI.Views
 
         private async void ProjectSettingsButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var dialog = new ProjectSettingsWindow(Projects[ProjectDataGrid.SelectedIndex]);
+            var dialog = new ProjectSettingsWindow(Settings.Projects[ProjectDataGrid.SelectedIndex]);
             await dialog.ShowDialog(this);
         }
 
         private void DeleteProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            Projects.RemoveAt(ProjectDataGrid.SelectedIndex);
+            Settings.Projects.RemoveAt(ProjectDataGrid.SelectedIndex);
         }
 
         private void OpenProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            _ = OpenProject(Projects[ProjectDataGrid.SelectedIndex]);
+            _ = OpenProject(Settings.Projects[ProjectDataGrid.SelectedIndex]);
         }
 
         private async void NewProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -87,14 +86,16 @@ namespace Grimoire.GUI.Views
 
         internal void SaveSettings()
         {
-            using (var fs = new FileStream(SettingsFilename, FileMode.Create, FileAccess.Write))
-            using (var writer = new StreamWriter(fs))
-                writer.Write(JsonSerializer.Serialize(Settings));
+            if (Settings != null)
+            {
+                using (var fs = new FileStream(SettingsFilename, FileMode.Create, FileAccess.Write))
+                using (var writer = new StreamWriter(fs))
+                    writer.Write(JsonSerializer.Serialize(Settings));
+            }
         }
 
         internal async Task OpenProject(Project project)
         {
-            var window = new ProjectMainWindow();
             var dialog = new LoadingWindow();
             _ = dialog.ShowDialog(this);
 
@@ -104,6 +105,7 @@ namespace Grimoire.GUI.Views
 
             if (cancellationToken.IsCancellationRequested != true)
             {
+                var window = new ProjectMainWindow();
                 window.Show();
                 Close();
             }

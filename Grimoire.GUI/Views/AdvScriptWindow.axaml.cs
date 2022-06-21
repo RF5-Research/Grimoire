@@ -17,17 +17,18 @@ namespace Grimoire.GUI.Views
         public AdvScriptWindow()
         {
             InitializeComponent();
-            var assetIndex = AddressablesManager.LocateKey($"Eng/{((int)Master.ADVINDEXDATA)}");
+            var assetIndex = AddressablesService.LocateKey($"Eng/{(int)Master.ADVINDEXDATA}");
+            var bundlePath = AddressablesService.GetAssetBundlePath(assetIndex);
+
             var am = new AssetsManager();
-            //Hardcoding for now
-            var bundlePath = assetIndex.Dependencies[0].InternalId/*.Replace("", ProjectManager.AddressableAssetsPath)*/;
-            var bun = am.LoadBundleFile(bundlePath);
-
-            var inst = am.LoadAssetsFileFromBundle(bun, 0, true);
-            var inf = inst.table.GetAssetInfo(Master.ADVINDEXDATA.ToString(), 114, caseSensitive: false);
-
+            var bundle = am.LoadBundleFile(bundlePath);
+            var inst = am.LoadAssetsFileFromBundle(bundle, 0, true);
+            var inf = inst.table.GetAssetInfo(typeof(AdvIndexData).Name, (int)AssetClassID.MonoBehaviour, caseSensitive: false);
             var baseField = am.GetTypeInstance(inst, inf).GetBaseField();
-            var offsets = baseField.Get("offset").Get("Array").GetChildrenList().Select(x => x.GetValue().AsInt()).ToList();
+            var x = baseField.GetTemplateField();
+            //var advIndexData = Core.Serialization.Deserialize<AdvIndexData>(baseField);
+            //Core.Serialization.Serialize(advIndexData, baseField);
+            //var test = Core.Serialization.Deserialize<AdvIndexData>(baseField);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace Grimoire
 {
@@ -31,6 +32,14 @@ namespace Grimoire
         {
             PackedScripts = new List<string>();
             //PackedScripts = new Dictionary<string, byte[]>();
+        }
+        public async Task InitializeAsnyc(string path)
+        {
+            await Task.Run(() => Initialize(path));
+        }
+
+        public void Initialize(string path)
+        {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             using (var reader = new StreamReader(fs))
             {

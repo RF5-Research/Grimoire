@@ -26,7 +26,7 @@ namespace Grimoire.GUI.Views
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
             var project = new Project(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text);
-            ((MainWindow)Owner)!.Projects.Add(project);
+            ((MainWindow)Owner)!.Settings.Projects.Add(project);
             _ = ((MainWindow)Owner).OpenProject(project);
             Close();
         }

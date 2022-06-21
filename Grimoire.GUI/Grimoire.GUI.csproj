@@ -8,14 +8,8 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <AssemblyName>Grimoire</AssemblyName>
     <RootNamespace>Grimoire.GUI</RootNamespace>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>portable</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>portable</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+	<DebugType>embedded</DebugType>
+	<DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
@@ -54,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Grimoire.Core\Grimoire.Core.csproj" />
-    <ProjectReference Include="..\Grimoire.RF5\Grimoire.RF5.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Controls\TextEditorControl.axaml.cs">
