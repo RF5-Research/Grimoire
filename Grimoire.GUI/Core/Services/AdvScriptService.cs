@@ -1,10 +1,10 @@
-﻿using RF5Game.Define;
+﻿using Grimoire.GUI.Models.RF5;
+using Grimoire.GUI.Models.RF5.Define;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Grimoire.GUI.Core.Services

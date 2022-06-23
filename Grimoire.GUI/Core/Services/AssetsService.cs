@@ -1,17 +1,11 @@
 ﻿using AssetsTools.NET;
 using AssetsTools.NET.Extra;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
-using Grimoire.Core;
 using Grimoire.GUI.Models;
-using Grimoire.GUI.Views;
-using Loader;
-using System;
+using Grimoire.GUI.Models.RF5.Loader;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Grimoire.Core.Serialization;
 
 namespace Grimoire.GUI.Core.Services
 {
@@ -32,7 +26,7 @@ namespace Grimoire.GUI.Core.Services
             var asset = am.LoadAssetsFileFromBundle(bundle, 0, true);
             var info = asset.table.GetAssetInfo(assetName, (int)AssetClassID.MonoBehaviour, caseSensitive: false);
             var baseField = am.GetTypeInstance(asset, info).GetBaseField();
-            AssetKeys = Serialization.DeserializeObject<AssetDataTable>(baseField);
+            AssetKeys = DeserializeObject<AssetDataTable>(baseField, Target.Properties);
         }
 
         public static bool HasRegionalVariants(int id)
@@ -78,7 +72,7 @@ namespace Grimoire.GUI.Core.Services
             var assetInfo = assetFile.table.GetAssetInfo(subAssetName, (int)AssetClassID.MonoBehaviour, caseSensitive: false);
             var baseField = am.GetTypeInstance(assetFile, assetInfo).GetBaseField();
 
-            Serialization.SerializeObject(obj, baseField);
+            SerializeObject(obj, baseField, Target.Properties);
             
             var monoBehaviourBytes = baseField.WriteToByteArray();
             var repl = new AssetsReplacerFromMemory(
@@ -115,7 +109,7 @@ namespace Grimoire.GUI.Core.Services
             var assetInfo = assetFile.table.GetAssetInfo(subAssetName, (int)AssetClassID.MonoBehaviour, caseSensitive: false);
             var baseField = am.GetTypeInstance(assetFile, assetInfo).GetBaseField();
 
-            return Serialization.DeserializeObject<T>(baseField);
+            return DeserializeObject<T>(baseField, Target.Properties);
         }
 
         public static byte[] GetTextAssetObject(int assetID, string subAssetName)

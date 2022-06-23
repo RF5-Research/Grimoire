@@ -1,10 +1,13 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using System;
 
 namespace Grimoire.GUI.Views
 {
     public partial class ProjectMainWindow : Window
     {
+        public bool IsClosingProject;
         public ProjectMainWindow()
         {
             InitializeComponent();
@@ -12,11 +15,36 @@ namespace Grimoire.GUI.Views
             this.AttachDevTools();
 #endif
             ScriptEditorButton.Click += ScriptEditorButton_Click;
-            CloseProjectMenuItem.Click += CloseProjectMenuItem_Click;
+            CloseMenuItem.Click += CloseProjectMenuItem_Click;
+            SaveMenuItem.Click += SaveMenuItem_Click;
+            CharactersButton.Click += CharactersButton_Click;
+        }
+
+        private void CharactersButton_Click(object? sender, RoutedEventArgs e)
+        {
+            var window = new CharactersWindow();
+            window.Show(this);
+        }
+
+        public static readonly RoutedEvent<RoutedEventArgs> SaveEvent =
+            RoutedEvent.Register<ProjectMainWindow, RoutedEventArgs>(nameof(Save), RoutingStrategies.Bubble);
+
+        public event EventHandler<RoutedEventArgs> Save
+        {
+            add => AddHandler(SaveEvent, value);
+            remove => RemoveHandler(SaveEvent, value);
+        }
+
+        //Propagate event to child windows that subscribe to event
+        private void SaveMenuItem_Click(object? sender, RoutedEventArgs e)
+        {
+            var eventArgs = new RoutedEventArgs(SaveEvent);
+            RaiseEvent(eventArgs);
         }
 
         private void CloseProjectMenuItem_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
+            IsClosingProject = true;
             new MainWindow().Show();
             Close();
         }
@@ -24,7 +52,7 @@ namespace Grimoire.GUI.Views
         private void ScriptEditorButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var window = new AdvScriptWindow();
-            window.Show();
+            window.Show(this);
         }
     }
 }

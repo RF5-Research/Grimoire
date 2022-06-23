@@ -16,7 +16,6 @@ namespace Grimoire.GUI.Views
     public partial class MainWindow : Window
     {
         internal Settings Settings;
-        //internal ObservableCollection<Project> Projects;
         private const string SettingsFilename = "settings.json";
 
         public MainWindow()

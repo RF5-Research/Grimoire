@@ -1,8 +1,8 @@
-using AssetsTools.NET.Extra;
 using Grimoire.GUI.Core.Services;
-using Grimoire.RF5.Loader.ID;
+using Grimoire.GUI.Models.RF5;
+using Grimoire.GUI.Models.RF5.Define;
+using Grimoire.GUI.Models.RF5.Loader.ID;
 using ReactiveUI;
-using RF5Game.Define;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -37,7 +37,6 @@ namespace Grimoire.GUI.ViewModels
             Scripts = AdvScriptService.DecompilePack(pack, advIndexData);
             ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
             ScriptText = Scripts[selectedItem + 1];
-            //AssetsService.WriteMonoBehaviourObject((int)Master.ADVINDEXDATA, advIndexData);
         }
     }
 }

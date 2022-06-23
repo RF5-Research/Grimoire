@@ -8,12 +8,14 @@
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
-				<MenuItem Name="CloseProjectMenuItem" Header="Close Project"/>
+				<MenuItem Name="SaveMenuItem" Header="Save"/>
+				<MenuItem Name="CloseMenuItem" Header="Close"/>
 			</MenuItem>
 		</Menu>
 		<Grid>
 			<StackPanel>
-				<!--<Button Content="View Assets"/>-->
+				<Button Content="View Assets"/>
+				<Button Name="CharactersButton" Content="Characters"/>
 				<Button Name="ScriptEditorButton" Content="Script Editor"/>
 			</StackPanel>
 		</Grid>
