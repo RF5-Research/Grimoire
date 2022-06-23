@@ -8,15 +8,17 @@
         Title="Grimoire">
 	<Grid ColumnDefinitions="*,Auto">
 		<DataGrid Grid.Column="0"
+				  HorizontalScrollBarVisibility="Auto"
 				  Name="ProjectDataGrid"
 				  SelectedIndex="{Binding SelectedIndex}"
 				  IsReadOnly="True"
 				  CanUserResizeColumns="True"
 				  CanUserReorderColumns="False">
 			<DataGrid.Columns>
-				<DataGridTextColumn Width="0.4*" Header="Name" Binding="{Binding Name}"/>
-				<DataGridTextColumn Width="*" Header="ROM Path" Binding="{Binding ROMPath}" />
-				<DataGridTextColumn Width="*" Header="Project Path" Binding="{Binding ProjectPath}" />
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+				<DataGridTextColumn Header="Game Language" Binding="{Binding GameLanguage}" />
+				<DataGridTextColumn Header="ROM Path" Binding="{Binding ROMPath}" />
+				<DataGridTextColumn Header="Project Path" Binding="{Binding ProjectPath}" />
 			</DataGrid.Columns>
 		</DataGrid>
 		<StackPanel Grid.Column="1">

@@ -8,18 +8,12 @@
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
-				<MenuItem Header="_Open..."/>
-				<Separator/>
-				<MenuItem Header="_Exit"/>
-			</MenuItem>
-			<MenuItem Header="_Edit">
-				<MenuItem Header="Copy"/>
-				<MenuItem Header="Paste"/>
+				<MenuItem Name="CloseProjectMenuItem" Header="Close Project"/>
 			</MenuItem>
 		</Menu>
 		<Grid>
 			<StackPanel>
-				<Button Content="View Assets"/>
+				<!--<Button Content="View Assets"/>-->
 				<Button Name="ScriptEditorButton" Content="Script Editor"/>
 			</StackPanel>
 		</Grid>

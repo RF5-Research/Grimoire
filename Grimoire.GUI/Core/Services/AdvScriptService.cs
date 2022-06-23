@@ -7,88 +7,55 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Grimoire
+namespace Grimoire.GUI.Core.Services
 {
-    public class Command
-    {
-        public string name;
-        public string[] args;
-    }
     internal class CommandData
     {
         public string Name { get; set; }
         public short ID { get; set; }
         //Change this to `Params`
-        public Dictionary<string, string> Args { get; set; }
+        public Dictionary<string, string> Params { get; set; }
     }
 
-    public class ScriptManager
+    public static class AdvScriptService
     {
-        internal List<CommandData> Commands;
-        public List<string> PackedScripts;
-        //public Dictionary<string, byte[]> PackedScripts;
+        private static List<CommandData> Commands;
 
-        public ScriptManager(string path)
-        {
-            PackedScripts = new List<string>();
-            //PackedScripts = new Dictionary<string, byte[]>();
-        }
-        public async Task InitializeAsnyc(string path)
-        {
-            await Task.Run(() => Initialize(path));
-        }
-
-        public void Initialize(string path)
+        public static void Initialize(string path)
         {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             using (var reader = new StreamReader(fs))
             {
-                Commands = JsonSerializer.Deserialize<List<CommandData>>(reader.ReadToEnd());
+                Commands = JsonSerializer.Deserialize<List<CommandData>>(reader.ReadToEnd())!;
             }
         }
 
-        public void ReadPackedFile(string packPath, string advIndexDataPath)
+        public static async Task InitializeAsnyc(string path)
         {
-            Dictionary<string, object> advIndexData;
-            using (var fs = new FileStream(advIndexDataPath, FileMode.Open, FileAccess.Read))
-            using (var reader = new StreamReader(fs))
-            {
-                advIndexData = JsonSerializer.Deserialize<Dictionary<string, object>>(reader.ReadToEnd());
-            }
+            await Task.Run(() => Initialize(path));
+        }
 
-            int[] offsets = JsonSerializer.Deserialize<int[]>(advIndexData["offset"].ToString());
-
-            using (var fs = new FileStream(packPath, FileMode.Open, FileAccess.Read))
+        public static Dictionary<AdvScriptId, string> DecompilePack(byte[] pack, AdvIndexData advIndexData)
+        {
+            var scripts = new Dictionary<AdvScriptId, string>(advIndexData.offset.Count);
+            using (var fs = new MemoryStream(pack))
             using (var reader = new BinaryReader(fs))
             {
                 var startOffset = 0;
-                for (var index = 0; index < offsets.Length; index++)
+                for (var index = 0; index < advIndexData.offset.Count; index++)
                 {
-                    var endOffset = offsets[index];
-                    PackedScripts.Add(DecompileScript(reader.ReadBytes(endOffset - startOffset)));
-                    //var name = Enum.GetName((Define.AdvScriptId)index + 1);
-                    //if (name != null)
-                    //{
-                    //    PackedScripts.Add(name, reader.ReadBytes(endOffset - startOffset));
-                    //}
-                    //else
-                    //{
-                    //    PackedScripts.Add(index.ToString(), reader.ReadBytes(endOffset - startOffset));
-                    //}
+                    var endOffset = advIndexData.offset[index];
+                    scripts.Add(
+                        (AdvScriptId)index + 1,
+                        DecompileScript(reader.ReadBytes(endOffset - startOffset))
+                    );
                     startOffset = endOffset;
                 }
             }
+            return scripts;
         }
 
-        //public void CompileScript(List<Command> cmds)
-        //{
-        //    foreach (var cmd in cmds)
-        //    {
-
-        //    }
-        //}
-
-        public string DecompileScript(byte[] script)
+        public static string DecompileScript(byte[] script)
         {
             if (script.Length == 0)
                 return null;
@@ -104,11 +71,8 @@ namespace Grimoire
                     var cmdID = reader.ReadInt16();
                     var cmdData = SearchCommand(cmdID);
                     var args = new List<string>();
-                    if (cmdData == null)
-                    {
-                        return null;
-                    }
-                    foreach (var arg in cmdData.Args)
+                    
+                    foreach (var arg in cmdData.Params)
                     {
                         switch (arg.Value)
                         {
@@ -194,7 +158,7 @@ namespace Grimoire
         //    return lines;
         //}
 
-        string FormatArgs(List<string> args)
+        static string FormatArgs(List<string> args)
         {
             string formattedArgs = "";
             for (var index = 0; index < args.Count; index++)
@@ -209,7 +173,7 @@ namespace Grimoire
         }
 
 
-        CommandData SearchCommand(short cmdID)
+        static CommandData SearchCommand(short cmdID)
         {
             foreach (var cmd in Commands)
             {
@@ -218,7 +182,7 @@ namespace Grimoire
                     return cmd;
                 }
             }
-            return null;
+            throw new Exception("Couldn't find command");
         }
     }
 }

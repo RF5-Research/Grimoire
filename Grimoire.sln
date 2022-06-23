@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.Core", "Grimoire.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.GUI", "Grimoire.GUI\Grimoire.GUI.csproj", "{4C064155-6519-4974-9D9C-6700D53B7D74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grimoire.Unity", "Grimoire.Unity\Grimoire.Unity.csproj", "{2550C339-1B15-4227-9A7E-870F1E82F035}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grimoire.RF5", "Grimoire.RF5\Grimoire.RF5.csproj", "{315C28B1-56CA-437A-8807-F0BAAD90EC99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.Unity", "Grimoire.Unity\Grimoire.Unity.csproj", "{2550C339-1B15-4227-9A7E-870F1E82F035}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{2550C339-1B15-4227-9A7E-870F1E82F035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2550C339-1B15-4227-9A7E-870F1E82F035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2550C339-1B15-4227-9A7E-870F1E82F035}.Release|Any CPU.Build.0 = Release|Any CPU
-		{315C28B1-56CA-437A-8807-F0BAAD90EC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{315C28B1-56CA-437A-8807-F0BAAD90EC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{315C28B1-56CA-437A-8807-F0BAAD90EC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{315C28B1-56CA-437A-8807-F0BAAD90EC99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,6 @@ namespace Grimoire.GUI.Views
 {
     public partial class ProjectSettingsWindow : Window
     {
-        public new MainWindow Parent;
         private Project Settings;
         public ProjectSettingsWindow(Project settings)
         {
@@ -17,6 +16,7 @@ namespace Grimoire.GUI.Views
             NameTextBox.Text = Settings.Name;
             ROMPathTextBox.Text = Settings.ROMPath;
             ProjectPathTextBox.Text = Settings.ProjectPath;
+            GameLanguageComboBox.SelectedItem = Settings.GameLanguage;
         }
 
         public ProjectSettingsWindow()
@@ -34,7 +34,7 @@ namespace Grimoire.GUI.Views
             ProjectPathBrowseButton.Click += ProjectPathBrowseButton_Click;
             CancelButton.Click += CancelButton_Click;
             SaveButton.Click += SaveButton_Click;
-
+            GameLanguageComboBox.Items = Models.Settings.GameLanguages.Keys;
         }
 
         private void SaveButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -45,6 +45,7 @@ namespace Grimoire.GUI.Views
             Settings.Name = NameTextBox.Text;
             Settings.ROMPath = ROMPathTextBox.Text;
             Settings.ProjectPath = ProjectPathTextBox.Text;
+            Settings.GameLanguage = (Settings.SystemLanguage)GameLanguageComboBox.SelectedItem;
 
             Close();
         }

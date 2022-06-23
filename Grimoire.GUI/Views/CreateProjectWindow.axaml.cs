@@ -18,6 +18,7 @@ namespace Grimoire.GUI.Views
             ProjectPathBrowseButton.Click += ProjectPathBrowseButton_Click;
             CancelButton.Click += CancelButton_Click;
             CreateButton.Click += CreateButton_Click;
+            GameLanguageComboBox.Items = Settings.GameLanguages.Keys;
         }
 
         private void CreateButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -25,7 +26,8 @@ namespace Grimoire.GUI.Views
             if (!Directory.Exists(ProjectPathTextBox.Text))
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
-            var project = new Project(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text);
+            
+            var project = new Project(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text, (Settings.SystemLanguage)GameLanguageComboBox.SelectedItem);
             ((MainWindow)Owner)!.Settings.Projects.Add(project);
             _ = ((MainWindow)Owner).OpenProject(project);
             Close();

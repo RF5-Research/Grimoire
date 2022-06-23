@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using Grimoire.GUI.Core.Services;
+using System.Threading.Tasks;
 
 namespace Grimoire.GUI.Models
 {
     public static class ProjectManager
     {
         public static Project Project { get; private set; }
-        //Prob add all refs to services here
+
         public static string DataPath { get => $"{Project.ROMPath}/Data"; }
 
         public static string StreamingAssetsPath { get => $"{DataPath}/StreamingAssets"; }
@@ -16,13 +17,17 @@ namespace Grimoire.GUI.Models
         {
             Project = project;
             await InitializeGlobalServices();
+            //Add services
         }
 
         public static async Task InitializeGlobalServices()
         {
             await Task.WhenAll(
-                AddressablesService.InitializeAsync($"{AddressableAssetsPath}/catalog.json", AddressableAssetsPath)
+                AddressablesService.InitializeAsync($"{AddressableAssetsPath}/catalog.json", AddressableAssetsPath),
+                AdvScriptService.InitializeAsnyc("Resources/AdvScriptFunctions.json")
             );
+            //Relies on AddressablesService
+            AssetsService.Initialize();
         }
     }
 }

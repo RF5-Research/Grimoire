@@ -7,22 +7,26 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
+//This will be PR'd into AssetTools
 //namespace AssetsTools.NET.Extra
 namespace Grimoire.Core
 {
     public static class Serialization
     {
-        [AttributeUsage(AttributeTargets.Field)]
-        public sealed class SerializeField : Attribute { };
+        public class Attributes
+        {
+            [AttributeUsage(AttributeTargets.Field)]
+            public sealed class SerializeField : Attribute { };
+        }
 
         public static void SerializeObject<T>(T value, AssetTypeValueField baseField)
         {
             WriteValue(value, baseField);
         }
 
-        public static T DeserializeObject<T>(AssetTypeValueField baseField)
+        public static async void SerializeObjectAsync<T>(T value, AssetTypeValueField baseField)
         {
-            return (T)ReadValue(typeof(T), baseField);
+            await Task.Run(() => SerializeObject(value, baseField));
         }
 
         private static void WriteValue(object value, AssetTypeValueField assetTypeValueField)
@@ -71,10 +75,6 @@ namespace Grimoire.Core
         {
             var array = assetTypeValueField.Get("Array");
 
-            //for (var index = 0; index < array.GetChildrenCount(); index++)
-            //{
-            //    WriteValue(value[index], array.Get(index));
-            //}
             var list = new List<AssetTypeValueField>();
             foreach (var item in value)
             {
@@ -108,9 +108,21 @@ namespace Grimoire.Core
             }
         }
 
+
+        public static T DeserializeObject<T>(AssetTypeValueField baseField)
+        {
+            return (T)ReadValue(typeof(T), baseField);
+        }
+
+        public static async Task<T> DeserializeObjectAsync<T>(AssetTypeValueField baseField)
+        {
+            return await Task.Run(() => DeserializeObject<T>(baseField));
+        }
+
+
         private static object ReadValue(Type type, AssetTypeValueField assetTypeValueField)
         {
-            if (type.IsPrimitive || type == typeof(string))
+            if (type.IsPrimitive || typeof(string) == type)
                 return ReadPrimitive(type, assetTypeValueField);
             else if (typeof(IList).IsAssignableFrom(type))
                 return ReadList(type, assetTypeValueField);
@@ -154,24 +166,22 @@ namespace Grimoire.Core
         private static object ReadPrimitive(Type type, AssetTypeValueField assetTypeValueField)
         {
             var valueField = assetTypeValueField.GetValue();
-            object objectValue = valueField.GetValueType().ToString() switch
+            switch (valueField.GetValueType())
             {
-                "Boolean" => valueField.AsBool(),
-                "Byte" => valueField.AsInt(),
-                "Char" => valueField.AsInt(),
-                "UInt16" => valueField.AsInt(),
-                "UInt32" => valueField.AsInt(),
-                "UInt64" => valueField.AsInt64(),
-                "SByte" => valueField.AsInt(),
-                "Int16" => valueField.AsInt(),
-                "Int32" => valueField.AsInt(),
-                "Int64" => valueField.AsInt64(),
-                "Single" => valueField.AsFloat(),
-                "Double" => valueField.AsDouble(),
-                "String" => valueField.AsString(),
-                _ => null,
+                case EnumValueTypes.Bool: return Convert.ChangeType(valueField.AsBool(), type);
+                case EnumValueTypes.UInt8: return Convert.ChangeType(valueField.AsInt(), type);
+                case EnumValueTypes.UInt16: return Convert.ChangeType(valueField.AsInt(), type);
+                case EnumValueTypes.UInt32: return Convert.ChangeType(valueField.AsInt(), type);
+                case EnumValueTypes.UInt64: return Convert.ChangeType(valueField.AsInt64(), type);
+                case EnumValueTypes.Int8: return Convert.ChangeType(valueField.AsInt(), type);
+                case EnumValueTypes.Int16: return Convert.ChangeType(valueField.AsInt(), type);
+                case EnumValueTypes.Int32: return Convert.ChangeType(valueField.AsInt(), type);
+                case EnumValueTypes.Int64: return Convert.ChangeType(valueField.AsInt64(), type);
+                case EnumValueTypes.Float: return Convert.ChangeType(valueField.AsFloat(), type);
+                case EnumValueTypes.Double: return Convert.ChangeType(valueField.AsDouble(), type);
+                case EnumValueTypes.String: return valueField.AsString();
+                default: return null;
             };
-            return Convert.ChangeType(objectValue, type);
         }
 
         private static object ReadObject(Type type, AssetTypeValueField assetTypeValueField)
@@ -180,18 +190,32 @@ namespace Grimoire.Core
 
             //The fields won't be sorted by the sequential declaration of the fields
             //But that shouldn't be relevant to this
-            foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            var fieldInfos = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var childField in assetTypeValueField.GetChildrenList())
             {
-                var fieldType = field.FieldType;
-                object fieldValue = null;
-                var valueField = assetTypeValueField.Get(field.Name);
+                FieldInfo fieldInfo = null;
+                foreach (var item in fieldInfos)
+                {
+                    if (item.Name == childField.GetName())
+                    {
+                        fieldInfo = item;
+                        break;
+                    }
+                }
 
-                if (fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(SerializableAttribute)) != null)
-                    fieldValue = ReadValue(fieldType, valueField);
-                else
-                    fieldValue = ReadValue(fieldType, valueField);
+                //Asset Field doesn't exist
+                if (fieldInfo != null)
+                {
+                    var fieldType = fieldInfo.FieldType;
+                    object fieldValue;
 
-                field.SetValue(instance, fieldValue);
+                    if (fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(SerializableAttribute)) != null)
+                        fieldValue = ReadValue(fieldType, childField);
+                    else
+                        fieldValue = ReadValue(fieldType, childField);
+
+                    fieldInfo.SetValue(instance, fieldValue);
+                }
             }
             return instance;
         }

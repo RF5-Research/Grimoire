@@ -1,8 +1,9 @@
-using Avalonia.Controls;
-using Grimoire.GUI.Views;
+using AssetsTools.NET.Extra;
+using Grimoire.GUI.Core.Services;
+using Grimoire.RF5.Loader.ID;
 using ReactiveUI;
-//using RF5Game.Define;
-using System;
+using RF5Game.Define;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
@@ -11,39 +12,32 @@ namespace Grimoire.GUI.ViewModels
 
     public class AdvScriptWindowViewModel : ViewModelBase
     {
-        //ScriptManager ScriptManager;
-        //ObservableCollection<string> ScriptNamesList { get; }
-        
-        //private string scriptText;
-        //public string ScriptText { get => scriptText; set => this.RaiseAndSetIfChanged(ref scriptText, value); }
+        private Dictionary<AdvScriptId, string> Scripts;
+        private ObservableCollection<AdvScriptId> ScriptList { get; }
 
-        //int selectedIndex;
-        //public int SelectedIndex
-        //{
-        //    get => selectedIndex;
-        //    set
-        //    {
-        //        ScriptManager.PackedScripts[selectedIndex] = ScriptText;
-        //        this.RaiseAndSetIfChanged(ref selectedIndex, value);
-        //        ScriptText = ScriptManager.PackedScripts[value];
-        //    }
-        //}
+        private string scriptText;
+        public string ScriptText { get => scriptText; set => this.RaiseAndSetIfChanged(ref scriptText, value); }
 
-        //public AdvScriptWindowViewModel()
-        //{
-        //    ScriptManager = new ScriptManager("Resources/script-functions.json");
-        //    ScriptManager.ReadPackedFile("Resources/pack.bytes", "Resources/AdvIndexData.json");
-        //    ScriptNamesList = new ObservableCollection<string>();
-        //    for (var index = 0; index < ScriptManager.PackedScripts.Count; index++)
-        //    {
-        //        var name = Enum.GetName((AdvScriptId)index + 1);
-        //        if (name != null)
-        //            ScriptNamesList.Add(name);
-        //        else
-        //            ScriptNamesList.Add(index.ToString());
-        //    }
+        AdvScriptId selectedItem;
+        public AdvScriptId SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                Scripts[selectedItem + 1] = ScriptText;
+                this.RaiseAndSetIfChanged(ref selectedItem, value);
+                ScriptText = Scripts[value + 1];
+            }
+        }
 
-        //    ScriptText = ScriptManager.PackedScripts[selectedIndex];
-        //}
+        public AdvScriptWindowViewModel()
+        {
+            var advIndexData = AssetsService.GetMonoBehaviourObject<AdvIndexData>((int)Master.ADVINDEXDATA);
+            var pack = AssetsService.GetTextAssetObject((int)Event.PACK, Event.PACK.ToString());
+            Scripts = AdvScriptService.DecompilePack(pack, advIndexData);
+            ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
+            ScriptText = Scripts[selectedItem + 1];
+            //AssetsService.WriteMonoBehaviourObject((int)Master.ADVINDEXDATA, advIndexData);
+        }
     }
 }
