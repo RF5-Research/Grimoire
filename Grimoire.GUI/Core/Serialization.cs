@@ -1,10 +1,13 @@
 ﻿using AssetsTools.NET;
 using AssetsTools.NET.Extra;
+using Grimoire.GUI.Models.RF5.Loader;
+using Grimoire.GUI.Models.UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static Grimoire.Core.Serialization.Attributes;
 
@@ -14,20 +17,15 @@ namespace Grimoire.Core
 {
     public static class Serialization
     {
-        public enum Target
-        {
-            Fields,
-            Properties
-        }
         public class Attributes
         {
-            [AttributeUsage(AttributeTargets.Field)]
-            public sealed class SerializeField : Attribute { };
+            [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
+            public sealed class SerializeFieldAttribute : Attribute { };
         }
 
-        public static void SerializeObject<T>(T value, AssetTypeValueField baseField, Target target)
+        public static void SerializeObject<T>(T value, AssetTypeValueField baseField)
         {
-            WriteValue(value, baseField, target);
+            WriteValue(value, baseField);
         }
 
         //public static async void SerializeObjectAsync<T>(T value, AssetTypeValueField baseField)
@@ -35,7 +33,7 @@ namespace Grimoire.Core
         //    await Task.Run(() => SerializeObject(value, baseField));
         //}
 
-        private static void WriteValue(object value, AssetTypeValueField assetTypeValueField, Target target)
+        private static void WriteValue(object value, AssetTypeValueField assetTypeValueField)
         {
             //Remember that some members are not initialized from deserialization, so it's a null object
             if (value != null)
@@ -47,9 +45,9 @@ namespace Grimoire.Core
                 else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
                     return;
                 else if (typeof(IList).IsAssignableFrom(type))
-                    WriteList((IList)value, assetTypeValueField, target);
+                    WriteList((IList)value, assetTypeValueField);
                 else
-                    WriteObject(value, assetTypeValueField, target);
+                    WriteObject(value, assetTypeValueField);
             }
         }
 
@@ -77,7 +75,7 @@ namespace Grimoire.Core
             }
         }
 
-        private static void WriteList(IList value, AssetTypeValueField assetTypeValueField, Target target)
+        private static void WriteList(IList value, AssetTypeValueField assetTypeValueField)
         {
             var array = assetTypeValueField.Get("Array");
 
@@ -85,62 +83,33 @@ namespace Grimoire.Core
             foreach (var item in value)
             {
                 var itemValueField = ValueBuilder.DefaultValueFieldFromArrayTemplate(array);
-                WriteValue(item, itemValueField, target);
+                WriteValue(item, itemValueField);
                 list.Add(itemValueField);
             }
             array.SetChildrenList(list.ToArray());
         }
 
-        private static void WriteObject(object value, AssetTypeValueField assetTypeValueField, Target target)
+        private static void WriteObject(object value, AssetTypeValueField assetTypeValueField)
         {
             var type = value.GetType();
 
-            if (target == Target.Fields)
+            //The fields won't be sorted by the sequential declaration of the fields
+            //But that shouldn't be relevant to this
+            foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                //The fields won't be sorted by the sequential declaration of the fields
-                //But that shouldn't be relevant to this
-                foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-                {
-                    var fieldType = field.FieldType;
-                    object fieldValue = field.GetValue(value);
-                    var valueField = assetTypeValueField.Get(field.Name);
+                var fieldType = field.FieldType;
+                object? fieldValue = field.GetValue(value);
+                var valueField = assetTypeValueField.Get(field.Name);
 
-                    if (fieldType.IsNotPublic)
-                    {
-                        var serializableAttr = fieldType.GetCustomAttribute(typeof(Attributes.SerializeField));
-                        if (serializableAttr != null)
-                            WriteValue(fieldValue, valueField, target);
-                    }
-                    else
-                        WriteValue(fieldValue, valueField, target);
-                }
-            }
-            else
-            {
-                //The properties won't be sorted by the sequential declaration of the fields
-                //But that shouldn't be relevant to this
-                foreach (var propertyInfo in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-                {
-                    var fieldType = propertyInfo.PropertyType;
-                    object fieldValue = propertyInfo.GetValue(value);
-                    var valueField = assetTypeValueField.Get(propertyInfo.Name);
-
-                    if (fieldType.IsNotPublic)
-                    {
-                        var serializableAttr = fieldType.GetCustomAttribute(typeof(SerializeField));
-                        if (serializableAttr != null)
-                            WriteValue(fieldValue, valueField, target);
-                    }
-                    else
-                        WriteValue(fieldValue, valueField, target);
-                }
-
+                if ((fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(SerializeFieldAttribute)) != null && fieldValue != null) ||
+                    (fieldType.IsPublic && fieldValue != null))
+                    WriteValue(fieldValue, valueField);
             }
         }
 
-        public static T DeserializeObject<T>(AssetTypeValueField baseField, Target target)
+        public static T? DeserializeObject<T>(AssetsManager am, AssetTypeValueField baseField, AssetsFileInstance? fileInstance = null)
         {
-            return (T)ReadValue(typeof(T), baseField, target);
+            return (T)ReadValue(am, typeof(T), baseField, fileInstance)!;
         }
 
         //public static async Task<T> DeserializeObjectAsync<T>(AssetTypeValueField baseField)
@@ -149,20 +118,20 @@ namespace Grimoire.Core
         //}
 
 
-        private static object ReadValue(Type type, AssetTypeValueField assetTypeValueField, Target target)
+        private static object? ReadValue(AssetsManager am, Type type, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
         {
             if (type.IsPrimitive || typeof(string) == type)
                 return ReadPrimitive(type, assetTypeValueField);
             else if (typeof(IList).IsAssignableFrom(type))
-                return ReadList(type, assetTypeValueField, target);
+                return ReadList(am, type, assetTypeValueField, fileInstance);
             //Dictionaries are not supported by Unity
             else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
                 return null;
             else
-                return ReadObject(type, assetTypeValueField, target);
+                return ReadObject(am, type, assetTypeValueField, fileInstance);
         }
 
-        private static IList ReadList(Type type, AssetTypeValueField assetTypeValueField, Target target)
+        private static IList ReadList(AssetsManager am, Type type, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
         {
             IList ilist;
             Type elementType;
@@ -171,18 +140,18 @@ namespace Grimoire.Core
 
             if (type.IsArray)
             {
-                elementType = type.GetElementType();
+                elementType = type.GetElementType()!;
                 ilist = Array.CreateInstance(elementType, count);
             }
             else
             {
-                ilist = (IList)Activator.CreateInstance(type);
+                ilist = (IList)Activator.CreateInstance(type)!;
                 elementType = type.GetGenericArguments().Single();
             }
 
             for (int index = 0; index < count; index++)
             {
-                var value = ReadValue(elementType, array.Get(index), target);
+                var value = ReadValue(am, elementType, array.Get(index), fileInstance);
 
                 if (ilist.IsFixedSize)
                     ilist[index] = value;
@@ -192,7 +161,7 @@ namespace Grimoire.Core
             return ilist;
         }
 
-        private static object ReadPrimitive(Type type, AssetTypeValueField assetTypeValueField)
+        private static object? ReadPrimitive(Type type, AssetTypeValueField assetTypeValueField)
         {
             var valueField = assetTypeValueField.GetValue();
             switch (valueField.GetValueType())
@@ -213,74 +182,175 @@ namespace Grimoire.Core
             };
         }
 
-        private static object ReadObject(Type type, AssetTypeValueField assetTypeValueField, Target target)
+        private static object? ReadObject(AssetsManager am, Type type, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
         {
             var instance = Activator.CreateInstance(type);
 
             //The fields won't be sorted by the sequential declaration of the fields
             //But that shouldn't be relevant to this
-            if (target == Target.Fields)
+            if (type == typeof(Texture2D))
             {
-                var fieldInfos = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var childField in assetTypeValueField.GetChildrenList())
-                {
-                    FieldInfo fieldInfo = null;
-                    foreach (var item in fieldInfos)
-                    {
-                        if (item.Name == childField.GetName())
-                        {
-                            fieldInfo = item;
-                            break;
-                        }
-                    }
-
-                    //Asset Field doesn't exist
-                    if (fieldInfo != null)
-                    {
-                        var fieldType = fieldInfo.FieldType;
-                        object fieldValue;
-
-                        if (fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(SerializableAttribute)) != null)
-                            fieldValue = ReadValue(fieldType, childField, target);
-                        else
-                            fieldValue = ReadValue(fieldType, childField, target);
-
-                        fieldInfo.SetValue(instance, fieldValue);
-                    }
-                }
             }
-            else
+            var fieldInfos = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var childField in assetTypeValueField.GetChildrenList())
             {
-                var propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                foreach (var childField in assetTypeValueField.GetChildrenList())
+                FieldInfo? fieldInfo = null;
+                foreach (var item in fieldInfos)
                 {
-                    PropertyInfo propertyInfo = null;
-                    foreach (var item in propertyInfos)
+                    if (item.Name == childField.GetName())
                     {
-                        if (item.Name == childField.GetName())
-                        {
-                            propertyInfo = item;
-                            break;
-                        }
-                    }
-
-                    //Asset Field doesn't exist
-                    if (propertyInfo != null)
-                    {
-                        var propertyType = propertyInfo.PropertyType;
-                        object propertyValue;
-
-                        if (propertyType.IsNotPublic && propertyType.GetCustomAttribute(typeof(SerializableAttribute)) != null)
-                            propertyValue = ReadValue(propertyType, childField, target);
-                        else
-                            propertyValue = ReadValue(propertyType, childField, target);
-
-                        propertyInfo.SetValue(instance, propertyValue);
+                        fieldInfo = item;
+                        break;
                     }
                 }
 
+                //Asset Field exist
+                if (fieldInfo != null)
+                {
+                    var fieldType = fieldInfo.FieldType;
+                    object? fieldValue = null;
+
+
+                    if (fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(SerializeFieldAttribute)) != null)
+                    {
+                        //If PPtr
+                        //Some have $ and some don't?
+                        var match = Regex.Match(childField.GetFieldType(), @"(?:PPtr)(?:\<)(?:\$?)([^\>]+)(?:\>)");
+                        if (match.Success)
+                        {
+                            //Check loaded files relative to file
+                            if (fileInstance != null)
+                            {
+                                var extAsset = am.GetExtAsset(fileInstance, childField);
+                                if (extAsset.file != null && extAsset.info != null)
+                                {
+                                    fieldValue = ReadValue(am, fieldType, extAsset.instance.GetBaseField(), extAsset.file);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            fieldValue = ReadValue(am, fieldType, childField, fileInstance);
+                        }
+                    }
+                    else
+                    {
+                        //If PPtr
+                        //Some have $ and some don't?
+                        var match = Regex.Match(childField.GetFieldType(), @"(?:PPtr)(?:\<)(?:\$?)([^\>]+)(?:\>)");
+                        if (match.Success)
+                        {
+                            //Check loaded files relative to file
+                            if (fileInstance != null)
+                            {
+                                var extAsset = am.GetExtAsset(fileInstance, childField);
+                                if (extAsset.file != null && extAsset.info != null)
+                                {
+                                    fieldValue = ReadValue(am, fieldType, extAsset.instance.GetBaseField(), extAsset.file);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            fieldValue = ReadValue(am, fieldType, childField, fileInstance);
+                        }
+                    }
+                    fieldInfo.SetValue(instance, fieldValue);
+                }
             }
             return instance;
         }
+        //private static object? ReadObject(AssetsManager am, Type type, AssetTypeValueField assetTypeValueField, Target target)
+        //{
+        //    var instance = Activator.CreateInstance(type);
+
+        //    //The fields won't be sorted by the sequential declaration of the fields
+        //    //But that shouldn't be relevant to this
+        //    if (target == Target.Fields)
+        //    {
+        //        var fieldInfos = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        //        foreach (var childField in assetTypeValueField.GetChildrenList())
+        //        {
+        //            FieldInfo? fieldInfo = null;
+        //            foreach (var item in fieldInfos)
+        //            {
+        //                if (item.Name == childField.GetName())
+        //                {
+        //                    fieldInfo = item;
+        //                    break;
+        //                }
+        //            }
+
+        //            //Asset Field exist
+        //            if (fieldInfo != null)
+        //            {
+        //                var fieldType = fieldInfo.FieldType;
+        //                object? fieldValue = null;
+
+        //                if (!fieldType.Attributes.HasFlag(TypeAttributes.Serializable))
+        //                {
+        //                    foreach (var assetFile in am.files)
+        //                    {
+        //                        var assetInfo = assetFile.table.GetAssetInfo(childField.Get("m_PathID").GetValue().AsInt64());
+        //                        var assetInstance = am.GetTypeInstance(assetFile, assetInfo);
+
+        //                        fieldValue = ReadValue(am, fieldType, assetInstance.GetBaseField(), target);
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    if (((fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(SerializeFieldAttribute)) != null)) ||
+        //                        fieldType.IsPublic)
+        //                        fieldValue = ReadValue(am, fieldType, childField, target);
+        //                    fieldInfo.SetValue(instance, fieldValue);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        //        foreach (var childField in assetTypeValueField.GetChildrenList())
+        //        {
+        //            PropertyInfo? propertyInfo = null;
+        //            foreach (var item in propertyInfos)
+        //            {
+        //                if (item.Name == childField.GetName())
+        //                {
+        //                    propertyInfo = item;
+        //                    break;
+        //                }
+        //            }
+
+        //            //Asset Field exist
+        //            if (propertyInfo != null)
+        //            {
+        //                var propertyType = propertyInfo.PropertyType;
+        //                object? propertyValue = null;
+
+        //                if (!propertyType.Attributes.HasFlag(TypeAttributes.Serializable))
+        //                {
+        //                    foreach (var assetFile in am.files)
+        //                    {
+        //                        var assetInfo = assetFile.table.GetAssetInfo(childField.Get("m_PathID").GetValue().AsInt64());
+        //                        var assetInstance = am.GetTypeInstance(assetFile, assetInfo);
+
+        //                        propertyValue = ReadValue(am, propertyType, assetInstance.GetBaseField(), target);
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    if ((propertyType.IsNotPublic && propertyType.GetCustomAttribute(typeof(SerializeFieldAttribute)) != null) ||
+        //                        propertyType.IsPublic)
+        //                        propertyValue = ReadValue(am, propertyType, childField, target);
+        //                }
+
+        //                propertyInfo.SetValue(instance, propertyValue);
+        //            }
+        //        }
+
+        //    }
+        //    return instance;
+        //}
     }
 }

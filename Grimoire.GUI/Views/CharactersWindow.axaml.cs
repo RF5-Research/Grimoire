@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
 using Grimoire.GUI.ViewModels;
 
 namespace Grimoire.GUI.Views
@@ -16,6 +17,7 @@ namespace Grimoire.GUI.Views
             DataContext = new CharactersWindowViewModel();
             Opened += CharactersWindow_Opened;
             Closing += CharactersWindow_Closing;
+            var image = new Image();
             //TODO: Automatically generate TextBlocks for each field
         }
 

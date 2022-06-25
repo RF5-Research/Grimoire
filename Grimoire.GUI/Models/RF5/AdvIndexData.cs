@@ -9,7 +9,9 @@ namespace Grimoire.GUI.Models.RF5
 {
     public class AdvIndexData : INotifyPropertyChanged
     {
-        public List<int> offset { get; set; }
+        public List<int> offset;
+
+        public List<int> offsetProperty { get => offset; set => offset = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

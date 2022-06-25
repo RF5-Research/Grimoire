@@ -1,3 +1,5 @@
+using AssetsTools.NET.Extra;
+using Grimoire.Core;
 using Grimoire.GUI.Core.Services;
 using Grimoire.GUI.Models.RF5;
 using Grimoire.GUI.Models.RF5.Define;
@@ -5,7 +7,7 @@ using Grimoire.GUI.Models.RF5.Loader.ID;
 using ReactiveUI;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using static Grimoire.Core.Serialization;
 
 namespace Grimoire.GUI.ViewModels
 {
@@ -32,8 +34,17 @@ namespace Grimoire.GUI.ViewModels
 
         public AdvScriptWindowViewModel()
         {
-            var advIndexData = AssetsService.GetMonoBehaviourObject<AdvIndexData>((int)Master.ADVINDEXDATA);
-            var pack = AssetsService.GetTextAssetObject((int)Event.PACK, Event.PACK.ToString());
+            var am = new AssetsManager();
+            LoaderService.LoadID(am, (int)Master.ADVINDEXDATA);
+            (var advIndexDataAsset, var advIndexDataAssetFile) = LoaderService.FindSerializedAsset(am, Master.ADVINDEXDATA.ToString(), AssetClassID.MonoBehaviour);
+            var advIndexData = LoaderService.GetDeserializedObject<AdvIndexData>(am, advIndexDataAsset, advIndexDataAssetFile);
+            am.UnloadAll();
+
+            LoaderService.LoadID(am, (int)Event.PACK);
+            (var packAsset, var _) = LoaderService.FindSerializedAsset(am, Event.PACK.ToString(), AssetClassID.TextAsset);
+            var pack = LoaderService.GetTextAsset(packAsset);
+            am.UnloadAll();
+
             Scripts = AdvScriptService.DecompilePack(pack, advIndexData);
             ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
             ScriptText = Scripts[selectedItem + 1];

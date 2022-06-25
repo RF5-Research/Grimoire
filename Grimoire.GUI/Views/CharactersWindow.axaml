@@ -5,9 +5,11 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grimoire.GUI.Views.CharactersWindow"
         Title="CharactersWindow">
+	
 	<Grid ColumnDefinitions="Auto,*">
-		<ListBox Width="200" Grid.Column="0"></ListBox>
+		<ListBox Width="200" Grid.Column="0" Items="{Binding List}" SelectedIndex="{Binding SelectedIndex}"></ListBox>
 		<StackPanel Grid.Column="1">
+			<Image Source="{Binding Bitmap}" Width="512" Height="341"/>
 			<TabControl>
 				<TabItem Header="ActorData"></TabItem>
 				<TabItem Header="NpcStatusData"></TabItem>
