@@ -14,10 +14,18 @@ namespace Grimoire.GUI.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
-            ScriptEditorButton.Click += ScriptEditorButton_Click;
             CloseMenuItem.Click += CloseProjectMenuItem_Click;
             SaveMenuItem.Click += SaveMenuItem_Click;
+
             CharactersButton.Click += CharactersButton_Click;
+            ScriptEditorButton.Click += ScriptEditorButton_Click;
+            AssetsButton.Click += AssetsButton_Click;
+        }
+
+        private void AssetsButton_Click(object? sender, RoutedEventArgs e)
+        {
+            var window = new AssetsWindow();
+            window.Show(this);
         }
 
         private void CharactersButton_Click(object? sender, RoutedEventArgs e)

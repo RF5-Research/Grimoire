@@ -1,24 +1,42 @@
+using AssetsTools.NET.Extra;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using Avalonia.Data;
 using Avalonia.Media.Imaging;
+using Grimoire.GUI.Core;
+using Grimoire.GUI.Core.Services;
+using Grimoire.GUI.Core.Texture;
+using Grimoire.GUI.Models.RF5;
+using Grimoire.GUI.Models.RF5.Define;
+using Grimoire.GUI.Models.RF5.Loader.ID;
+using Grimoire.GUI.Models.UnityEngine;
 using Grimoire.GUI.ViewModels;
+using System;
+using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Grimoire.GUI.Views
 {
     public partial class CharactersWindow : Window
     {
+        private HumanDataTable HumanDataTable { get; set; }
+        static SemaphoreSlim Semaphore = new SemaphoreSlim(1, 1);
+        AdvBustupResManager AdvBustupResManager;
+
         public CharactersWindow()
         {
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
 #endif
+            //Opened += CharactersWindow_Opened;
+            //Closing += CharactersWindow_Closing;
             DataContext = new CharactersWindowViewModel();
-            Opened += CharactersWindow_Opened;
-            Closing += CharactersWindow_Closing;
-            var image = new Image();
-            //TODO: Automatically generate TextBlocks for each field
         }
 
         private void CharactersWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -30,7 +48,7 @@ namespace Grimoire.GUI.Views
             }
         }
 
-        private void CharactersWindow_Opened(object? sender, System.EventArgs e)
+        private async void CharactersWindow_Opened(object? sender, System.EventArgs e)
         {
             ((ProjectMainWindow)Owner).Save += CharactersWindow_Save;
         }

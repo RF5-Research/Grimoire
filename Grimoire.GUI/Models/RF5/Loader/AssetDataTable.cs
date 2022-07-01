@@ -3,14 +3,14 @@
  */
 
 using System.ComponentModel;
+using static Grimoire.Core.Serialization.Attributes;
 
 namespace Grimoire.GUI.Models.RF5.Loader
 {
+    [Serializable(Target.Property)]
     public class AssetDataTable : INotifyPropertyChanged
     {
-        public ASSET_TABLE[] AssetTables;
-
-        public ASSET_TABLE[] AssetTablesProperty { get => AssetTables; set => AssetTables = value; }
+        public ASSET_TABLE[] AssetTables { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

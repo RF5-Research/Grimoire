@@ -34,20 +34,20 @@ namespace Grimoire.GUI.ViewModels
 
         public AdvScriptWindowViewModel()
         {
-            var am = new AssetsManager();
-            LoaderService.LoadID(am, (int)Master.ADVINDEXDATA);
-            (var advIndexDataAsset, var advIndexDataAssetFile) = LoaderService.FindSerializedAsset(am, Master.ADVINDEXDATA.ToString(), AssetClassID.MonoBehaviour);
-            var advIndexData = LoaderService.GetDeserializedObject<AdvIndexData>(am, advIndexDataAsset, advIndexDataAssetFile);
-            am.UnloadAll();
+            //var am = new AssetsManager();
+            //LoaderService.LoadID(am, (int)Master.ADVINDEXDATA);
+            //(var advIndexDataAsset, var advIndexDataAssetFile) = LoaderService.FindSerializedAsset(am, Master.ADVINDEXDATA.ToString(), AssetClassID.MonoBehaviour);
+            //var advIndexData = LoaderService.GetDeserializedObject<AdvIndexData>(am, advIndexDataAsset, advIndexDataAssetFile);
+            //am.UnloadAll();
 
-            LoaderService.LoadID(am, (int)Event.PACK);
-            (var packAsset, var _) = LoaderService.FindSerializedAsset(am, Event.PACK.ToString(), AssetClassID.TextAsset);
-            var pack = LoaderService.GetTextAsset(packAsset);
-            am.UnloadAll();
+            //LoaderService.LoadID(am, (int)Event.PACK);
+            //(var packAsset, var _) = LoaderService.FindSerializedAsset(am, Event.PACK.ToString(), AssetClassID.TextAsset);
+            //var pack = LoaderService.GetTextAsset(packAsset);
+            //am.UnloadAll();
 
-            Scripts = AdvScriptService.DecompilePack(pack, advIndexData);
-            ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
-            ScriptText = Scripts[selectedItem + 1];
+            //Scripts = AdvScriptService.DecompilePack(pack, advIndexData);
+            //ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
+            //ScriptText = Scripts[selectedItem + 1];
         }
     }
 }

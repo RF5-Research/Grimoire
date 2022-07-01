@@ -5,6 +5,7 @@ using Grimoire.Core;
 using Grimoire.GUI.Models;
 using Grimoire.GUI.ViewModels;
 using PropertyChanged;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
@@ -79,7 +80,7 @@ namespace Grimoire.GUI.Views
 
         private async void NewProjectButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var dialog = new CreateProjectWindow();
+            var dialog = new ProjectCreateWindow();
             await dialog.ShowDialog(this);
         }
 
@@ -100,7 +101,22 @@ namespace Grimoire.GUI.Views
 
             var cancellationToken = new CancellationTokenSource();
             dialog.Closed += (object? sender, System.EventArgs e) => cancellationToken.Cancel();
+
+#if DEBUG
             await Task.Run(() => ProjectManager.Initialize(project), cancellationToken.Token);
+#else
+            try
+            {
+                await Task.Run(() => ProjectManager.Initialize(project), cancellationToken.Token);
+            }
+            catch (Exception ex)
+            {
+                dialog.Close();
+                var window = new Window();
+                window.Content = ex.ToString();
+                await window.ShowDialog(this);
+            }
+#endif
 
             if (cancellationToken.IsCancellationRequested != true)
             {

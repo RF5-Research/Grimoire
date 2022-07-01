@@ -3,11 +3,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+		Padding="10"
         x:Class="Grimoire.GUI.Views.MainWindow"
         Title="Grimoire">
+	
 	<Grid ColumnDefinitions="*,Auto">
 		<DataGrid Grid.Column="0"
+				  ColumnWidth="Auto"
 				  HorizontalScrollBarVisibility="Auto"
 				  Name="ProjectDataGrid"
 				  SelectedIndex="{Binding SelectedIndex}"
@@ -21,11 +23,23 @@
 				<DataGridTextColumn Header="Project Path" Binding="{Binding ProjectPath}" />
 			</DataGrid.Columns>
 		</DataGrid>
-		<StackPanel Grid.Column="1">
-			<Button Name="NewProjectButton" Content="New project"/>
-			<Button Name="OpenProjectButton" Content="Open project" IsEnabled="{Binding IsButtonEnabled}"/>
-			<Button Name="DeleteProjectButton" Content="Delete project" IsEnabled="{Binding IsButtonEnabled}"/>
-			<Button Name="ProjectSettingsButton" Content="Project settings" IsEnabled="{Binding IsButtonEnabled}"/>
+		<StackPanel Grid.Column="1" VerticalAlignment="Center">
+			<StackPanel.Styles>
+				<Style Selector="Button">
+					<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				</Style>
+			</StackPanel.Styles>
+			<Button Name="NewProjectButton"
+					Content="New project"/>
+			<Button Name="OpenProjectButton"
+					Content="Open project"
+					IsEnabled="{Binding IsButtonEnabled}"/>
+			<Button Name="DeleteProjectButton"
+					Content="Delete project"
+					IsEnabled="{Binding IsButtonEnabled}"/>
+			<Button Name="ProjectSettingsButton"
+					Content="Project settings"
+					IsEnabled="{Binding IsButtonEnabled}"/>
 		</StackPanel>
 	</Grid>
 </Window>

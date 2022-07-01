@@ -6,7 +6,6 @@
         x:Class="Grimoire.GUI.Views.AdvScriptWindow"
         xmlns:Controls="clr-namespace:Grimoire.GUI.Controls"
         Icon="/Assets/avalonia-logo.ico"
-		Padding="0" 
         Title="Script Editor">
 
 	<Grid ColumnDefinitions="Auto,*">

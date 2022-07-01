@@ -14,13 +14,11 @@ namespace Grimoire.GUI.Models
 
         public static string AddressableAssetsPath { get => $"{StreamingAssetsPath}/aa"; }
 
-        public static async Task Initialize(Project project)
+        public static void Initialize(Project project)
         {
             Project = project;
-            await InitializeGlobalServices();
-            //Add services
+            InitializeGlobalServices();
         }
-
 
         /// <summary>
         /// Determines and gets which file to be loaded.
@@ -51,14 +49,13 @@ namespace Grimoire.GUI.Models
             return path;
         }
 
-        public static async Task InitializeGlobalServices()
+        public static void InitializeGlobalServices()
         {
-            await Task.WhenAll(
-                AddressablesService.InitializeAsync($"{AddressableAssetsPath}/catalog.json", AddressableAssetsPath),
-                AdvScriptService.InitializeAsnyc("Resources/AdvScriptFunctions.json")
-            );
-            //Relies on AddressablesService
-            LoaderService.Initialize();
+            //Need to clean this up
+            Addressables.Initialize($"{AddressableAssetsPath}/catalog.json", AddressableAssetsPath);
+            
+            //AdvScript.Initialize("Resources/AdvScriptFunctions.json");
+            Loader.Initialize();
         }
     }
 }

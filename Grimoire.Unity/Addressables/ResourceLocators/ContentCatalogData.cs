@@ -274,7 +274,7 @@ namespace Grimoire.Unity.Addressables.ResourceLocators
         /// </summary>
         /// <param name="providerSuffix">If specified, this value will be appeneded to all provider ids.  This is used when loading additional catalogs that need to have unique providers.</param>
         /// <returns>ResourceLocationMap, which implements the IResourceLocator interface.</returns>
-        public ResourceLocationMap CreateLocator(string providerSuffix = null, string addressableAssetsPath = null)
+        public ResourceLocationMap CreateLocator(string providerSuffix = null)
         {
             //var bucketData = Convert.FromBase64String(m_BucketDataString);
             //Bucket[] buckets;
@@ -391,13 +391,6 @@ namespace Grimoire.Unity.Addressables.ResourceLocators
                 //This is where I messed up...
                 keys[i] = SerializationUtilities.ReadObjectFromByteArray(keyData, buckets[i].dataOffset);
 
-            //keys.Select(x =>
-            //{
-            //    if (x.GetType() == typeof(string))
-            //        ((string)x).Replace("UnityEngine.AddressableAssets.Addressables.RuntimePath", addressableAssetsPath);
-            //    return x;
-            //});
-
             var locator = new ResourceLocationMap(m_LocatorId, buckets.Length);
 
             var entryData = Convert.FromBase64String(m_EntryDataString);
@@ -421,8 +414,6 @@ namespace Grimoire.Unity.Addressables.ResourceLocators
                 var resourceType = SerializationUtilities.ReadInt32FromByteArray(entryData, index);
                 object data = dataIndex < 0 ? null : SerializationUtilities.ReadObjectFromByteArray(extraData, dataIndex);
                 var internalIDString = ResolveInternalId(ExpandInternalId(m_InternalIdPrefixes, m_InternalIds[internalId]));
-                if (addressableAssetsPath != null)
-                    internalIDString = internalIDString.Replace("UnityEngine.AddressableAssets.Addressables.RuntimePath", addressableAssetsPath);
                 locations[i] = new CompactLocation(locator, internalIDString,
                     m_ProviderIds[providerIndex], dependencyKeyIndex < 0 ? null : keys[dependencyKeyIndex], data, depHash, keys[primaryKey].ToString(), null);
             }

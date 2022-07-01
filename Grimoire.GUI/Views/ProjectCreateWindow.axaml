@@ -2,19 +2,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Grimoire.GUI.Views.CreateProjectWindow"
-		Padding="10"
+        x:Class="Grimoire.GUI.Views.ProjectCreateWindow"
+		Width="800"
+		Height="460"
         Title="Create Project">
-	<StackPanel>
+	<DockPanel>
 		<Grid VerticalAlignment="Center"
+			  DockPanel.Dock="Top"
 			  ColumnDefinitions="Auto,*,Auto"
 			  RowDefinitions="Auto,Auto,Auto,Auto">
+			<Grid.Styles>
+				<Style Selector="TextBlock">
+					<Setter Property="Margin" Value="10,0,10,0"/>
+				</Style>
+			</Grid.Styles>
 			<TextBlock Text="Name:" Grid.Column="0" Grid.Row="0"/>
 			<TextBox Name="NameTextBox" Grid.Column="1" Grid.Row="0"></TextBox>
 
 			<TextBlock Text="Game Language:" Grid.Column="0" Grid.Row="1"/>
-			<ComboBox Name="GameLanguageComboBox" Grid.Column="1" Grid.Row="1"/>
+			<ComboBox Name="GameLanguageComboBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"/>
 
 			<TextBlock Text="ROM Path:" Grid.Column="0" Grid.Row="2"/>
 			<TextBox Name="ROMPathTextBox" Grid.Column="1" Grid.Row="2"></TextBox>
@@ -23,14 +29,13 @@
 			<TextBlock Text="Project Path:" Grid.Column="0" Grid.Row="3"/>
 			<TextBox Name="ProjectPathTextBox" Grid.Column="1" Grid.Row="3"></TextBox>
 			<Button Name="ProjectPathBrowseButton" Content="Browse..." Grid.Column="2" Grid.Row="3"/>
-
 		</Grid>
-		<StackPanel
-			VerticalAlignment="Bottom"
-			HorizontalAlignment="Right"
-			Orientation="Horizontal">
+		<StackPanel DockPanel.Dock="Bottom"
+					VerticalAlignment="Bottom"
+					HorizontalAlignment="Right"
+					Orientation="Horizontal">
 			<Button Name="CancelButton" Content="Cancel"/>
 			<Button Name="CreateButton" Content="Create"/>
 		</StackPanel>
-	</StackPanel>
+	</DockPanel>
 </Window>

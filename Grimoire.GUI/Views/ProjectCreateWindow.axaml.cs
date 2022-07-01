@@ -6,9 +6,9 @@ using System.IO;
 
 namespace Grimoire.GUI.Views
 {
-    public partial class CreateProjectWindow : Window
+    public partial class ProjectCreateWindow : Window
     {        
-        public CreateProjectWindow()
+        public ProjectCreateWindow()
         {
             InitializeComponent();
 #if DEBUG

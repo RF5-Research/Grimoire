@@ -4,14 +4,14 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using static Grimoire.Core.Serialization.Attributes;
 
 namespace Grimoire.GUI.Models.RF5
 {
+    [Serializable(Target.Property)]
     public class AdvIndexData : INotifyPropertyChanged
     {
-        public List<int> offset;
-
-        public List<int> offsetProperty { get => offset; set => offset = value; }
+        public List<int> offset { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

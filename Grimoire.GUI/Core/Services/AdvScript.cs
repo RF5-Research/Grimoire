@@ -17,7 +17,7 @@ namespace Grimoire.GUI.Core.Services
         public Dictionary<string, string> Params { get; set; }
     }
 
-    public static class AdvScriptService
+    public static class AdvScript
     {
         private static List<CommandData> Commands;
 
@@ -28,11 +28,6 @@ namespace Grimoire.GUI.Core.Services
             {
                 Commands = JsonSerializer.Deserialize<List<CommandData>>(reader.ReadToEnd())!;
             }
-        }
-
-        public static async Task InitializeAsnyc(string path)
-        {
-            await Task.Run(() => Initialize(path));
         }
 
         public static Dictionary<AdvScriptId, string> DecompilePack(byte[] pack, AdvIndexData advIndexData)

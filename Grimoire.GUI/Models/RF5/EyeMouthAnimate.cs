@@ -7,66 +7,67 @@ using static Grimoire.Core.Serialization.Attributes;
 
 namespace Grimoire.GUI.Models.RF5
 {
-    public class EyeMouthAnimate
+	[Serializable(Target.Property)]
+	public class EyeMouthAnimate
 	{
-		private bool PlayEye;
-		private bool PlayEyeBrows;
-		private bool MouthSeted;
-		private bool _PlayMouth;
-		public Image MainImage;
-		public Image NoFaceImage;
-		public Image EyeImage;
-		public Image EyeBrowsImage;
-		public Image MouthImage;
-		public Sprite[] BaseImage;
+		private bool PlayEye { get; set; }
+		private bool PlayEyeBrows { get; set; }
+		private bool MouthSeted { get; set; }
+		private bool _PlayMouth { get; set; }
+		public Image MainImage { get; set; }
+		public Image NoFaceImage { get; set; }
+		public Image EyeImage { get; set; }
+		public Image EyeBrowsImage { get; set; }
+		public Image MouthImage { get; set; }
+		public Sprite[] BaseImage { get; set; }
 		[SerializeField]
-		private Sprite[] EyeImgs;
+		private Sprite[] EyeImgs { get; set; }
 		[SerializeField]
-		private Sprite[] EyeBrowsImgs;
+		private Sprite[] EyeBrowsImgs { get; set; }
 		[SerializeField]
-		private Sprite[] MouthImgs;
+		private Sprite[] MouthImgs { get; set; }
 		[SerializeField]
-		private int MaxEyeId;
+		private int MaxEyeId { get; set; }
 		[SerializeField]
-		private int MaxEyeBrowsId;
+		private int MaxEyeBrowsId { get; set; }
 		[SerializeField]
-		private int MaxMouthId;
+		private int MaxMouthId { get; set; }
 		[SerializeField]
-		private EMAnimSet[] EyeSet;
+		private EMAnimSet[] EyeSet { get; set; }
 		[SerializeField]
-		private EMAnimSet[] EyeBrowsSet;
+		private EMAnimSet[] EyeBrowsSet { get; set; }
 		[SerializeField]
-		private EMAnimSet[] MouthSet;
+		private EMAnimSet[] MouthSet { get; set; }
 		[SerializeField]
-		private float EyeFrame;
+		private float EyeFrame { get; set; }
 		[SerializeField]
-		private float EyeBrowsFrame;
+		private float EyeBrowsFrame { get; set; }
 		[SerializeField]
-		private float MouthFrame;
+		private float MouthFrame { get; set; }
 		[SerializeField]
-		private int EyeAnimPoint;
+		private int EyeAnimPoint { get; set; }
 		[SerializeField]
-		private int EyeBrowsAnimPoint;
+		private int EyeBrowsAnimPoint { get; set; }
 		[SerializeField]
-		private int MouthAnimPoint;
+		private int MouthAnimPoint { get; set; }
 		[SerializeField]
-		private float EyeWaitTimeMin;
+		private float EyeWaitTimeMin { get; set; }
 		[SerializeField]
-		private float EyeWaitTimeMax;
-		private Image ParentImage;
-		public SpriteAtlas spriteAtlas;
-		private int EyeVariation;
-		private int EyeBrowsVariation;
-		private int MouthVariation;
-		private BustupDataList.MouthTable mouthTable;
-		private int defaultMouthVal;
-		private bool fadeInCompleted;
+		private float EyeWaitTimeMax { get; set; }
+		private Image ParentImage { get; set; }
+		public SpriteAtlas spriteAtlas { get; set; }
+		private int EyeVariation { get; set; }
+		private int EyeBrowsVariation { get; set; }
+		private int MouthVariation { get; set; }
+		private BustupDataList.MouthTable mouthTable { get; set; }
+		private int defaultMouthVal { get; set; }
+		private bool fadeInCompleted { get; set; }
 
+		[Serializable(Target.Property)]
 		public struct EMAnimSet
 		{
-
-			public float frame;
-			public int id;
+			public float frame { get; set; }
+			public int id { get; set; }
 		}
 	}
 }

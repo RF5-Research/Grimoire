@@ -3,16 +3,14 @@
  */
 
 using Grimoire.GUI.Models.RF5;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using static Grimoire.Core.Serialization.Attributes;
 
-[Serializable]
+[Serializable(Target.Property)]
 public class HumanDataTable : INotifyPropertyChanged
 {
-    public List<HumanDataArray> HumanDatas;
-
-    public List<HumanDataArray> HumanDatasProperty { get => HumanDatas; set => HumanDatas = value; }
+    public List<HumanDataArray> HumanDatas { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 }

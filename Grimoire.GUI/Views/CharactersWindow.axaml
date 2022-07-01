@@ -7,9 +7,9 @@
         Title="CharactersWindow">
 	
 	<Grid ColumnDefinitions="Auto,*">
-		<ListBox Width="200" Grid.Column="0" Items="{Binding List}" SelectedIndex="{Binding SelectedIndex}"></ListBox>
+		<ListBox Name="CharacterBox" Width="200" Grid.Column="0" Items="{Binding List}" SelectedIndex="{Binding SelectedIndex}"></ListBox>
 		<StackPanel Grid.Column="1">
-			<Image Source="{Binding Bitmap}" Width="512" Height="341"/>
+			<Image Name="ImageBox" Source="{Binding Image}" Width="512" Height="341"/>
 			<TabControl>
 				<TabItem Header="ActorData"></TabItem>
 				<TabItem Header="NpcStatusData"></TabItem>
