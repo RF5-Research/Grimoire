@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.GUI", "Grimoire.GUI\Grimoire.GUI.csproj", "{4C064155-6519-4974-9D9C-6700D53B7D74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrimoireGUI", "GrimoireGUI\GrimoireGUI.csproj", "{4C064155-6519-4974-9D9C-6700D53B7D74}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grimoire.Unity", "Grimoire.Unity\Grimoire.Unity.csproj", "{2550C339-1B15-4227-9A7E-870F1E82F035}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grimoire", "Grimoire\Grimoire.csproj", "{AC71CEFE-87FA-4453-BBF9-74C6DBB8C92D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2550C339-1B15-4227-9A7E-870F1E82F035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2550C339-1B15-4227-9A7E-870F1E82F035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2550C339-1B15-4227-9A7E-870F1E82F035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC71CEFE-87FA-4453-BBF9-74C6DBB8C92D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC71CEFE-87FA-4453-BBF9-74C6DBB8C92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC71CEFE-87FA-4453-BBF9-74C6DBB8C92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC71CEFE-87FA-4453-BBF9-74C6DBB8C92D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

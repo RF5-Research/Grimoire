@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:material="using:Material.Icons.Avalonia"
+        x:Class="GrimoireGUI.Views.AssetsWindow"
+        Title="Assets">
+
+	<Grid ColumnDefinitions="2*,4,*" RowDefinitions="Auto,*">
+		<DockPanel Grid.Row="0">
+			<ComboBox Items="{Binding Filters}" SelectedIndex="{Binding FilterSelectedIndex}" Width="100" CornerRadius="0,0,0,0"/>
+			<TextBox Text="{Binding SearchText}" Classes="clearButton" CornerRadius="0,0,0,0" Watermark="Search">
+				<TextBox.InnerLeftContent>
+					<material:MaterialIcon Kind="Search" Margin="5"></material:MaterialIcon>
+				</TextBox.InnerLeftContent>
+			</TextBox>
+		</DockPanel>
+		<ListBox
+			Grid.Row="1"
+			Grid.Column="0"
+			Items="{Binding Items}"
+			SelectedItem="{Binding SelectedItem}"
+			HorizontalAlignment="Stretch">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Text}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
+
+		<DataGrid
+			Name="DependenciesDataGrid"
+			IsReadOnly="True"
+			CanUserResizeColumns="False"
+			Grid.RowSpan="2"
+			Grid.Row="0"
+			Grid.Column="2"
+			CanUserSortColumns="False"
+			VerticalScrollBarVisibility="Auto"
+			Items="{Binding SelectedItem.Location.Dependencies}">
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="*"
+					Header="Dependencies"
+					Binding="{Binding PrimaryKey}">
+				</DataGridTextColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Window>
