@@ -2,7 +2,9 @@
 using Grimoire.GUI.Models;
 using Grimoire.Unity.Addressables.ResourceManager.ResourceLocations;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -27,26 +29,17 @@ namespace Grimoire.GUI.ViewModels
         }
 
         private Item? SelectedItem { get; set; }
-
         private List<Item> Assets { get; }
         private List<Item> Items { get; set; }
 
-        private string[] Filters
+        private string[] Filters =>  new string[]
         {
-            get
-            {
-                return new string[]
-                {
-                    "Key",
-                    "Name"
-                };
-            }
-        }
-        private int _filterSelectedIndex = 0;
-        private int FilterSelectedIndex { get => _filterSelectedIndex; set => this.RaiseAndSetIfChanged(ref _filterSelectedIndex, value); }
+            "Key",
+            "Name"
+        };
 
-        private string? _searchText;
-        private string? SearchText { get => _searchText; set => this.RaiseAndSetIfChanged(ref _searchText, value); }
+        [Reactive] private int FilterSelectedIndex { get; set; } = 0;
+        [Reactive] private string SearchText { get; set; }
 
         public AssetsWindowViewModel()
         {
@@ -73,10 +66,11 @@ namespace Grimoire.GUI.ViewModels
 
                     foreach (var location in locations)
                     {
-                        //Remove dup keys that were added for some reason 
-                        if (location.Location.HasDependencies && !addedKeys.Contains(location.Location.DependencyHashCode))
+                        //Remove dup keys that were added for some reason
+                        var hashCode = location.Location.InternalId.GetHashCode();
+                        if (location.Location.HasDependencies && !addedKeys.Contains(hashCode))
                         {
-                            addedKeys.Add(location.Location.DependencyHashCode);
+                            addedKeys.Add(hashCode);
                             Assets.Add(location);
                         }
                     }
@@ -84,6 +78,7 @@ namespace Grimoire.GUI.ViewModels
                 }
             }
         }
+
         private void Search(int _)
         {
             SearchAsset();
@@ -98,8 +93,8 @@ namespace Grimoire.GUI.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 var items = FilterSelectedIndex == 0 ?
-                    Assets.Where(x => x.Location.PrimaryKey.Contains(SearchText)) :
-                    Assets.Where(x => x.Location.InternalId.Contains(SearchText));
+                    Assets.Where(x => x.Location.PrimaryKey.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) :
+                    Assets.Where(x => x.Location.InternalId.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
                 Items = items.ToList();
             }
             else

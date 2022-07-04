@@ -1,13 +1,8 @@
-﻿using AssetsTools.NET.Extra;
-using Grimoire.GUI.Core.Services;
+﻿using Grimoire.GUI.Core.Services;
 using Grimoire.GUI.Models.RF5;
 using Grimoire.GUI.Models.RF5.Define;
 using Grimoire.GUI.Models.RF5.Loader.ID;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Grimoire.GUI.Core
 {
@@ -34,45 +29,41 @@ namespace Grimoire.GUI.Core
             //Use NPCID to index
 
             //v14
-            var unk1 = 0;
+            var val1 = 0;
             var result = 0;
             //v16
-            var unk4 = 1;
+            var val2 = 1;
 
             //v28
-            var unk2 = 0;
+            var index = 0;
             //v29
-            var unk3 = -1;
+            var loaderID = -1;
             switch (npcID)
             {
                 case NPCID.Baby:
                     {
                         //var childParameters = SV.childParameters
                         //if (BustupChildParameter.get_Gender(childParameters[0]) == 1)
-                        //charID = 30
+                        var charID = 30;
                         //else
                         //charID = 31
                         //...
-                    }
-                    break;
-                default:
-                    {
-                        var charID = (int)CheckChangeBUSTUPID(npcID, poseID, costumeID);
-                        unk1 = 0;
-                        unk4 = 0;
+                        //val1 = BustupChildParameter.Character;
+                        val1 = 1;
+                        val2 = 1;
+
                         var buData = BustupDataList.Datas[charID];
                         var size = buData.Data.Count;
 
-                        
                         while (true)
                         {
-                            var data = buData.Data[unk2];
-                            if (data.Val1 != unk1 || data.Val2 != unk4)
+                            var data = buData.Data[index];
+                            if (data.Val1 != val1 || data.Val2 != val2)
                             {
-                                result = unk3;
+                                result = loaderID;
                                 size = buData.Data.Count;
-                                unk3 = result;
-                                if (++unk2 >= size)
+                                //loaderID = result;
+                                if (++index >= size)
                                     return result;
                             }
                             else
@@ -82,8 +73,41 @@ namespace Grimoire.GUI.Core
                                 if (poseNo == poseID)
                                     break;
                                 size = buData.Data.Count;
-                                unk3 = result;
-                                if (++unk2 >= size)
+                                loaderID = result;
+                                if (++index >= size)
+                                    return result;
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    {
+                        var charID = (int)CheckChangeBUSTUPID(npcID, poseID, costumeID);
+                        val1 = 0;
+                        val2 = 0;
+                        var buData = BustupDataList.Datas[charID];
+                        var size = buData.Data.Count;
+                        
+                        while (true)
+                        {
+                            var data = buData.Data[index];
+                            if (data.Val1 != val1 || data.Val2 != val2)
+                            {
+                                result = loaderID;
+                                size = buData.Data.Count;
+                                //loaderID = result;
+                                if (++index >= size)
+                                    return result;
+                            }
+                            else
+                            {
+                                var poseNo = data.PoseNo;
+                                result = data.LoadID;
+                                if (poseNo == poseID)
+                                    break;
+                                size = buData.Data.Count;
+                                loaderID = result;
+                                if (++index >= size)
                                     return result;
                             }
                         }
@@ -91,7 +115,7 @@ namespace Grimoire.GUI.Core
                     break;
             }
             if (result < 0)
-                return unk3;
+                return loaderID;
             return result;
         }
         
@@ -115,7 +139,11 @@ namespace Grimoire.GUI.Core
                     case NPCID.Fuqua:
                         {
                             //This seems to return a choice of either 39 or 45??
-                            return (BUSTUPID)((costumeID - 2 >= 3) ? 5 : 45);
+                            //var array = new BUSTUPID[] { BUSTUPID.Fuqua3, BUSTUPID.Fuqua2, BUSTUPID.Fuqua3 };
+                            //return (costumeID - 2 >= 3) ? (BUSTUPID)5 : array[costumeID - 2];
+
+                            //This wouldn't work with costumeID 1; only 2-4. This needs more research...
+                            break;
                         }
                     case NPCID.Ludmila:
                         {

@@ -5,7 +5,6 @@
         x:Class="Grimoire.GUI.Views.LoadingWindow"
 		Width="400"
 		Height="250"
-		Padding="10"
         WindowStartupLocation ="CenterScreen"
         Title="Loading...">
 	<Panel>

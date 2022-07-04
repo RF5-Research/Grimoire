@@ -24,18 +24,14 @@ namespace Grimoire.GUI.Views
 {
     public partial class CharactersWindow : Window
     {
-        private HumanDataTable HumanDataTable { get; set; }
-        static SemaphoreSlim Semaphore = new SemaphoreSlim(1, 1);
-        AdvBustupResManager AdvBustupResManager;
-
         public CharactersWindow()
         {
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
 #endif
-            //Opened += CharactersWindow_Opened;
-            //Closing += CharactersWindow_Closing;
+            Opened += CharactersWindow_Opened;
+            Closing += CharactersWindow_Closing;
             DataContext = new CharactersWindowViewModel();
         }
 
@@ -48,7 +44,7 @@ namespace Grimoire.GUI.Views
             }
         }
 
-        private async void CharactersWindow_Opened(object? sender, System.EventArgs e)
+        private void CharactersWindow_Opened(object? sender, System.EventArgs e)
         {
             ((ProjectMainWindow)Owner).Save += CharactersWindow_Save;
         }

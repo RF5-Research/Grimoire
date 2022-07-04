@@ -16,7 +16,7 @@ namespace Grimoire.GUI.Models.RF5
         public HairType Hair { get; set; }
         public string AssetName { get; set; }
         public string PrefabName { get; set; }
-        public Character DataId { get; set; }
+        public Loader.ID.Character DataId { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

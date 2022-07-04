@@ -7,12 +7,13 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Grimoire.GUI.Core.Services
+namespace Grimoire.GUI.Core
 {
     internal class CommandData
     {
         public string Name { get; set; }
         public short ID { get; set; }
+        public string Description { get; set; }
         //Change this to `Params`
         public Dictionary<string, string> Params { get; set; }
     }
@@ -30,9 +31,9 @@ namespace Grimoire.GUI.Core.Services
             }
         }
 
-        public static Dictionary<AdvScriptId, string> DecompilePack(byte[] pack, AdvIndexData advIndexData)
+        public static Dictionary<AdvScriptId, string?> DecompilePack(byte[] pack, AdvIndexData advIndexData)
         {
-            var scripts = new Dictionary<AdvScriptId, string>(advIndexData.offset.Count);
+            var scripts = new Dictionary<AdvScriptId, string?>(advIndexData.offset.Count);
             using (var fs = new MemoryStream(pack))
             using (var reader = new BinaryReader(fs))
             {
@@ -50,7 +51,7 @@ namespace Grimoire.GUI.Core.Services
             return scripts;
         }
 
-        public static string DecompileScript(byte[] script)
+        public static string? DecompileScript(byte[] script)
         {
             if (script.Length == 0)
                 return null;
@@ -102,69 +103,18 @@ namespace Grimoire.GUI.Core.Services
             return lines;
         }
 
-        //public string DecompileScript(string id)
-        //{
-        //    var script = PackedScripts[id];
-
-        //    if (script.Length == 0)
-        //        return null;
-
-        //    var lines = "";
-        //    using (var ms = new MemoryStream(script))
-        //    using (var reader = new BinaryReader(ms))
-        //    {
-        //        var cmdNum = reader.ReadInt32();
-
-        //        for (var index = 0; index < cmdNum; index++)
-        //        {
-        //            var cmdID = reader.ReadInt16();
-        //            var cmdData = SearchCommand(cmdID);
-        //            var args = new List<string>();
-        //            foreach (var arg in cmdData.Args)
-        //            {
-        //                switch (arg.Value)
-        //                {
-        //                    case "String":
-        //                        {
-        //                            var stringLen = reader.ReadInt32();
-        //                            var stringPTR = reader.ReadInt32();
-
-        //                            var pos = reader.BaseStream.Position;
-        //                            reader.BaseStream.Position = stringPTR;
-        //                            //UTF-16 Encoding and ignore null-terminator
-        //                            var text = Encoding.Unicode.GetString(reader.ReadBytes((stringLen) * 2));
-        //                            args.Add($"\"{text.TrimEnd('\0')}\"");
-        //                            reader.BaseStream.Position = pos;
-        //                        }
-        //                        break;
-        //                    case "bool":
-        //                    case "i32":
-        //                        {
-        //                            args.Add(reader.ReadInt32().ToString());
-        //                        }
-        //                        break;
-        //                    default:
-        //                        break;
-        //                }
-        //            }
-        //            lines += $"{cmdData.Name}({FormatArgs(args)});\n";
-        //        }
-        //    }
-        //    return lines;
-        //}
-
         static string FormatArgs(List<string> args)
         {
-            string formattedArgs = "";
+            var stringBuilder = new StringBuilder();
             for (var index = 0; index < args.Count; index++)
             {
-                formattedArgs += args[index];
+                stringBuilder.Append(args[index]);
                 if (index != args.Count - 1)
                 {
-                    formattedArgs += ", ";
+                    stringBuilder.Append(", ");
                 }
             }
-            return formattedArgs;
+            return stringBuilder.ToString();
         }
 
 

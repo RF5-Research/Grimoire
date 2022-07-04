@@ -22,13 +22,17 @@ namespace Grimoire.Core
                 Property
             }
 
+            //Add assemblyName and serialize
+            //NonSerialized attr
             [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
             public sealed class SerializableAttribute : Attribute 
             {
-                internal readonly Target Target;
-                public SerializableAttribute(Target target = Target.Field)
+                internal Target Target { get; set; }
+                internal string? AssemblyName { get; set; }
+                public SerializableAttribute(Target target = Target.Field, string? assemblyName = null)
                 {
                     Target = target;
+                    AssemblyName = assemblyName;
                 }
             };
 
@@ -36,7 +40,7 @@ namespace Grimoire.Core
             public sealed class SerializeFieldAttribute : Attribute 
             {
                 internal readonly string? Name;
-                public SerializeFieldAttribute(string? name = null)
+                public SerializeFieldAttribute(string? name = null, bool serialize = true)
                 {
                     Name = name;
                 }

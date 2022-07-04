@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
+using FluentAvalonia.UI.Controls;
 using Grimoire.GUI.ViewModels;
 using ReactiveUI;
 using System.Collections.Generic;

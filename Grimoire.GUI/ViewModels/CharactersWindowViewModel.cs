@@ -5,8 +5,10 @@ using Grimoire.GUI.Core.Services;
 using Grimoire.GUI.Core.Texture;
 using Grimoire.GUI.Models.RF5;
 using Grimoire.GUI.Models.RF5.Define;
+using Grimoire.GUI.Models.RF5.Loader.ID;
 using Grimoire.GUI.Models.UnityEngine;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,47 +26,87 @@ namespace Grimoire.GUI.ViewModels
     public class CharactersWindowViewModel : ViewModelBase
     {
         AdvBustupResManager? AdvBustupResManager;
-        private CancellationTokenSource? cts;
+        UISystemTextData? NpcDiscript { get; set; }
+        private CancellationTokenSource? _cts;
         Bitmap? Image { get; set; }
-        List<NPCID> List { get; set; }
 
-        private int _selectedIndex;
-        private int SelectedIndex { get => _selectedIndex; set => this.RaiseAndSetIfChanged(ref _selectedIndex, value); }
+        private class Character
+        {
+            NPCID NPCID { get; set; }
+            string NPCName { get; set; }
+
+            public Character(NPCID npcID, string npcName)
+            {
+                NPCID = npcID;
+                NPCName = npcName;
+            }
+            public override string ToString()
+            {
+                return NPCName;
+            }
+
+        }
+
+        List<Character> List { get; set; }
+        string? NPCDescription => NpcDiscript?.str[SelectedIndex];
+
+        [Reactive] private int SelectedIndex { get; set; }
 
         public CharactersWindowViewModel()
         {
-            List = Enum.GetValues(typeof(NPCID)).Cast<NPCID>().ToList();
             AdvBustupResManager = new();
-
             this.WhenAnyValue(x => x.SelectedIndex)
                 .Throttle(TimeSpan.FromMilliseconds(400))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Subscribe(LoadImage!);
+            PopulateCharacters();
         }
 
-        public async void LoadImage(int _ = 0)
+        private void PopulateCharacters()
+        {
+            List = new List<Character>();
+            var npcNames = Loader.LoadID<UISystemTextData>((int)Master.NPCNAMEDATA);
+            NpcDiscript = Loader.LoadID<UISystemTextData>((int)Master.NPCDISCRIPTDATA);
+
+            if (npcNames != null)
+            {
+                for (int index = 0; index < (int)NPCID.Max; index++)
+                {
+                    string npcName = index < npcNames.str.Length ?
+                        npcNames.str[index] :
+                        ((NPCID)index).ToString();
+                    if (index == (int)NPCID.ChildBoy || index == (int)NPCID.ChildGirl)
+                        npcName = ((NPCID)index).ToString();
+
+                    List.Add(
+                        new Character(
+                            ((NPCID)index),
+                            npcName
+                            )
+                        );
+                }
+            }
+
+        }
+
+        private async void LoadImage(int _ = 0)
         {
             try
             {
-                cts?.Cancel();
-                cts = new CancellationTokenSource();
+                _cts?.Cancel();
+                _cts = new CancellationTokenSource();
 
                 var value = await GetImage();
-                if (!cts.IsCancellationRequested)
+                if (!_cts.IsCancellationRequested)
                 {
                     Image = value;
                 }
             }
-            //Not sure if this is necessary anymore
-            catch (TaskCanceledException)
-            {
-                LoadImage();
-            }
-            // Caused by task cancel.
-            catch (NullReferenceException)
-            {
-                LoadImage();
-            }
+            //// Caused by task cancel.
+            //catch (NullReferenceException)
+            //{
+            //    LoadImage();
+            //}
             // Anything else
             catch (Exception e)
             {
@@ -75,41 +117,46 @@ namespace Grimoire.GUI.ViewModels
 
         private async Task<Bitmap?> GetImage()
         {
-            var variationID = 100;
-            var poseID = 0;
-            var loaderID = AdvBustupResManager.GetLoaderID((NPCID)SelectedIndex, poseID / 10 % 10, variationID / 100);
-            var go = await Loader.LoadIDAsync<GameObject>(loaderID);
-            var am = Loader.AssetsManager;
-            if (go != null)
+            try
             {
-                var eyeMouthAnimate = go.GetComponent<EyeMouthAnimate>(Loader.AssetsManager, AssetClassID.MonoBehaviour);
-                var path = Path.GetFileName(Path.GetDirectoryName(eyeMouthAnimate?.MainImage.m_Sprite.m_RD.texture.m_StreamData.path));
-                var bundle = am.files.Find(x => x.name == path)?.parentBundle;
-                var data = BundleHelper.LoadAssetDataFromBundle(bundle?.file, Path.GetFileName(eyeMouthAnimate?.MainImage.m_Sprite.m_RD.texture.m_StreamData.path));
-                var texture = eyeMouthAnimate?.MainImage.m_Sprite.m_RD.texture;
-                byte[] texDat = new byte[texture.m_StreamData.size];
-                using (var ms = new MemoryStream(data))
+                var variationID = 100;
+                var poseID = 0;
+                var loaderID = AdvBustupResManager.GetLoaderID((NPCID)SelectedIndex, poseID / 10 % 10, variationID / 100);
+                var go = await Loader.LoadIDAsync<GameObject>(loaderID);
+                var am = Loader.AssetsManager;
+                if (go != null)
                 {
-                    ms.Read(texDat, (int)texture.m_StreamData.offset, (int)texture.m_StreamData.size);
-                }
+                    var eyeMouthAnimate = go.GetComponent<EyeMouthAnimate>(Loader.AssetsManager, AssetClassID.MonoBehaviour);
+                    var path = Path.GetFileName(Path.GetDirectoryName(eyeMouthAnimate?.MainImage.m_Sprite.m_RD.texture.m_StreamData.path));
+                    var bundle = am.files.Find(x => x.name == path)?.parentBundle;
+                    var data = BundleHelper.LoadAssetDataFromBundle(bundle?.file, Path.GetFileName(eyeMouthAnimate?.MainImage.m_Sprite.m_RD.texture.m_StreamData.path));
+                    var texture = eyeMouthAnimate?.MainImage.m_Sprite.m_RD.texture;
+                    byte[] texDat = new byte[texture.m_StreamData.size];
+                    using (var ms = new MemoryStream(data))
+                    {
+                        ms.Position = (int)texture.m_StreamData.offset;
+                        ms.Read(texDat, 0, (int)texture.m_StreamData.size);
+                    }
 
-                if (texDat != null && texDat.Length > 0)
-                {
-                    var decoded = Astc.DecodeASTC(texDat, texture.m_Width, texture.m_Height, 6, 6);
-                    var bitmap = new System.Drawing.Bitmap(
-                        texture.m_Width,
-                        texture.m_Height,
-                        texture.m_Width * 4,
-                        PixelFormat.Format32bppArgb,
-                        Marshal.UnsafeAddrOfPinnedArrayElement(decoded, 0));
-                    bitmap.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipY);
+                    if (texDat != null && texDat.Length > 0)
+                    {
+                        var decoded = Astc.DecodeASTC(texDat, texture.m_Width, texture.m_Height, 6, 6);
+                        var bitmap = new System.Drawing.Bitmap(
+                            texture.m_Width,
+                            texture.m_Height,
+                            texture.m_Width * 4,
+                            PixelFormat.Format32bppArgb,
+                            Marshal.UnsafeAddrOfPinnedArrayElement(decoded, 0));
+                        bitmap.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipY);
 
-                    using MemoryStream memory = new MemoryStream();
-                    bitmap.Save(memory, ImageFormat.Png);
-                    memory.Position = 0;
-                    return new Bitmap(memory);
+                        using MemoryStream memory = new MemoryStream();
+                        bitmap.Save(memory, ImageFormat.Png);
+                        memory.Position = 0;
+                        return new Bitmap(memory);
+                    }
                 }
             }
+            catch { }
             return null;
         }
     }

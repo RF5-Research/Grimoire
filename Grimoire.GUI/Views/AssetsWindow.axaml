@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		xmlns:material="using:Material.Icons.Avalonia"
         x:Class="Grimoire.GUI.Views.AssetsWindow"
-        Title="AssetsWindow">
+        Title="Assets">
 
 	<Grid ColumnDefinitions="2*,4,*" RowDefinitions="Auto,*">
 		<DockPanel Grid.Row="0">
@@ -29,7 +29,7 @@
 			</ListBox.ItemTemplate>
 		</ListBox>
 
-		<GridSplitter Grid.Column="1" Background="Black" ResizeDirection="Columns"/>
+		<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
 
 		<DataGrid
 			Name="DependenciesDataGrid"
@@ -38,6 +38,7 @@
 			Grid.RowSpan="2"
 			Grid.Row="0"
 			Grid.Column="2"
+			CanUserSortColumns="False"
 			VerticalScrollBarVisibility="Auto"
 			Items="{Binding SelectedItem.Location.Dependencies}">
 			<DataGrid.Columns>
