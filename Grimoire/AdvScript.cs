@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace Grimoire
 {
-    internal class CommandData
+    public class CommandData
     {
         public string Name { get; set; }
         public short ID { get; set; }
@@ -17,17 +18,39 @@ namespace Grimoire
         public Dictionary<string, string> Params { get; set; }
     }
 
-    public static class AdvScript
+    public class Command
     {
-        private static List<CommandData> Commands;
+        public CommandData Data { get; set; }
+        public string[] Args { get; set; }
 
-        public static void Initialize(string path)
+        public Command(CommandData data, string[] args)
+        {
+            Data = data;
+            Args = args;
+        }
+        public Command() { }
+    }
+
+    public class AdvScript
+    {
+        public static List<CommandData> Commands;
+
+        public AdvScript(string path)
         {
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             using (var reader = new StreamReader(fs))
             {
                 Commands = JsonSerializer.Deserialize<List<CommandData>>(reader.ReadToEnd())!;
             }
+        }
+
+        private static string ToLiteral(string input)
+        {
+            //Better way to do this?
+            return input
+                .Replace("\r", @"\r")
+                .Replace("\t", @"\t")
+                .Replace("\n", @"\n");
         }
 
         public static Dictionary<AdvScriptId, string?> DecompilePack(byte[] pack, AdvIndexData advIndexData)
@@ -71,21 +94,24 @@ namespace Grimoire
                     {
                         switch (arg.Value)
                         {
-                            case "String":
+                            case "string":
                                 {
                                     var stringLen = reader.ReadInt32();
                                     var stringPTR = reader.ReadInt32();
 
                                     var pos = reader.BaseStream.Position;
                                     reader.BaseStream.Position = stringPTR;
-                                    //UTF-16 Encoding and ignore null-terminator
-                                    var text = Encoding.Unicode.GetString(reader.ReadBytes((stringLen) * 2));
-                                    args.Add($"\"{text.TrimEnd('\0')}\"");
+                                    //UTF-16 Encoding, pop null-terminator, and unescape escape characters
+                                    var text = ToLiteral(
+                                        Encoding.Unicode.GetString(reader.ReadBytes((stringLen) * 2))
+                                        .TrimEnd('\0')
+                                        );
+                                    args.Add($"\"{text}\"");
                                     reader.BaseStream.Position = pos;
                                 }
                                 break;
                             case "bool":
-                            case "i32":
+                            case "int":
                                 {
                                     args.Add(reader.ReadInt32().ToString());
                                 }

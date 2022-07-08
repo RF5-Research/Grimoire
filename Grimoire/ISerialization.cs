@@ -11,5 +11,6 @@ namespace Grimoire
     public interface ISerialization
     {
         public void Deserialize(AssetsManager am, Type type, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null);
+        public void Serialize(AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null);
     }
 }

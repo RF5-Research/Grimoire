@@ -12,7 +12,7 @@
 			<ComboBox Items="{Binding Filters}" SelectedIndex="{Binding FilterSelectedIndex}" Width="100" CornerRadius="0,0,0,0"/>
 			<TextBox Text="{Binding SearchText}" Classes="clearButton" CornerRadius="0,0,0,0" Watermark="Search">
 				<TextBox.InnerLeftContent>
-					<material:MaterialIcon Kind="Search" Margin="5"></material:MaterialIcon>
+					<material:MaterialIcon Kind="Search" Margin="5"/>
 				</TextBox.InnerLeftContent>
 			</TextBox>
 		</DockPanel>

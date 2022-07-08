@@ -1,9 +1,9 @@
 ﻿using AssetsTools.NET;
 using AssetsTools.NET.Extra;
-using Grimoire;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -25,7 +25,7 @@ namespace Grimoire
             //Add assemblyName and serialize
             //NonSerialized attr
             [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
-            public sealed class SerializableAttribute : Attribute 
+            public sealed class SerializableAttribute : Attribute
             {
                 internal Target Target { get; set; }
                 internal string? AssemblyName { get; set; }
@@ -37,7 +37,7 @@ namespace Grimoire
             };
 
             [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-            public sealed class SerializeFieldAttribute : Attribute 
+            public sealed class SerializeFieldAttribute : Attribute
             {
                 internal readonly string? Name;
                 public SerializeFieldAttribute(string? name = null, bool serialize = true)
@@ -47,12 +47,12 @@ namespace Grimoire
             };
         }
 
-        public static void SerializeObject<T>(T value, AssetTypeValueField baseField)
+        public static void SerializeObject<T>(T value, AssetsManager am, AssetTypeValueField baseField, AssetsFileInstance? fileInstance = null)
         {
-            WriteValue(value, baseField);
+            WriteValue(value, am, baseField, fileInstance);
         }
-        
-        private static void WriteValue(object value, AssetTypeValueField assetTypeValueField)
+
+        private static void WriteValue(object value, AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
         {
             //Remember that some members are not initialized from deserialization, so it's a null object
             if (value != null)
@@ -64,9 +64,9 @@ namespace Grimoire
                 else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
                     return;
                 else if (typeof(IList).IsAssignableFrom(type))
-                    WriteList((IList)value, assetTypeValueField);
+                    WriteList((IList)value, am, assetTypeValueField, fileInstance);
                 else
-                    WriteObject(value, assetTypeValueField);
+                    WriteObject(value, am, assetTypeValueField, fileInstance);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Grimoire
             }
         }
 
-        private static void WriteList(IList value, AssetTypeValueField assetTypeValueField)
+        private static void WriteList(IList value, AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
         {
             var array = assetTypeValueField.Get("Array");
 
@@ -102,28 +102,10 @@ namespace Grimoire
             foreach (var item in value)
             {
                 var itemValueField = ValueBuilder.DefaultValueFieldFromArrayTemplate(array);
-                WriteValue(item, itemValueField);
+                WriteValue(item, am, itemValueField, fileInstance);
                 list.Add(itemValueField);
             }
             array.SetChildrenList(list.ToArray());
-        }
-
-        private static void WriteObject(object value, AssetTypeValueField assetTypeValueField)
-        {
-            var type = value.GetType();
-
-            //The fields won't be sorted by the sequential declaration of the fields
-            //But that shouldn't be relevant to this
-            foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            {
-                var fieldType = field.FieldType;
-                object? fieldValue = field.GetValue(value);
-                var valueField = assetTypeValueField.Get(field.Name);
-
-                if ((fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(Attributes.SerializeFieldAttribute)) != null && fieldValue != null) ||
-                    (fieldType.IsPublic && fieldValue != null))
-                    WriteValue(fieldValue, valueField);
-            }
         }
 
         public static T? DeserializeObject<T>(AssetsManager am, AssetTypeValueField baseField, AssetsFileInstance? fileInstance = null)
@@ -193,6 +175,131 @@ namespace Grimoire
                     ilist.Add(value);
             }
             return ilist;
+        }
+
+        private static void WriteObject(object value, AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
+        {
+            var type = value.GetType();
+            //Do user-defined serialization
+            if (value is ISerialization)
+            {
+                ((ISerialization)value).Serialize(am, assetTypeValueField, fileInstance);
+                return;
+            }
+
+            var serializable = (Attributes.SerializableAttribute?)type.GetCustomAttribute(typeof(Attributes.SerializableAttribute));
+
+            if (serializable != null)
+            {
+                if (serializable.Target == Attributes.Target.Field)
+                    WriteFields(value, type, am, assetTypeValueField, fileInstance);
+                else
+                    WriteProperties(value, type, am, assetTypeValueField, fileInstance);
+            }
+            else
+            {
+                //Default
+                WriteFields(value, type, am, assetTypeValueField, fileInstance);
+            }
+        }
+
+        private static void WriteProperties(object value, Type type, AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
+        {
+            //The fields won't be sorted by the sequential declaration of the fields
+            //But that shouldn't be relevant to this
+            foreach (var propertyInfo in type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                var propertyType = propertyInfo.PropertyType;
+                object? propertyValue = propertyInfo.GetValue(value);
+                var valueField = assetTypeValueField.Get(propertyInfo.Name);
+
+
+                if (propertyValue != null && (
+                    (propertyType.IsNotPublic && propertyType.GetCustomAttribute(typeof(Attributes.SerializeFieldAttribute)) != null) ||
+                    (!propertyType.IsNotPublic && propertyValue != null)))
+                    SerializeMember(propertyValue, am, valueField, fileInstance);
+            }
+        }
+
+        private static void WriteFields(object value, Type type, AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
+        {
+            //The fields won't be sorted by the sequential declaration of the fields
+            //But that shouldn't be relevant to this
+            foreach (var fieldInfo in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                var fieldType = fieldInfo.FieldType;
+                object? fieldValue = fieldInfo.GetValue(value);
+                var valueField = assetTypeValueField.Get(fieldInfo.Name);
+
+                ////Check for user-defined names
+                //var serializeField = (Attributes.SerializeFieldAttribute?)fieldType.GetCustomAttribute(typeof(Attributes.SerializeFieldAttribute));
+                //if (serializeField != null && serializeField.Name != null)
+                //{
+                //    var assetValueField = assetTypeValueField.Get(serializeField.Name);
+                //    if (serializeField.Name != null)
+                //    {
+                //        valueField = assetValueField;
+                //        break;
+                //    }
+                //}
+                //else
+                //{
+                //    valueField = assetTypeValueField.Get(fieldInfo.Name);
+                //}
+
+                if (fieldValue != null && (
+                    (fieldType.IsNotPublic && fieldType.GetCustomAttribute(typeof(Attributes.SerializeFieldAttribute)) != null) ||
+                    (!fieldType.IsNotPublic && fieldValue != null)))
+                    SerializeMember(fieldValue, am, valueField, fileInstance);
+            }
+        }
+
+        private static void SerializeMember(object value, AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)
+        {
+            //If PPtr
+            //Some have $ and some don't?
+            var match = Regex.Match(assetTypeValueField.GetFieldType(), @"(?:PPtr)(?:\<)(?:\$?)([^\>]+)(?:\>)");
+            if (match.Success)
+            {
+                //Check loaded files relative to file
+                if (fileInstance != null)
+                {
+                    var extAsset = am.GetExtAsset(fileInstance, assetTypeValueField);
+                    if (extAsset.file != null && extAsset.info != null)
+                    {
+                        var baseField = extAsset.instance.GetBaseField();
+                        WriteValue(value, am, baseField, extAsset.file);
+                        //Write always
+                        WriteExternalAsset(extAsset, baseField);
+                    }
+                }
+            }
+            else
+            {
+                WriteValue(value, am, assetTypeValueField, fileInstance);
+            }
+        }
+
+        private static void WriteExternalAsset(AssetExternal extAsset, AssetTypeValueField baseField)
+        {
+            var assetBytes = baseField.WriteToByteArray();
+            var repl = new AssetsReplacerFromMemory(0, extAsset.info.index, (int)extAsset.info.curFileType, AssetHelper.GetScriptIndex(extAsset.file.file, extAsset.info), assetBytes);
+
+            byte[] newAssetData;
+            using (var stream = new MemoryStream())
+            using (var writer = new AssetsFileWriter(stream))
+            {
+                extAsset.file.file.Write(writer, 0, new List<AssetsReplacer>() { repl }, 0);
+                newAssetData = stream.ToArray();
+            }
+            var bunRepl = new BundleReplacerFromMemory(extAsset.file.name, null, true, newAssetData, -1);
+
+            //TODO: Figure out how to not couple the export function this with this class
+            var bundle = extAsset.file.parentBundle;
+            using (var bunWriter = new AssetsFileWriter(File.Create(PathUtilities.GetExportPath(bundle.path))))
+            {
+                bundle.file.Write(bunWriter, new List<BundleReplacer>() { bunRepl });
+            }
         }
 
         private static object? ReadObject(AssetsManager am, Type type, AssetTypeValueField assetTypeValueField, AssetsFileInstance? fileInstance = null)

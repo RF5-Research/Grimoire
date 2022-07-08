@@ -6,6 +6,8 @@
 		xmlns:material="using:Material.Icons.Avalonia"
 		xmlns:cc="clr-namespace:AvaloniaEdit.CodeCompletion;assembly=AvaloniaEdit"
         xmlns:AvaloniaEdit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+		xmlns:ui="using:FluentAvalonia.UI.Controls"
+		xmlns:input="using:FluentAvalonia.UI.Input"
         x:Class="GrimoireGUI.Views.ScriptWindow"
 		Padding="0"
         Title="ScriptWindow">
@@ -15,6 +17,7 @@
 			<Setter Property="Template">
 				<ControlTemplate>
 					<cc:CompletionListBox Name="PART_ListBox"
+										  HorizontalAlignment="Stretch"
 										  Background="{DynamicResource SolidBackgroundFillColorBase}"
 										  BorderThickness="1"
 										  BorderBrush="{DynamicResource ListBoxBorder}" >
@@ -55,24 +58,34 @@
 			<Setter Property="Background" Value="{DynamicResource ToolTipBackgroundBrush}"/>
 		</Style>
 	</Window.Styles>
-	
+
 	<DockPanel>
 		<StackPanel Name="StatusBar" Background="{DynamicResource SystemAccentColor}" Height="25" DockPanel.Dock="Bottom" Orientation="Horizontal">
 			<TextBlock Name="StatusTextBlock" Text="Ready" Margin="5 0 0 0" VerticalAlignment="Center" FontSize="12"/>
 		</StackPanel>
-		<ListBox Items="{Binding ScriptList}" SelectedIndex="{Binding SelectedItem}" Width="300">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding}" />
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-		<AvaloniaEdit:TextEditor
-			Name="TextEditor"
-			FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"
-			Margin="5"
-			HorizontalScrollBarVisibility="Auto"
-			VerticalScrollBarVisibility="Visible"
-			FontSize="14" />
+
+		<SplitView Name="SplitView" IsPaneOpen="True"
+			   DisplayMode="CompactInline"
+			   OpenPaneLength="348">
+		<SplitView.Pane>
+			<Grid ColumnDefinitions="48,Auto">
+				<ui:Button Name="TogglePaneButton" Classes="PaneToggleButtonStyle" Grid.Column="0"/>				
+				<ListBox Items="{Binding ScriptList}" SelectedIndex="{Binding SelectedItem}" Width="300" Grid.Column="1">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</SplitView.Pane>
+			<AvaloniaEdit:TextEditor
+				Name="TextEditor"
+				FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"
+				Margin="5"
+				HorizontalScrollBarVisibility="Auto"
+				VerticalScrollBarVisibility="Visible"
+				FontSize="14" />
+		</SplitView>
 	</DockPanel>
 </Window>

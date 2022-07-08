@@ -10,10 +10,10 @@
     "ID": 1,
     "Description": "Sets the character bust-up",
     "Params": {
-      "npcID": "i32",
-      "variationID": "i32",
-      "positionID": "i32",
-      "motionID": "i32"
+      "npcID": "int",
+      "variationID": "int",
+      "positionID": "int",
+      "motionID": "int"
     }
   },
   {
@@ -21,10 +21,10 @@
     "ID": 2,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
     }
   },
   {
@@ -32,9 +32,9 @@
     "ID": 3,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -42,7 +42,7 @@
     "ID": 4,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -50,17 +50,17 @@
     "ID": 5,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
-    "Name": "2DpartClose",
+    "Name": "E2DpartClose",
     "ID": 6,
     "Description": "Sets the alpha of the texture element to zero; makes it invisible",
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -68,36 +68,36 @@
     "ID": 7,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int"
     }
   },
   {
-    "Name": "2DUiShow",
+    "Name": "E2DUiShow",
     "ID": 8,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
-    "Name": "2DUiHide",
+    "Name": "E2DUiHide",
     "ID": 9,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
-    "Name": "2DEmotionId",
+    "Name": "E2DEmotionId",
     "ID": 10,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -105,16 +105,16 @@
     "ID": 11,
     "Description": "Sets the message",
     "Params": {
-      "nameTextID": "String",
-      "npcID": "i32",
-      "variationID": "i32",
-      "positionID": "i32",
-      "message": "String",
-      "playVoice": "String",
-      "emotePositionID": "i32",
-      "number": "i32",
-      "isLoop": "i32",
-      "unk_10": "i32"
+      "nameTextID": "string",
+      "npcID": "int",
+      "variationID": "int",
+      "positionID": "int",
+      "message": "string",
+      "playVoice": "string",
+      "emotePositionID": "int",
+      "number": "int",
+      "isLoop": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -122,15 +122,15 @@
     "ID": 12,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int"
     }
   },
   {
@@ -138,16 +138,16 @@
     "ID": 13,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -155,20 +155,20 @@
     "ID": 14,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
-    "Name": "Message3Dvoice",
+    "Name": "MessageE3Dvoice",
     "ID": 15,
     "Description": null,
     "Params": {}
@@ -178,14 +178,14 @@
     "ID": 21,
     "Description": "Sets a choice option",
     "Params": {
-      "nameTextID": "String",
-      "groupID": "i32",
-      "answerID": "i32",
-      "message": "String",
-      "nextStep": "i32",
+      "nameTextID": "string",
+      "groupID": "int",
+      "answerID": "int",
+      "message": "string",
+      "nextStep": "int",
       "useCancelButton": "bool",
-      "npcID": "i32",
-      "unk_8": "i32"
+      "npcID": "int",
+      "unk_8": "int"
     }
   },
   {
@@ -205,7 +205,7 @@
     "ID": 24,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -225,7 +225,7 @@
     "ID": 27,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -233,17 +233,17 @@
     "ID": 28,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
-    "Name": "2DUiDispsetting",
+    "Name": "E2DUiDispsetting",
     "ID": 29,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -251,7 +251,7 @@
     "ID": 31,
     "Description": null,
     "Params": {
-      "nextStep": "i32"
+      "nextStep": "int"
     }
   },
   {
@@ -259,7 +259,7 @@
     "ID": 32,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -267,7 +267,7 @@
     "ID": 35,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -275,8 +275,8 @@
     "ID": 36,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String"
+      "unk_1": "int",
+      "unk_2": "string"
     }
   },
   {
@@ -284,7 +284,7 @@
     "ID": 37,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -292,74 +292,74 @@
     "ID": 39,
     "Description": null,
     "Params": {
-      "npcID": "i32",
-      "scriptName": "String"
+      "npcID": "int",
+      "scriptName": "string"
     }
   },
   {
-    "Name": "3DMotionId",
+    "Name": "E3DMotionId",
     "ID": 41,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
-    "Name": "3DEmotionId",
+    "Name": "E3DEmotionId",
     "ID": 42,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String",
-      "unk_4": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string"
     }
   },
   {
-    "Name": "3DMotionName",
+    "Name": "E3DMotionName",
     "ID": 43,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
-    "Name": "3DEmotionName",
+    "Name": "E3DEmotionName",
     "ID": 44,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "String",
-      "unk_4": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string"
     }
   },
   {
-    "Name": "3DFacePattern",
+    "Name": "E3DFacePattern",
     "ID": 45,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
-    "Name": "3DLookat",
+    "Name": "E3DLookat",
     "ID": 46,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string"
     }
   },
   {
@@ -375,149 +375,149 @@
     "Params": {}
   },
   {
-    "Name": "3DPoseId",
+    "Name": "E3DPoseId",
     "ID": 51,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
-    "Name": "3DPoseName",
+    "Name": "E3DPoseName",
     "ID": 52,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32"
+      "unk_1": "string",
+      "unk_2": "int"
     }
   },
   {
-    "Name": "3DPositionId",
+    "Name": "E3DPositionId",
     "ID": 53,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
     }
   },
   {
-    "Name": "3DPositionName",
+    "Name": "E3DPositionName",
     "ID": 54,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
     }
   },
   {
-    "Name": "3DPositionMoveId",
+    "Name": "E3DPositionMoveId",
     "ID": 55,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
-    "Name": "3DPositionMoveName",
+    "Name": "E3DPositionMoveName",
     "ID": 56,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
-    "Name": "3DRelativePositionId",
+    "Name": "E3DRelativePositionId",
     "ID": 57,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
     }
   },
   {
-    "Name": "3DRelativePositionName",
+    "Name": "E3DRelativePositionName",
     "ID": 58,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
     }
   },
   {
-    "Name": "3DRelativePositionMoveId",
+    "Name": "E3DRelativePositionMoveId",
     "ID": 59,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
-    "Name": "3DRelativePositionMoveName",
+    "Name": "E3DRelativePositionMoveName",
     "ID": 60,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -525,7 +525,7 @@
     "ID": 61,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -533,7 +533,7 @@
     "ID": 62,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -541,8 +541,8 @@
     "ID": 63,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -550,22 +550,22 @@
     "ID": 65,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string"
     }
   },
   {
-    "Name": "3DpartStartIdNopreload",
+    "Name": "E3DpartStartIdNopreload",
     "ID": 66,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
@@ -573,9 +573,9 @@
     "ID": 67,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "int"
     }
   },
   {
@@ -583,9 +583,9 @@
     "ID": 68,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "int"
     }
   },
   {
@@ -593,7 +593,7 @@
     "ID": 71,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -601,8 +601,8 @@
     "ID": 72,
     "Description": null,
     "Params": {
-      "waitTime_1": "String",
-      "waitTime_2": "String"
+      "waitTime_1": "string",
+      "waitTime_2": "string"
     }
   },
   {
@@ -612,41 +612,41 @@
     "Params": {}
   },
   {
-    "Name": "3DpartStartId",
+    "Name": "E3DpartStartId",
     "ID": 74,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
-    "Name": "3DpartStartName",
+    "Name": "E3DpartStartName",
     "ID": 75,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
-    "Name": "3DpartEndId",
+    "Name": "E3DpartEndId",
     "ID": 76,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String"
+      "unk_1": "int",
+      "unk_2": "string"
     }
   },
   {
-    "Name": "3DpartEndName",
+    "Name": "E3DpartEndName",
     "ID": 77,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -654,12 +654,12 @@
     "ID": 78,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int"
     }
   },
   {
@@ -667,12 +667,12 @@
     "ID": 79,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int"
     }
   },
   {
@@ -686,16 +686,16 @@
     "ID": 81,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -703,16 +703,16 @@
     "ID": 82,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -720,10 +720,10 @@
     "ID": 83,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String",
-      "unk_4": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string"
     }
   },
   {
@@ -731,8 +731,8 @@
     "ID": 84,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -740,15 +740,15 @@
     "ID": 85,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int"
     }
   },
   {
@@ -756,16 +756,16 @@
     "ID": 86,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -773,8 +773,8 @@
     "ID": 87,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -782,16 +782,16 @@
     "ID": 88,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -799,16 +799,16 @@
     "ID": 89,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -816,7 +816,7 @@
     "ID": 90,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -824,9 +824,9 @@
     "ID": 91,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -834,7 +834,7 @@
     "ID": 92,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -842,8 +842,8 @@
     "ID": 93,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -851,9 +851,9 @@
     "ID": 94,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
@@ -861,13 +861,13 @@
     "ID": 95,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string"
     }
   },
   {
@@ -875,14 +875,14 @@
     "ID": 96,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
     }
   },
   {
@@ -890,14 +890,14 @@
     "ID": 97,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
     }
   },
   {
@@ -905,7 +905,7 @@
     "ID": 98,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -913,7 +913,7 @@
     "ID": 99,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -921,8 +921,8 @@
     "ID": 100,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String"
+      "unk_1": "int",
+      "unk_2": "string"
     }
   },
   {
@@ -930,10 +930,10 @@
     "ID": 101,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "int"
     }
   },
   {
@@ -941,8 +941,8 @@
     "ID": 102,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -950,7 +950,7 @@
     "ID": 201,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -958,9 +958,9 @@
     "ID": 210,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -968,7 +968,7 @@
     "ID": 211,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -976,9 +976,9 @@
     "ID": 212,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -986,8 +986,8 @@
     "ID": 213,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -995,9 +995,9 @@
     "ID": 214,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -1005,8 +1005,8 @@
     "ID": 215,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -1014,8 +1014,8 @@
     "ID": 231,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32"
+      "unk_1": "string",
+      "unk_2": "int"
     }
   },
   {
@@ -1023,8 +1023,8 @@
     "ID": 232,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32"
+      "unk_1": "string",
+      "unk_2": "int"
     }
   },
   {
@@ -1032,10 +1032,10 @@
     "ID": 233,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int"
     }
   },
   {
@@ -1043,9 +1043,9 @@
     "ID": 234,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
@@ -1065,16 +1065,16 @@
     "ID": 241,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "i32",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -1082,16 +1082,16 @@
     "ID": 242,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "i32",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -1099,8 +1099,8 @@
     "ID": 243,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -1108,16 +1108,16 @@
     "ID": 244,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "i32",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -1125,15 +1125,15 @@
     "ID": 245,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "i32",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string"
     }
   },
   {
@@ -1141,8 +1141,8 @@
     "ID": 246,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -1150,9 +1150,9 @@
     "ID": 247,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -1160,9 +1160,9 @@
     "ID": 248,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -1170,16 +1170,16 @@
     "ID": 249,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "i32",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -1187,16 +1187,16 @@
     "ID": 250,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "i32",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "String"
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
     }
   },
   {
@@ -1222,7 +1222,7 @@
     "ID": 254,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1230,8 +1230,8 @@
     "ID": 290,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String"
+      "unk_1": "int",
+      "unk_2": "string"
     }
   },
   {
@@ -1239,16 +1239,16 @@
     "ID": 291,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1256,16 +1256,16 @@
     "ID": 292,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1273,8 +1273,8 @@
     "ID": 293,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1282,7 +1282,7 @@
     "ID": 294,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1290,8 +1290,8 @@
     "ID": 295,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -1299,7 +1299,7 @@
     "ID": 296,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1307,7 +1307,7 @@
     "ID": 297,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1333,8 +1333,8 @@
     "ID": 301,
     "Description": null,
     "Params": {
-      "unk_1": "String",
-      "unk_2": "String"
+      "unk_1": "string",
+      "unk_2": "string"
     }
   },
   {
@@ -1360,16 +1360,16 @@
     "ID": 310,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String",
-      "unk_4": "String",
-      "unk_5": "String",
-      "unk_6": "String",
-      "unk_7": "String",
-      "unk_8": "String",
-      "unk_9": "String",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "int"
     }
   },
   {
@@ -1377,9 +1377,9 @@
     "ID": 311,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
     }
   },
   {
@@ -1465,9 +1465,9 @@
     "ID": 333,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -1475,9 +1475,9 @@
     "ID": 334,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -1497,9 +1497,9 @@
     "ID": 337,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String",
-      "unk_3": "String"
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
     }
   },
   {
@@ -1513,7 +1513,7 @@
     "ID": 350,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1521,7 +1521,7 @@
     "ID": 360,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1529,8 +1529,8 @@
     "ID": 370,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1550,11 +1550,11 @@
     "ID": 401,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int"
     }
   },
   {
@@ -1562,7 +1562,7 @@
     "ID": 402,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1570,8 +1570,8 @@
     "ID": 403,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1579,8 +1579,8 @@
     "ID": 404,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1588,9 +1588,9 @@
     "ID": 405,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -1598,8 +1598,8 @@
     "ID": 406,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1607,10 +1607,10 @@
     "ID": 407,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
     }
   },
   {
@@ -1618,7 +1618,7 @@
     "ID": 408,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1626,7 +1626,7 @@
     "ID": 409,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1634,7 +1634,7 @@
     "ID": 410,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1642,7 +1642,7 @@
     "ID": 411,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1650,8 +1650,8 @@
     "ID": 412,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1659,7 +1659,7 @@
     "ID": 413,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1667,9 +1667,9 @@
     "ID": 414,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -1677,7 +1677,7 @@
     "ID": 415,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1685,8 +1685,8 @@
     "ID": 416,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1694,8 +1694,8 @@
     "ID": 417,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1703,7 +1703,7 @@
     "ID": 418,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1711,7 +1711,7 @@
     "ID": 419,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1719,8 +1719,8 @@
     "ID": 421,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1728,8 +1728,8 @@
     "ID": 422,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1737,8 +1737,8 @@
     "ID": 423,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1746,8 +1746,8 @@
     "ID": 424,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1755,11 +1755,11 @@
     "ID": 431,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int"
     }
   },
   {
@@ -1767,16 +1767,16 @@
     "ID": 432,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1784,9 +1784,9 @@
     "ID": 433,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -1794,9 +1794,9 @@
     "ID": 434,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -1804,7 +1804,7 @@
     "ID": 435,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1812,7 +1812,7 @@
     "ID": 441,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1820,13 +1820,13 @@
     "ID": 442,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int"
     }
   },
   {
@@ -1834,16 +1834,16 @@
     "ID": 451,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1851,16 +1851,16 @@
     "ID": 452,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1868,16 +1868,16 @@
     "ID": 453,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1885,16 +1885,16 @@
     "ID": 454,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -1902,7 +1902,7 @@
     "ID": 461,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1910,7 +1910,7 @@
     "ID": 462,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1918,7 +1918,7 @@
     "ID": 463,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1926,8 +1926,8 @@
     "ID": 471,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -1935,7 +1935,7 @@
     "ID": 472,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1943,7 +1943,7 @@
     "ID": 473,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1951,7 +1951,7 @@
     "ID": 481,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1959,7 +1959,7 @@
     "ID": 482,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1967,31 +1967,31 @@
     "ID": 483,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
-    "Name": "Child2DecisionPregnant",
+    "Name": "ChildE2DecisionPregnant",
     "ID": 484,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
-    "Name": "Child2DecisionBoyPersonality",
+    "Name": "ChildE2DecisionBoyPersonality",
     "ID": 485,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
-    "Name": "Child2DecisionGirlPersonality",
+    "Name": "ChildE2DecisionGirlPersonality",
     "ID": 486,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -1999,8 +1999,8 @@
     "ID": 490,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String"
+      "unk_1": "int",
+      "unk_2": "string"
     }
   },
   {
@@ -2014,9 +2014,9 @@
     "ID": 501,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2024,9 +2024,9 @@
     "ID": 502,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2034,8 +2034,8 @@
     "ID": 503,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2043,9 +2043,9 @@
     "ID": 504,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2053,8 +2053,8 @@
     "ID": 505,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2062,8 +2062,8 @@
     "ID": 506,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2071,8 +2071,8 @@
     "ID": 507,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2080,8 +2080,8 @@
     "ID": 508,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2089,8 +2089,8 @@
     "ID": 509,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2098,11 +2098,11 @@
     "ID": 510,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "String",
-      "unk_5": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "int"
     }
   },
   {
@@ -2110,8 +2110,8 @@
     "ID": 511,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2119,7 +2119,7 @@
     "ID": 512,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2127,9 +2127,9 @@
     "ID": 513,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2137,7 +2137,7 @@
     "ID": 514,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2145,7 +2145,7 @@
     "ID": 515,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2153,7 +2153,7 @@
     "ID": 516,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2161,8 +2161,8 @@
     "ID": 517,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2170,8 +2170,8 @@
     "ID": 518,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2179,7 +2179,7 @@
     "ID": 519,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2187,7 +2187,7 @@
     "ID": 520,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2195,8 +2195,8 @@
     "ID": 521,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2204,8 +2204,8 @@
     "ID": 522,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2213,12 +2213,12 @@
     "ID": 523,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int"
     }
   },
   {
@@ -2226,15 +2226,15 @@
     "ID": 524,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int"
     }
   },
   {
@@ -2242,8 +2242,8 @@
     "ID": 525,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2251,7 +2251,7 @@
     "ID": 526,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2259,7 +2259,7 @@
     "ID": 527,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2267,9 +2267,9 @@
     "ID": 551,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2277,7 +2277,7 @@
     "ID": 552,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2285,7 +2285,7 @@
     "ID": 553,
     "Description": null,
     "Params": {
-      "unk_1": "String"
+      "unk_1": "string"
     }
   },
   {
@@ -2293,7 +2293,7 @@
     "ID": 554,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2301,10 +2301,10 @@
     "ID": 561,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
     }
   },
   {
@@ -2312,9 +2312,9 @@
     "ID": 562,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2322,16 +2322,16 @@
     "ID": 563,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32",
-      "unk_5": "i32",
-      "unk_6": "i32",
-      "unk_7": "i32",
-      "unk_8": "i32",
-      "unk_9": "i32",
-      "unk_10": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
     }
   },
   {
@@ -2339,9 +2339,9 @@
     "ID": 564,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
     }
   },
   {
@@ -2349,10 +2349,10 @@
     "ID": 565,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
     }
   },
   {
@@ -2360,7 +2360,7 @@
     "ID": 571,
     "Description": null,
     "Params": {
-      "unk_1": "i32"
+      "unk_1": "int"
     }
   },
   {
@@ -2368,10 +2368,10 @@
     "ID": 572,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32",
-      "unk_3": "i32",
-      "unk_4": "i32"
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
     }
   },
   {
@@ -2379,8 +2379,8 @@
     "ID": 573,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "i32"
+      "unk_1": "int",
+      "unk_2": "int"
     }
   },
   {
@@ -2388,8 +2388,8 @@
     "ID": 580,
     "Description": null,
     "Params": {
-      "unk_1": "i32",
-      "unk_2": "String"
+      "unk_1": "int",
+      "unk_2": "string"
     }
   }
 ]

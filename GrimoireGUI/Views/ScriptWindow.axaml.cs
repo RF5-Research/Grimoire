@@ -2,22 +2,24 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using AvaloniaEdit.CodeCompletion;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Editing;
-using AvaloniaEdit.Folding;
 using AvaloniaEdit.Rendering;
 using AvaloniaEdit.TextMate;
-using Grimoire;
-using GrimoireGUI.Core;
+using DynamicData;
+using GrimoireGUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.RegularExpressions;
 using TextMateSharp.Grammars;
+using TextMateSharp.Registry;
 
 namespace GrimoireGUI.Views
 {
@@ -26,17 +28,36 @@ namespace GrimoireGUI.Views
     public partial class ScriptWindow : Window
     {
         private readonly TextMate.Installation _textMateInstallation;
-        private CompletionWindow? _completionWindow;
+        private CompletionWindow? CompletionWindow;
         private OverloadInsightWindow? _insightWindow;
         private ElementGenerator _generator = new ElementGenerator();
         private RegistryOptions _registryOptions;
         private int _currentTheme = (int)ThemeName.DarkPlus;
 
+        public static readonly DirectProperty<ScriptWindow, string> TextProperty =
+            AvaloniaProperty.RegisterDirect<ScriptWindow, string>(
+                nameof(Text),
+                o => o.Text,
+                (o, v) => o.Text = v);
+
+        private string _text;
+
+        public string Text
+        {
+            get { return _text; }
+            set
+            {
+                SetAndRaise(TextProperty, ref _text, value);
+                if (value != null)
+                    TextEditor.Document = new TextDocument(value);
+            }
+        }
+
         public ScriptWindow()
         {
             InitializeComponent();
-
-            AdvScript.Initialize($"Resources/AdvScriptFunctions.json");
+            TogglePaneButton.Click += TogglePaneButton_Click;
+            //DataContext = new AdvScriptWindowViewModel();
             TextEditor.Background = Brushes.Transparent;
             TextEditor.ShowLineNumbers = true;
             TextEditor.ContextMenu = new ContextMenu
@@ -66,13 +87,35 @@ namespace GrimoireGUI.Views
             Language csharpLanguage = _registryOptions.GetLanguageByExtension(".cs");
 
             string scopeName = _registryOptions.GetScopeByLanguageId(csharpLanguage.Id);
-
-            TextEditor.Document = new TextDocument(
-                "// AvaloniaEdit supports displaying control chars: \a or \b or \v" + Environment.NewLine +
-                "// AvaloniaEdit supports displaying underline and strikethrough" + Environment.NewLine);
+            //TextEditor.Document = new TextDocument(
+            //    "// AvaloniaEdit supports displaying control chars: \a or \b or \v" + Environment.NewLine +
+            //    "// AvaloniaEdit supports displaying underline and strikethrough" + Environment.NewLine);
             _textMateInstallation.SetGrammar(_registryOptions.GetScopeByLanguageId(csharpLanguage.Id));
             TextEditor.TextArea.TextView.LineTransformers.Add(new UnderlineAndStrikeThroughTransformer());
+            AddHandler(KeyDownEvent, (o, e) =>
+            {
+                switch (e.Key)
+                {
+                    case Key.Back:
+                        {
+                            if (CompletionWindow != null)
+                            {
+                                if (TextEditor.CaretOffset == 0)
+                                {
+                                    CloseCompletionWindow();
+                                    return;
+                                }
+                                UpdateCompletionWindow();
+                            }
+                        }
+                        break;
 
+                }
+                if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.J)
+                {
+                    ShowCompletionWindow();
+                }
+            }, RoutingStrategies.Bubble, true);
             AddHandler(PointerWheelChangedEvent, (o, i) =>
             {
                 if (i.KeyModifiers != KeyModifiers.Control) return;
@@ -81,15 +124,93 @@ namespace GrimoireGUI.Views
             }, RoutingStrategies.Bubble, true);
         }
 
+        public void Save(object? sender, RoutedEventArgs e)
+        {
+            ((AdvScriptWindowViewModel)DataContext).Save();
+        }
+
+        private void ShowCompletionWindow()
+        {
+            CompletionWindow = new(TextEditor.TextArea);
+            CompletionWindow.Closed += (o, args) => CompletionWindow = null;
+            --CompletionWindow.StartOffset;
+
+            UpdateCompletionWindow();
+            if (CompletionWindow != null)
+                CompletionWindow.Show();
+        }
+
+        private void CloseCompletionWindow()
+        {
+            if (CompletionWindow != null)
+            {
+                CompletionWindow.Hide();
+                CompletionWindow = null;
+            }
+        }
+
+        private void UpdateCompletionWindow()
+        {
+            if (CompletionWindow != null)
+            {
+                var completionPrefix = GetCompletionPrefix();
+                var completionData = ((AdvScriptWindowViewModel)DataContext).GetSymbols()
+                    .Where(x => x.Name.Contains(completionPrefix, StringComparison.OrdinalIgnoreCase))
+                    .Select(x => new CompletionData(x.Name, x.Description));
+                if (completionData.Count() > 0)
+                {
+                    CompletionWindow.CompletionList.CompletionData.Clear();
+                    CompletionWindow.CompletionList.CompletionData.Add(completionData);
+                }
+                else
+                    CloseCompletionWindow();
+            }
+        }
+
+        private void TogglePaneButton_Click(object? sender, RoutedEventArgs e)
+        {
+            if (SplitView.IsPaneOpen)
+            {
+                SplitView.IsPaneOpen = false;
+            }
+            else
+            {
+                SplitView.IsPaneOpen = true;
+            }
+        }
+
+        private string GetCompletionPrefix()
+        {
+            var offset = TextEditor.TextArea.Caret.Offset;
+            var stringBuilder = new StringBuilder();
+            if (CompletionWindow != null)
+            {
+                while (true)
+                {
+                    if (offset != 0)
+                    {
+                        var character = TextEditor.TextArea.Document.GetCharAt(--offset);
+                        if (char.IsWhiteSpace(character))
+                            break;
+                        stringBuilder.Insert(0, character);
+                        CompletionWindow.StartOffset = offset;
+                    }
+                    else
+                        break;
+                }
+            }
+            return stringBuilder.ToString();
+        }
+
         private void TextArea_TextEntering(object? sender, TextInputEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.Text) && _completionWindow != null)
+            if (!string.IsNullOrEmpty(e.Text) && CompletionWindow != null)
             {
                 if (!char.IsLetterOrDigit(e.Text[0]))
                 {
                     // Whenever a non-letter is typed while the completion window is open,
                     // insert the currently selected element.
-                    _completionWindow.CompletionList.RequestInsertion(e);
+                    CompletionWindow.CompletionList.RequestInsertion(e);
                 }
             }
 
@@ -98,45 +219,33 @@ namespace GrimoireGUI.Views
             // Do not set e.Handled=true.
             // We still want to insert the character that was typed.
         }
-
+        
         private void TextArea_TextEntered(object? sender, TextInputEventArgs e)
         {
-            if (e.Text == ".")
+            if (!string.IsNullOrWhiteSpace(e.Text))
             {
-
-                _completionWindow = new CompletionWindow(TextEditor.TextArea);
-                _completionWindow.Closed += (o, args) => _completionWindow = null;
-
-                var data = _completionWindow.CompletionList.CompletionData;
-                data.Add(new MyCompletionData("Item1"));
-                data.Add(new MyCompletionData("Item2"));
-                data.Add(new MyCompletionData("Item3"));
-                data.Add(new MyCompletionData("Item4"));
-                data.Add(new MyCompletionData("Item5"));
-                data.Add(new MyCompletionData("Item6"));
-                data.Add(new MyCompletionData("Item7"));
-                data.Add(new MyCompletionData("Item8"));
-                data.Add(new MyCompletionData("Item9"));
-                data.Add(new MyCompletionData("Item10"));
-                data.Add(new MyCompletionData("Item11"));
-                data.Add(new MyCompletionData("Item12"));
-                data.Add(new MyCompletionData("Item13"));
-
-                _completionWindow.Show();
-            }
-            else if (e.Text == "(")
-            {
-                _insightWindow = new OverloadInsightWindow(TextEditor.TextArea);
-                _insightWindow.Closed += (o, args) => _insightWindow = null;
-
-                _insightWindow.Provider = new MyOverloadProvider(new[]
+                if (CompletionWindow == null)
                 {
-                    ("Method1(int, string)", "Method1 description"),
-                    ("Method2(int)", "Method2 description"),
-                    ("Method3(string)", "Method3 description"),
-                });
-                _insightWindow.Show();
+                    ShowCompletionWindow();
+                }
+                else
+                {
+                    UpdateCompletionWindow();
+                }
             }
+            //else if (e.Text == "(")
+            //{
+            //    _insightWindow = new OverloadInsightWindow(TextEditor.TextArea);
+            //    _insightWindow.Closed += (o, args) => _insightWindow = null;
+
+            //    _insightWindow.Provider = new MyOverloadProvider(new[]
+            //    {
+            //        ("Method1(int, string)", "Method1 description"),
+            //        ("Method2(int)", "Method2 description"),
+            //        ("Method3(string)", "Method3 description"),
+            //    });
+            //    _insightWindow.Show();
+            //}
         }
 
         private void Caret_PositionChanged(object sender, EventArgs e)
@@ -221,11 +330,12 @@ namespace GrimoireGUI.Views
             }
         }
 
-        public class MyCompletionData : ICompletionData
+        public class CompletionData : ICompletionData
         {
-            public MyCompletionData(string text)
+            public CompletionData(string symbol, string description)
             {
-                Text = text;
+                Text = symbol;
+                Description = description;
             }
 
             public IBitmap Image => null;
@@ -234,9 +344,7 @@ namespace GrimoireGUI.Views
 
             // Use this property if you want to show a fancy UIElement in the list.
             public object Content => Text;
-
-            public object Description => "Description for " + Text;
-
+            public object Description { get; }
             public double Priority { get; } = 0;
 
             public void Complete(TextArea textArea, ISegment completionSegment,

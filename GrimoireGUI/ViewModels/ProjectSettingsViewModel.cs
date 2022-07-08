@@ -1,19 +1,17 @@
 ﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using System;
 using System.IO;
-using System.Reactive.Linq;
 
 namespace GrimoireGUI.ViewModels
 {
-    public class ProjectCreateWindowViewModel : ViewModelBase
+    public class ProjectSettingsViewModel : ViewModelBase
     {
-        private bool IsButtonEnabled { get; set; }
         [Reactive] private int SelectedIndex { get; set; } = -1;
         [Reactive] private string ROMPathText { get; set; }
         [Reactive] private string ProjectPathText { get; set; }
+        [ObservableAsProperty] private bool IsButtonEnabled { get; set; }
 
-        public ProjectCreateWindowViewModel()
+        public ProjectSettingsViewModel()
         {
             this.WhenAnyValue(
                 x => x.SelectedIndex, x => x.ROMPathText, x => x.ProjectPathText,
@@ -21,10 +19,9 @@ namespace GrimoireGUI.ViewModels
                 romPath != null &&
                 Directory.Exists(romPath) &&
                 projectPath != null &&
-                Path.IsPathFullyQualified(projectPath))
-                .DistinctUntilChanged()
-                .Subscribe(SetButtonState);
+                Path.IsPathFullyQualified(projectPath)
+                )
+                .ToPropertyEx(this, x => x.IsButtonEnabled);
         }
-        private void SetButtonState(bool enable) => IsButtonEnabled = enable;
     }
 }

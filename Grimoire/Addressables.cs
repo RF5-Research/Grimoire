@@ -1,4 +1,5 @@
-﻿using AssetsTools.NET.Extra;
+﻿using AssetsTools.NET;
+using AssetsTools.NET.Extra;
 using Grimoire.Unity.Addressables.ResourceLocators;
 using Grimoire.Unity.Addressables.ResourceManager.ResourceLocations;
 using System;
@@ -13,8 +14,8 @@ namespace Grimoire
     public static class Addressables
     {
         public static ResourceLocationMap ResourceLocationMap;
-        private static string? ROMPath;
-        private static string? ProjectPath;
+        public static string? ROMPath;
+        public static string? ProjectPath;
 
         /// <summary>
         /// Required before usage
@@ -94,6 +95,61 @@ namespace Grimoire
             await Task.WhenAll(tasks);
 
             return GetDeserializedObject<T>(am, loc.InternalId);
+        }
+
+        public static void WriteAsset<T>(AssetsManager am, T assetObj, string key)
+        {
+            var loc = LocateKey(key);
+            if (loc != null)
+            {
+                LoadBundles(am, loc);
+                foreach (var bundle in am.bundles)
+                {
+                    if (bundle != null)
+                        LoadSerializedAssetFromBundle(am, bundle);
+                }
+                WriteSerializedObject<T>(am, assetObj, loc.InternalId);
+            }
+        }
+
+        public static void WriteSerializedObject<T>(AssetsManager am, T assetObj, string assetName)
+        {
+            //https://github.com/needle-mirror/com.unity.addressables/blob/094f43386f79f60e87c9ab7198157bf8ddfc81cf/Runtime/ResourceManager/ResourceProviders/BundledAssetProvider.cs#L24
+            //They load first bundle, which has the first serialized file
+            var file = am.files[0];
+            var abInfo = file.table.GetAssetsOfType((int)AssetClassID.AssetBundle).First();
+            var abBaseField = am.GetTypeInstance(file, abInfo).GetBaseField();
+
+            var m_Container = abBaseField.Get("m_Container").Get("Array");
+            foreach (var data in m_Container.children)
+            {
+                if (assetName == data[0].GetValue().AsString())
+                {
+                    var asset = am.GetExtAsset(file, data[1].Get("asset"));
+                    var baseField = asset.instance.GetBaseField();
+                    Serialization.SerializeObject<T>(assetObj, am, asset.instance.GetBaseField(), file);
+
+                    var assetBytes = baseField.WriteToByteArray();
+                    var repl = new AssetsReplacerFromMemory(0, asset.info.index, (int)asset.info.curFileType, AssetHelper.GetScriptIndex(asset.file.file, asset.info), assetBytes);
+
+                    byte[] newAssetData;
+                    using (var stream = new MemoryStream())
+                    using (var writer = new AssetsFileWriter(stream))
+                    {
+                        asset.file.file.Write(writer, 0, new List<AssetsReplacer>() { repl }, 0);
+                        newAssetData = stream.ToArray();
+                    }
+                    var bunRepl = new BundleReplacerFromMemory(asset.file.name, null, true, newAssetData, -1);
+
+                    //TODO: Figure out how to not couple the export function this with this class
+                    var bundle = asset.file.parentBundle;
+                    using (var bunWriter = new AssetsFileWriter(File.Create(PathUtilities.GetExportPath(bundle.path))))
+                    {
+                        bundle.file.Write(bunWriter, new List<BundleReplacer>() { bunRepl });
+                    }
+                    break;
+                }
+            }
         }
 
         public static T? GetDeserializedObject<T>(AssetsManager am, string assetName)

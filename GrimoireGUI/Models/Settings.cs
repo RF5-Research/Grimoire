@@ -5,7 +5,7 @@ namespace GrimoireGUI.Models
 {
     public class Settings : INotifyPropertyChanged
     {
-		public bool LoadLastProject { get; set; }
+	public bool LoadLastProject { get; set; }
         public ObservableCollection<Project> Projects { get; set; }
 
         public Settings()

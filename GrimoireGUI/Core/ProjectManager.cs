@@ -48,8 +48,6 @@ namespace GrimoireGUI.Models
         public static void InitializeGlobalServices()
         {
             Addressables.Initialize($"{AddressableAssetsPath}/catalog.json", Project.ROMPath, Project.ProjectPath);
-            
-            //AdvScript.Initialize("Resources/AdvScriptFunctions.json");
             AssetsLoader.Initialize(Project.GameLanguage);
         }
     }

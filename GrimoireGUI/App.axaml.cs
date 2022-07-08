@@ -2,11 +2,9 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using GrimoireGUI.Views;
-using PropertyChanged;
 
 namespace GrimoireGUI
 {
-    [DoNotNotify]
     public partial class App : Application
     {
         public override void Initialize()

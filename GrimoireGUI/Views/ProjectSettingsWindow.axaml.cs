@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Grimoire;
 using Grimoire.Models.UnityEngine;
 using GrimoireGUI.Models;
+using GrimoireGUI.ViewModels;
 using PropertyChanged;
 using System.IO;
 
@@ -32,6 +33,7 @@ namespace GrimoireGUI.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+            DataContext = new ProjectSettingsViewModel();
             ROMPathBrowseButton.Click += ROMPathBrowseButton_Click;
             ProjectPathBrowseButton.Click += ProjectPathBrowseButton_Click;
             CancelButton.Click += CancelButton_Click;

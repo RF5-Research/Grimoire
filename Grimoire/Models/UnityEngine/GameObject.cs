@@ -50,5 +50,10 @@ namespace Grimoire.Models.UnityEngine
             }
             return default(T);
         }
+
+        public void Serialize(AssetsManager am, AssetTypeValueField assetTypeValueField, AssetsFileInstance fileInstance = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,7 +1,15 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Grimoire;
+using GrimoireGUI.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using TextMateSharp.Grammars;
+using TextMateSharp.Registry;
 
 namespace GrimoireGUI.Views
 {
@@ -22,6 +30,15 @@ namespace GrimoireGUI.Views
             AssetsButton.Click += AssetsButton_Click;
         }
 
+        public static readonly RoutedEvent<RoutedEventArgs> SaveEvent =
+            RoutedEvent.Register<ProjectMainWindow, RoutedEventArgs>(nameof(Save), RoutingStrategies.Bubble);
+
+        public event EventHandler<RoutedEventArgs> Save
+        {
+            add => AddHandler(SaveEvent, value);
+            remove => RemoveHandler(SaveEvent, value);
+        }
+
         private void AssetsButton_Click(object? sender, RoutedEventArgs e)
         {
             var window = new AssetsWindow();
@@ -34,18 +51,11 @@ namespace GrimoireGUI.Views
             window.Show(this);
         }
 
-        public static readonly RoutedEvent<RoutedEventArgs> SaveEvent =
-            RoutedEvent.Register<ProjectMainWindow, RoutedEventArgs>(nameof(Save), RoutingStrategies.Bubble);
-
-        public event EventHandler<RoutedEventArgs> Save
-        {
-            add => AddHandler(SaveEvent, value);
-            remove => RemoveHandler(SaveEvent, value);
-        }
-
         //Propagate event to child windows that subscribe to event
         private void SaveMenuItem_Click(object? sender, RoutedEventArgs e)
         {
+            var x = new AdvScriptWindowViewModel();
+            x.Save();
             var eventArgs = new RoutedEventArgs(SaveEvent);
             RaiseEvent(eventArgs);
         }
@@ -59,7 +69,8 @@ namespace GrimoireGUI.Views
 
         private void ScriptEditorButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var window = new AdvScriptWindow();
+            var window = new ScriptWindow();
+            Save += window.Save;
             window.Show(this);
         }
     }

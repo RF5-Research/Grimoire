@@ -3,6 +3,7 @@ using AssetsTools.NET.Extra;
 using Grimoire.Models.RF5.Loader;
 using Grimoire.Models.UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,6 +83,13 @@ namespace Grimoire
             var rootKey = RootKey(assetID);
             var obj = Addressables.LoadAsset<T>(am, $"{rootKey}{assetID}");
             return obj;
+        }
+
+        public static void WriteAsset<T>(T assetObj, int assetID)
+        {
+            var am = new AssetsManager();
+            var rootKey = RootKey(assetID);
+            Addressables.WriteAsset<T>(am, assetObj, $"{rootKey}{assetID}");
         }
 
         ///// <summary>
