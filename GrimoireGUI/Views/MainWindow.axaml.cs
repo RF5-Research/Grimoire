@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using GrimoireGUI.Models;
 using GrimoireGUI.ViewModels;
+using System;
 using System.IO;
 using System.Text.Json;
 using System.Threading;

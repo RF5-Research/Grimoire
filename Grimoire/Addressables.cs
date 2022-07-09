@@ -141,8 +141,9 @@ namespace Grimoire
                     }
                     var bunRepl = new BundleReplacerFromMemory(asset.file.name, null, true, newAssetData, -1);
 
-                    //TODO: Figure out how to not couple the export function this with this class
                     var bundle = asset.file.parentBundle;
+                    //Unload after
+                    am.UnloadAll();
                     using (var bunWriter = new AssetsFileWriter(File.Create(PathUtilities.GetExportPath(bundle.path))))
                     {
                         bundle.file.Write(bunWriter, new List<BundleReplacer>() { bunRepl });

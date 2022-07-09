@@ -20,7 +20,7 @@
 					</Style>
 				</StackPanel.Styles>
 				<Button Name="AssetsButton" Content="Assets"/>
-				<Button Name="CharactersButton" Content="Characters"/>
+				<!--<Button Name="CharactersButton" Content="Characters"/>-->
 				<Button Name="ScriptEditorButton" Content="Script Editor"/>
 			</StackPanel>
 		</Grid>

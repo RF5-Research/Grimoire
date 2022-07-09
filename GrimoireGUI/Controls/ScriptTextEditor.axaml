@@ -3,70 +3,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:material="using:Material.Icons.Avalonia"
 			 xmlns:cc="clr-namespace:AvaloniaEdit.CodeCompletion;assembly=AvaloniaEdit"
 			 xmlns:AvaloniaEdit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
-			 xmlns:ui="using:FluentAvalonia.UI.Controls"
-			 xmlns:input="using:FluentAvalonia.UI.Input"
-             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-             xmlns:behaviors="clr-namespace:GrimoireGUI.Behaviors"
+			 xmlns:material="using:Material.Icons.Avalonia"
              x:Class="GrimoireGUI.Controls.ScriptTextEditor">
-	<UserControl.Styles>
-		<Style Selector="cc|CompletionList">
-			<Setter Property="Template">
-				<ControlTemplate>
-					<cc:CompletionListBox Name="PART_ListBox"
-										  HorizontalAlignment="Stretch"
-										  Background="{DynamicResource SolidBackgroundFillColorBase}"
-										  BorderThickness="1"
-										  BorderBrush="{DynamicResource ListBoxBorder}" >
-						<cc:CompletionListBox.ItemTemplate>
-							<DataTemplate>
-								<StackPanel Orientation="Horizontal"
-											VerticalAlignment="Center"
-											Height="18">
-									<material:MaterialIcon Kind="Function"/>
-									<TextBlock VerticalAlignment="Center"
-											   Margin="10,0,0,0"
-											   Text="{Binding Content}"
-											   FontSize="15"
-											   FontFamily="Consolas"/>
-								</StackPanel>
-							</DataTemplate>
-						</cc:CompletionListBox.ItemTemplate>
-					</cc:CompletionListBox>
-				</ControlTemplate>
-			</Setter>
-		</Style>
 
-
-		<Style Selector="ContentControl.ToolTip">
-			<Setter Property="MinHeight" Value="22"/>
-			<Setter Property="BorderThickness"
-					Value="1" />
-			<Setter Property="BorderBrush"
-					Value="{DynamicResource ToolTipBorderBrush}" />
-			<Setter Property="Background"
-					Value="{DynamicResource ToolTipBackgroundBrush}" />
-			<Setter Property="Padding"
-					Value="2" />
-		</Style>
-
-		<Style Selector="cc|OverloadViewer">
-			<Setter Property="Foreground" Value="{DynamicResource TextFillPrimaryColor}"/>
-			<Setter Property="Background" Value="{DynamicResource ToolTipBackgroundBrush}"/>
-		</Style>
-	</UserControl.Styles>
-
-	<AvaloniaEdit:TextEditor x:Name="TextEditor"
-							 FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"
-							 Margin="5"
-							 HorizontalScrollBarVisibility="Auto"
-							 VerticalScrollBarVisibility="Visible"
-							 FontSize="14">
-		<i:Interaction.Behaviors>
-			<behaviors:DocumentTextBindingBehavior Text="{Binding Code, Mode=TwoWay}"/>
-		</i:Interaction.Behaviors>
+	<AvaloniaEdit:TextEditor
+		Name="TextEditor"
+		FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"
+		Margin="5"
+		HorizontalScrollBarVisibility="Auto"
+		VerticalScrollBarVisibility="Visible"
+		FontSize="14">
 	</AvaloniaEdit:TextEditor>
-
 </UserControl>

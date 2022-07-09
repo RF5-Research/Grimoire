@@ -8,6 +8,7 @@
         xmlns:AvaloniaEdit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
 		xmlns:ui="using:FluentAvalonia.UI.Controls"
 		xmlns:input="using:FluentAvalonia.UI.Input"
+		xmlns:controls="using:GrimoireGUI.Controls"
         x:Class="GrimoireGUI.Views.ScriptWindow"
 		Padding="0"
         Title="ScriptWindow">
@@ -26,7 +27,7 @@
 								<StackPanel Orientation="Horizontal"
 											VerticalAlignment="Center"
 											Height="18">
-									<material:MaterialIcon Kind="Function"/>
+									<!--<material:MaterialIcon Kind="Function"/>-->
 									<TextBlock VerticalAlignment="Center"
 											   Margin="10,0,0,0"
 											   Text="{Binding Content}"
@@ -79,13 +80,15 @@
 				</ListBox>
 			</Grid>
 		</SplitView.Pane>
-			<AvaloniaEdit:TextEditor
+			<controls:ScriptTextEditor Name="ScriptTextEditor" Text="{Binding ScriptText, Mode=TwoWay}"/>
+			<!--<AvaloniaEdit:TextEditor
 				Name="TextEditor"
 				FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"
 				Margin="5"
 				HorizontalScrollBarVisibility="Auto"
 				VerticalScrollBarVisibility="Visible"
-				FontSize="14" />
+				FontSize="14">
+			</AvaloniaEdit:TextEditor>-->
 		</SplitView>
 	</DockPanel>
 </Window>

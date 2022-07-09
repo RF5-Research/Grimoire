@@ -5,6 +5,7 @@ using Grimoire.Models.RF5.Define;
 using Grimoire.Models.RF5.Loader.ID;
 using Grimoire.Models.UnityEngine;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,9 +34,11 @@ namespace GrimoireGUI.ViewModels
         private ObservableCollection<AdvScriptId> ScriptList { get; }
         private AdvIndexData AdvIndexData;
         private TextAsset Pack;
+        private AdvScript AdvScript;
+
+        //Clean all this up later
         private string scriptText;
         public string ScriptText { get => scriptText; set => this.RaiseAndSetIfChanged(ref scriptText, value); }
-
         AdvScriptId selectedItem;
         public AdvScriptId SelectedItem
         {
@@ -48,24 +51,17 @@ namespace GrimoireGUI.ViewModels
             }
         }
 
-        private AdvScript AdvScript;
-
         public AdvScriptWindowViewModel()
         {
-            //Just to ignore XAML designer errors
-            try
-            {
-                AdvScript = new AdvScript($"Resources/AdvScriptFunctions.json");
-                var am = new AssetsManager();
-                AdvIndexData = AssetsLoader.LoadID<AdvIndexData>((int)Master.ADVINDEXDATA, am);
+            AdvScript = new AdvScript($"Resources/AdvScriptFunctions.json");
+            var am = new AssetsManager();
+            AdvIndexData = AssetsLoader.LoadID<AdvIndexData>((int)Master.ADVINDEXDATA, am);
 
-                Pack = AssetsLoader.LoadID<TextAsset>((int)Event.PACK, am);
+            Pack = AssetsLoader.LoadID<TextAsset>((int)Event.PACK, am);
 
-                Scripts = AdvScript.DecompilePack(Encoding.Unicode.GetBytes(Pack.m_Script), AdvIndexData);
-                ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
-                ScriptText = Scripts[selectedItem + 1];
-            }
-            catch { }
+            Scripts = AdvScript.DecompilePack(Pack.m_Script, AdvIndexData);
+            ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
+            ScriptText = Scripts[SelectedItem + 1];
         }
 
         public List<CommandData> GetSymbols()
@@ -175,7 +171,6 @@ namespace GrimoireGUI.ViewModels
                 else
                 {
                     Debug.WriteLine($"Couldn't tokenize script:\n{script}");
-
                 }
             }
             return commands;
@@ -219,8 +214,7 @@ namespace GrimoireGUI.ViewModels
                                 case "bool":
                                 case "int":
                                     {
-                                        int value;
-                                        int.TryParse(cmd.Args[index], out value);
+                                        int.TryParse(cmd.Args[index], out int value);
                                         writer.Write(value);
                                         //Add error handling here
                                     }
@@ -242,12 +236,16 @@ namespace GrimoireGUI.ViewModels
                     }
                     AdvIndexData.offset.Add((int)ms.Position);
                 }
-                Pack.m_Script = Encoding.Unicode.GetString(ms.ToArray());
+                Pack.m_Script = ms.ToArray();
             }
         }
 
+
+        //TODO: High priority unload assets to prevent file read locks
+        //TODO: Set changes to current script manually when saving
         public void Save()
         {
+            Scripts[selectedItem + 1] = ScriptText;
             var scriptsData = new List<List<Command>>();
             foreach (var script in Scripts.Values)
             {
@@ -256,7 +254,6 @@ namespace GrimoireGUI.ViewModels
             Parse(scriptsData);
             AssetsLoader.WriteAsset(Pack, (int)Event.PACK);
             AssetsLoader.WriteAsset(AdvIndexData, (int)Master.ADVINDEXDATA);
-
         }
     }
 }

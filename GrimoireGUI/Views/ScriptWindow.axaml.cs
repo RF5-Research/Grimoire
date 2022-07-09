@@ -17,81 +17,26 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.RegularExpressions;
 using TextMateSharp.Grammars;
-using TextMateSharp.Registry;
 
 namespace GrimoireGUI.Views
 {
-    using Pair = KeyValuePair<int, IControl>;
-
     public partial class ScriptWindow : Window
     {
-        private readonly TextMate.Installation _textMateInstallation;
         private CompletionWindow? CompletionWindow;
         private OverloadInsightWindow? _insightWindow;
-        private ElementGenerator _generator = new ElementGenerator();
-        private RegistryOptions _registryOptions;
-        private int _currentTheme = (int)ThemeName.DarkPlus;
-
-        public static readonly DirectProperty<ScriptWindow, string> TextProperty =
-            AvaloniaProperty.RegisterDirect<ScriptWindow, string>(
-                nameof(Text),
-                o => o.Text,
-                (o, v) => o.Text = v);
-
-        private string _text;
-
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                SetAndRaise(TextProperty, ref _text, value);
-                if (value != null)
-                    TextEditor.Document = new TextDocument(value);
-            }
-        }
 
         public ScriptWindow()
         {
             InitializeComponent();
+            DataContext = new AdvScriptWindowViewModel();
+
             TogglePaneButton.Click += TogglePaneButton_Click;
-            //DataContext = new AdvScriptWindowViewModel();
-            TextEditor.Background = Brushes.Transparent;
-            TextEditor.ShowLineNumbers = true;
-            TextEditor.ContextMenu = new ContextMenu
-            {
-                Items = new List<MenuItem>
-                {
-                    new MenuItem { Header = "Copy", InputGesture = new KeyGesture(Key.C, KeyModifiers.Control) },
-                    new MenuItem { Header = "Paste", InputGesture = new KeyGesture(Key.V, KeyModifiers.Control) },
-                    new MenuItem { Header = "Cut", InputGesture = new KeyGesture(Key.X, KeyModifiers.Control) }
-                }
-            };
-            TextEditor.TextArea.Background = Background;
-            TextEditor.TextArea.TextEntered += TextArea_TextEntered;
-            TextEditor.TextArea.TextEntering += TextArea_TextEntering;
-            TextEditor.Options.ShowBoxForControlCharacters = true;
-            TextEditor.TextArea.IndentationStrategy = new AvaloniaEdit.Indentation.CSharp.CSharpIndentationStrategy(TextEditor.Options);
-            TextEditor.TextArea.Caret.PositionChanged += Caret_PositionChanged;
-            TextEditor.TextArea.RightClickMovesCaret = true;
+            ScriptTextEditor.TextEditor.TextArea.TextEntered += TextArea_TextEntered;
+            //This is horribly problematic when writing strings
+            //ScriptTextEditor.TextEditor.TextArea.TextEntering += TextArea_TextEntering;
+            ScriptTextEditor.TextEditor.TextArea.Caret.PositionChanged += Caret_PositionChanged;
 
-            TextEditor.TextArea.TextView.ElementGenerators.Add(_generator);
-
-            _registryOptions = new RegistryOptions(
-                (ThemeName)_currentTheme);
-
-            _textMateInstallation = TextEditor.InstallTextMate(_registryOptions);
-
-            Language csharpLanguage = _registryOptions.GetLanguageByExtension(".cs");
-
-            string scopeName = _registryOptions.GetScopeByLanguageId(csharpLanguage.Id);
-            //TextEditor.Document = new TextDocument(
-            //    "// AvaloniaEdit supports displaying control chars: \a or \b or \v" + Environment.NewLine +
-            //    "// AvaloniaEdit supports displaying underline and strikethrough" + Environment.NewLine);
-            _textMateInstallation.SetGrammar(_registryOptions.GetScopeByLanguageId(csharpLanguage.Id));
-            TextEditor.TextArea.TextView.LineTransformers.Add(new UnderlineAndStrikeThroughTransformer());
             AddHandler(KeyDownEvent, (o, e) =>
             {
                 switch (e.Key)
@@ -100,7 +45,7 @@ namespace GrimoireGUI.Views
                         {
                             if (CompletionWindow != null)
                             {
-                                if (TextEditor.CaretOffset == 0)
+                                if (ScriptTextEditor.TextEditor.CaretOffset == 0)
                                 {
                                     CloseCompletionWindow();
                                     return;
@@ -116,12 +61,6 @@ namespace GrimoireGUI.Views
                     ShowCompletionWindow();
                 }
             }, RoutingStrategies.Bubble, true);
-            AddHandler(PointerWheelChangedEvent, (o, i) =>
-            {
-                if (i.KeyModifiers != KeyModifiers.Control) return;
-                if (i.Delta.Y > 0) TextEditor.FontSize++;
-                else TextEditor.FontSize = TextEditor.FontSize > 1 ? TextEditor.FontSize - 1 : 1;
-            }, RoutingStrategies.Bubble, true);
         }
 
         public void Save(object? sender, RoutedEventArgs e)
@@ -131,7 +70,7 @@ namespace GrimoireGUI.Views
 
         private void ShowCompletionWindow()
         {
-            CompletionWindow = new(TextEditor.TextArea);
+            CompletionWindow = new(ScriptTextEditor.TextEditor.TextArea);
             CompletionWindow.Closed += (o, args) => CompletionWindow = null;
             --CompletionWindow.StartOffset;
 
@@ -181,7 +120,7 @@ namespace GrimoireGUI.Views
 
         private string GetCompletionPrefix()
         {
-            var offset = TextEditor.TextArea.Caret.Offset;
+            var offset = ScriptTextEditor.TextEditor.TextArea.Caret.Offset;
             var stringBuilder = new StringBuilder();
             if (CompletionWindow != null)
             {
@@ -189,7 +128,7 @@ namespace GrimoireGUI.Views
                 {
                     if (offset != 0)
                     {
-                        var character = TextEditor.TextArea.Document.GetCharAt(--offset);
+                        var character = ScriptTextEditor.TextEditor.TextArea.Document.GetCharAt(--offset);
                         if (char.IsWhiteSpace(character))
                             break;
                         stringBuilder.Insert(0, character);
@@ -251,83 +190,8 @@ namespace GrimoireGUI.Views
         private void Caret_PositionChanged(object sender, EventArgs e)
         {
             StatusTextBlock.Text = string.Format("Line {0} Column {1}",
-                TextEditor.TextArea.Caret.Line,
-                TextEditor.TextArea.Caret.Column);
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-
-            _textMateInstallation.Dispose();
-        }
-
-        class UnderlineAndStrikeThroughTransformer : DocumentColorizingTransformer
-        {
-            protected override void ColorizeLine(DocumentLine line)
-            {
-                if (line.LineNumber == 2)
-                {
-                    string lineText = this.CurrentContext.Document.GetText(line);
-
-                    int indexOfUnderline = lineText.IndexOf("underline");
-                    int indexOfStrikeThrough = lineText.IndexOf("strikethrough");
-
-                    if (indexOfUnderline != -1)
-                    {
-                        ChangeLinePart(
-                            line.Offset + indexOfUnderline,
-                            line.Offset + indexOfUnderline + "underline".Length,
-                            visualLine => visualLine.TextRunProperties.Underline = true);
-                    }
-
-                    if (indexOfStrikeThrough != -1)
-                    {
-                        ChangeLinePart(
-                            line.Offset + indexOfStrikeThrough,
-                            line.Offset + indexOfStrikeThrough + "strikethrough".Length,
-                            visualLine => visualLine.TextRunProperties.Strikethrough = true);
-                    }
-                }
-            }
-        }
-
-        private class MyOverloadProvider : IOverloadProvider
-        {
-            private readonly IList<(string header, string content)> _items;
-            private int _selectedIndex;
-
-            public MyOverloadProvider(IList<(string header, string content)> items)
-            {
-                _items = items;
-                SelectedIndex = 0;
-            }
-
-            public int SelectedIndex
-            {
-                get => _selectedIndex;
-                set
-                {
-                    _selectedIndex = value;
-                    OnPropertyChanged();
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    OnPropertyChanged(nameof(CurrentHeader));
-                    OnPropertyChanged(nameof(CurrentContent));
-                    // ReSharper restore ExplicitCallerInfoArgument
-                }
-            }
-
-            public int Count => _items.Count;
-            public string CurrentIndexText => null;
-            public object CurrentHeader => _items[SelectedIndex].header;
-            public object CurrentContent => _items[SelectedIndex].content;
-
-            public event PropertyChangedEventHandler? PropertyChanged;
-
-            private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+                ScriptTextEditor.TextEditor.TextArea.Caret.Line,
+                ScriptTextEditor.TextEditor.TextArea.Caret.Column);
         }
 
         public class CompletionData : ICompletionData
@@ -354,39 +218,5 @@ namespace GrimoireGUI.Views
             }
         }
 
-        class ElementGenerator : VisualLineElementGenerator, IComparer<Pair>
-        {
-            public List<Pair> controls = new List<Pair>();
-
-            /// <summary>
-            /// Gets the first interested offset using binary search
-            /// </summary>
-            /// <returns>The first interested offset.</returns>
-            /// <param name="startOffset">Start offset.</param>
-            public override int GetFirstInterestedOffset(int startOffset)
-            {
-                int pos = controls.BinarySearch(new Pair(startOffset, null), this);
-                if (pos < 0)
-                    pos = ~pos;
-                if (pos < controls.Count)
-                    return controls[pos].Key;
-                else
-                    return -1;
-            }
-
-            public override VisualLineElement? ConstructElement(int offset)
-            {
-                int pos = controls.BinarySearch(new Pair(offset, null), this);
-                if (pos >= 0)
-                    return new InlineObjectElement(0, controls[pos].Value);
-                else
-                    return null;
-            }
-
-            int IComparer<Pair>.Compare(Pair x, Pair y)
-            {
-                return x.Key.CompareTo(y.Key);
-            }
-        }
     }
 }

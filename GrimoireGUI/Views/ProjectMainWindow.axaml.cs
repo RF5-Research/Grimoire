@@ -1,15 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Grimoire;
-using GrimoireGUI.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using TextMateSharp.Grammars;
-using TextMateSharp.Registry;
 
 namespace GrimoireGUI.Views
 {
@@ -25,7 +17,7 @@ namespace GrimoireGUI.Views
             CloseMenuItem.Click += CloseProjectMenuItem_Click;
             SaveMenuItem.Click += SaveMenuItem_Click;
 
-            CharactersButton.Click += CharactersButton_Click;
+            //CharactersButton.Click += CharactersButton_Click;
             ScriptEditorButton.Click += ScriptEditorButton_Click;
             AssetsButton.Click += AssetsButton_Click;
         }
@@ -54,8 +46,6 @@ namespace GrimoireGUI.Views
         //Propagate event to child windows that subscribe to event
         private void SaveMenuItem_Click(object? sender, RoutedEventArgs e)
         {
-            var x = new AdvScriptWindowViewModel();
-            x.Save();
             var eventArgs = new RoutedEventArgs(SaveEvent);
             RaiseEvent(eventArgs);
         }

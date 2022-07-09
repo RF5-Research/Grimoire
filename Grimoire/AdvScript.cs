@@ -79,6 +79,7 @@ namespace Grimoire
                 return null;
 
             var lines = "";
+            //Use stringbuilder
             using (var ms = new MemoryStream(script))
             using (var reader = new BinaryReader(ms))
             {
