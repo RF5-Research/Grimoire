@@ -20,9 +20,13 @@ namespace Grimoire
 
         public static readonly Dictionary<SystemLanguage, string> GameLanguages = new()
         {
+            { SystemLanguage.Japanese, "Jpn/" },
+            { SystemLanguage.ChineseSimplified, "Chs/" },
+            { SystemLanguage.ChineseTraditional, "Cht/" },
+            { SystemLanguage.Korean, "Kor/" },
             { SystemLanguage.English, "Eng/" },
-            { SystemLanguage.German, "Ger/" },
             { SystemLanguage.French, "Fre/" },
+            { SystemLanguage.German, "Ger/" },
         };
 
 
