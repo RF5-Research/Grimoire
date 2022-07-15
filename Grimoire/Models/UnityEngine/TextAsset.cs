@@ -14,6 +14,7 @@ namespace Grimoire.Models.UnityEngine
         public void Deserialize(AssetsManager am, System.Type type, AssetTypeValueField assetTypeValueField, AssetsFileInstance fileInstance = null)
         {
             m_Name = assetTypeValueField.Get("m_Name").GetValue().AsString();
+            var test = assetTypeValueField.Get("m_Script").GetValue();
             m_Script = assetTypeValueField.Get("m_Script").GetValue().AsStringBytes();
         }
 

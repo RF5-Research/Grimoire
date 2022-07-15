@@ -16,7 +16,7 @@ namespace Grimoire.Models.RF5
         public AdvBustupResManager()
         {
             var am = new AssetsManager();
-            BustupDataList = AssetsLoader.LoadID<BustupDataList>((int)Master.UIDATA_BUSTUPDATATABLE, am);
+            BustupDataList = AssetsLoader.LoadID<BustupDataList>(AssetsLoader.Master["UIDATA_BUSTUPDATATABLE"], am);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

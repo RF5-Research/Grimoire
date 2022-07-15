@@ -7,12 +7,6 @@ namespace GrimoireGUI.Models
     {
         public static Project Project { get; private set; }
 
-        public static string DataPath { get => $"{Project.ROMPath}/Data"; }
-
-        public static string StreamingAssetsPath { get => $"{DataPath}/StreamingAssets"; }
-
-        public static string AddressableAssetsPath { get => $"{StreamingAssetsPath}/aa"; }
-
         public static void Initialize(Project project)
         {
             Project = project;
@@ -47,8 +41,9 @@ namespace GrimoireGUI.Models
 
         public static void InitializeGlobalServices()
         {
-            Addressables.Initialize($"{AddressableAssetsPath}/catalog.json", Project.ROMPath, Project.ProjectPath);
-            AssetsLoader.Initialize(Project.GameLanguage);
+            Application.Initialize(Project.ROMPath, Project.ProjectPath, Project.Platform);
+            Addressables.Initialize();
+            AssetsLoader.Initialize(Project.GameLanguage, Directory.GetCurrentDirectory());
         }
     }
 }

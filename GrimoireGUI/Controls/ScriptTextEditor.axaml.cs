@@ -39,27 +39,19 @@ namespace GrimoireGUI.Controls
             set => SetValue(TextProperty, value);
         }
 
-        bool Notify = true;
         private void TextEditor_TextChanged(object? sender, EventArgs e)
         {
             if (TextEditor != null && TextEditor.Document != null)
             {
-                Notify = false;
                 Text = TextEditor.Document.Text;
-                Notify = true;
             }
         }
 
         private void TextPropertyChanged(string text)
         {
-            if (TextEditor != null && TextEditor.Document != null && text != null)
+            if (TextEditor != null && TextEditor.Document != null && text != null && text != TextEditor.Document.Text)
             {
-                if (Notify)
-                {
-                    //var caretOffset = TextEditor.CaretOffset;
-                    TextEditor.Document = new(text);
-                    //TextEditor.CaretOffset = caretOffset;
-                }
+                TextEditor.Document = new(text);
             }
         }
 
@@ -68,6 +60,7 @@ namespace GrimoireGUI.Controls
             InitializeComponent();
             TextEditor.TextChanged += TextEditor_TextChanged;
             this.GetObservable(TextProperty).Subscribe(TextPropertyChanged);
+
 
             TextEditor.Background = Brushes.Transparent;
             TextEditor.ShowLineNumbers = true;

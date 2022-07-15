@@ -5,6 +5,7 @@ using Grimoire.Models.UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Grimoire
@@ -14,6 +15,8 @@ namespace Grimoire
         public static AssetDataTable? AssetKeys;
         private const string RegionFreeKey = "All/";
         private static SystemLanguage Language;
+        public static Dictionary<string, int> Master;
+        public static Dictionary<string, int> Event;
 
         public static readonly Dictionary<SystemLanguage, string> GameLanguages = new()
         {
@@ -22,10 +25,11 @@ namespace Grimoire
             { SystemLanguage.French, "Fre/" },
         };
 
+
         /// <summary>
         /// Required before usage
         /// </summary>
-        public static void Initialize(SystemLanguage language)
+        public static void Initialize(SystemLanguage language, string path)
         {
             Language = language;
             //They load via level0 -> AssetManager -> AssetReference and get the GUID as the key
@@ -34,8 +38,23 @@ namespace Grimoire
             var keyName = "AssetKeys";
             var am = new AssetsManager();
             AssetKeys = Addressables.LoadAsset<AssetDataTable>(am, keyName);
+
+            var resourcePath = Application.Platform == Grimoire.Platform.Switch ? $"{path}/Resources/Switch" : $"{path}/Resources/Steam";
+            var loaderIDPath = $"{resourcePath}/Metadata/Loader/ID";
+
+            LoadEnum(ref Master, $"{loaderIDPath}/{nameof(Master)}.json");
+            LoadEnum(ref Event, $"{loaderIDPath}/{nameof(Event)}.json");
+
         }
 
+        public static void LoadEnum(ref Dictionary<string, int> @enum, string path)
+        {
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            using (var reader = new StreamReader(fs))
+            {
+                @enum = JsonSerializer.Deserialize<Dictionary<string, int>>(reader.ReadToEnd())!;
+            }
+        }
         /// <summary>
         /// Returns whether or not the ID has language variations for the given region
         /// </summary>

@@ -1,0 +1,2395 @@
+[
+  {
+    "Name": "None",
+    "ID": 0,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "NpcCutin",
+    "ID": 1,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "NpcCutout",
+    "ID": 2,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "NpcFace",
+    "ID": 3,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "Chatwindow",
+    "ID": 4,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "Shake",
+    "ID": 5,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "E2DpartClose",
+    "ID": 6,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "Fade",
+    "ID": 7,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "E2DUiShow",
+    "ID": 8,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "E2DUiHide",
+    "ID": 9,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "E2DEmotionId",
+    "ID": 10,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "Message",
+    "ID": 11,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "MessageRand",
+    "ID": 12,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int"
+    }
+  },
+  {
+    "Name": "MessagePlayerGender",
+    "ID": 13,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "MessageChildPersonality",
+    "ID": 14,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "Message3Dvoice",
+    "ID": 15,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "SelectMessage",
+    "ID": 21,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int"
+    }
+  },
+  {
+    "Name": "InputPlayerName",
+    "ID": 22,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "InputPlayerBirth",
+    "ID": 23,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "InputChildName",
+    "ID": 24,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SelectChild2BoyPersonal",
+    "ID": 25,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "SelectChild2GirlPersonal",
+    "ID": 26,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "InputMonsterhomeName",
+    "ID": 27,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SelectMessageHint",
+    "ID": 28,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "E2DUiDispsetting",
+    "ID": 29,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "GotoStepNext",
+    "ID": 31,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "GotoStepCurrent",
+    "ID": 32,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "GotoTargetNpcStep",
+    "ID": 35,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "JumpReserve",
+    "ID": 36,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "GotoJumpReserve",
+    "ID": 37,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "GenderlessCheck",
+    "ID": 39,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "E3DMotionId",
+    "ID": 41,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "E3DEmotionId",
+    "ID": 42,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string"
+    }
+  },
+  {
+    "Name": "E3DMotionName",
+    "ID": 43,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "E3DEmotionName",
+    "ID": 44,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string"
+    }
+  },
+  {
+    "Name": "E3DFacePattern",
+    "ID": 45,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "E3DLookat",
+    "ID": 46,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string"
+    }
+  },
+  {
+    "Name": "SpringboneStop",
+    "ID": 47,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "SpringboneStart",
+    "ID": 48,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "E3DPoseId",
+    "ID": 51,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "E3DPoseName",
+    "ID": 52,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "E3DPositionId",
+    "ID": 53,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
+    }
+  },
+  {
+    "Name": "E3DPositionName",
+    "ID": 54,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
+    }
+  },
+  {
+    "Name": "E3DPositionMoveId",
+    "ID": 55,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "E3DPositionMoveName",
+    "ID": 56,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "E3DRelativePositionId",
+    "ID": 57,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
+    }
+  },
+  {
+    "Name": "E3DRelativePositionName",
+    "ID": 58,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
+    }
+  },
+  {
+    "Name": "E3DRelativePositionMoveId",
+    "ID": 59,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "E3DRelativePositionMoveName",
+    "ID": 60,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "NpcFadein",
+    "ID": 61,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "NpcFadeout",
+    "ID": 62,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "NpcChangemodel",
+    "ID": 63,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "Reward",
+    "ID": 65,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string"
+    }
+  },
+  {
+    "Name": "E3DpartStartIdNopreload",
+    "ID": 66,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "NpcFadein2",
+    "ID": 67,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "NpcFadeout2",
+    "ID": 68,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "End",
+    "ID": 71,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "Wait",
+    "ID": 72,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "Pause",
+    "ID": 73,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "E3DpartStartId",
+    "ID": 74,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "E3DpartStartName",
+    "ID": 75,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "E3DpartEndId",
+    "ID": 76,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "E3DpartEndName",
+    "ID": 77,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "ChangeTime",
+    "ID": 78,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int"
+    }
+  },
+  {
+    "Name": "StopTime",
+    "ID": 79,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int"
+    }
+  },
+  {
+    "Name": "RestartTime",
+    "ID": 80,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "If",
+    "ID": 81,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "IfWait",
+    "ID": 82,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "SetEventTrigger",
+    "ID": 83,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "string"
+    }
+  },
+  {
+    "Name": "ReduseEventTrigger",
+    "ID": 84,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "CheckQuest",
+    "ID": 85,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int"
+    }
+  },
+  {
+    "Name": "CheckScenarioPoint",
+    "ID": 86,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "AchievedScenarioPoint",
+    "ID": 87,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "CheckEventflagPoint",
+    "ID": 88,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "AchievedEventflagPoint",
+    "ID": 89,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "AchievedScriptTime",
+    "ID": 90,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "AddPoint",
+    "ID": 91,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "Ai",
+    "ID": 92,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "Navmesh",
+    "ID": 93,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "NavmeshOther",
+    "ID": 94,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "CameraPosition",
+    "ID": 95,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string"
+    }
+  },
+  {
+    "Name": "CameraPositionMove",
+    "ID": 96,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
+    }
+  },
+  {
+    "Name": "CameraAction",
+    "ID": 97,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string"
+    }
+  },
+  {
+    "Name": "UseShortplayCamera",
+    "ID": 98,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "UsePlayerCamera",
+    "ID": 99,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "DepthOfField",
+    "ID": 100,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "QuestOrder",
+    "ID": 101,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "QuestReward",
+    "ID": 102,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "EventLoad",
+    "ID": 201,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "PlayBgm",
+    "ID": 210,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "StopBgm",
+    "ID": 211,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "PlaySe",
+    "ID": 212,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "StopSe",
+    "ID": 213,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "PlayVoice",
+    "ID": 214,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "StopVoice",
+    "ID": 215,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "Timeline",
+    "ID": 231,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "Movie",
+    "ID": 232,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "TimelineMsg",
+    "ID": 233,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "WorldstreamerTarget",
+    "ID": 234,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "DisableAutoWorldstreamerTarget",
+    "ID": 235,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "EnableAutoWorldstreamerTarget",
+    "ID": 236,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "ObjectCreate",
+    "ID": 241,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "ObjectMove",
+    "ID": 242,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "ObjectDelete",
+    "ID": 243,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "EffectPlay",
+    "ID": 244,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "EffectMove",
+    "ID": 245,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string"
+    }
+  },
+  {
+    "Name": "EffectStop",
+    "ID": 246,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "ObjectOnoffId",
+    "ID": 247,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "ObjectOnoffName",
+    "ID": 248,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "CreateShortplayItem",
+    "ID": 249,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "CreateShortplayonlyItem",
+    "ID": 250,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "int",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "string"
+    }
+  },
+  {
+    "Name": "UnequipTool",
+    "ID": 251,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "EqiupTool",
+    "ID": 252,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "EquipBeforeTool",
+    "ID": 253,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "ReduceCrystal",
+    "ID": 254,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "AllnpcDisable",
+    "ID": 290,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "NpcSubtalkReserve",
+    "ID": 291,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "NpcSubtalkRelease",
+    "ID": 292,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "ChangeEventIdstep",
+    "ID": 293,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "StopEvent",
+    "ID": 294,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FestivalJoin",
+    "ID": 295,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "TreasureBox",
+    "ID": 296,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FestivalAppeal",
+    "ID": 297,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FesPresentSend",
+    "ID": 298,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesPresentRecv",
+    "ID": 299,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesDateReserve",
+    "ID": 300,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "ChangeScene",
+    "ID": 301,
+    "Description": null,
+    "Params": {
+      "unk_1": "string",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "Skipable",
+    "ID": 302,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "SkipNotable",
+    "ID": 303,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "SkipEnd",
+    "ID": 304,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "SpawnEnemy",
+    "ID": 310,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string",
+      "unk_4": "string",
+      "unk_5": "string",
+      "unk_6": "string",
+      "unk_7": "string",
+      "unk_8": "string",
+      "unk_9": "string",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "SpawnBoss",
+    "ID": 311,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "FesWinnerCandidateMsg",
+    "ID": 320,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesNo1Msg",
+    "ID": 321,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesNo2Msg",
+    "ID": 322,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesNo3Msg",
+    "ID": 323,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesResultCheers1Msg",
+    "ID": 324,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesResultCheers2Msg",
+    "ID": 325,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesResultCheers3Msg",
+    "ID": 326,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesJudgeChildMsg",
+    "ID": 327,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesVegetablesCheersMsg",
+    "ID": 328,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesVegetablesQuestionMsg1",
+    "ID": 329,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesVegetablesQuestionMsg2",
+    "ID": 330,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesVegetablesQuestionMsg3",
+    "ID": 331,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesItemBack",
+    "ID": 332,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesAlreadyDate",
+    "ID": 333,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "FesInvitedDate",
+    "ID": 334,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "FesNearCandidate",
+    "ID": 335,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesNo3In",
+    "ID": 336,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "TodayFes",
+    "ID": 337,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string",
+      "unk_3": "string"
+    }
+  },
+  {
+    "Name": "BedNearChilds",
+    "ID": 340,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "ForceWeather",
+    "ID": 350,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "ChangeGold",
+    "ID": 360,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "NpcShopopen",
+    "ID": 370,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FesHotarubiDateselect",
+    "ID": 380,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FesHotarubiDatecheck",
+    "ID": 381,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "ChangeSubeventIdstep",
+    "ID": 401,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int"
+    }
+  },
+  {
+    "Name": "SubeventComplete",
+    "ID": 402,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvOn",
+    "ID": 403,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvOff",
+    "ID": 404,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvStepKeep",
+    "ID": 405,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "SubeventNpcadvStepRelease",
+    "ID": 406,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "SubeventDatingReservation",
+    "ID": 407,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "SubeventMarriage",
+    "ID": 408,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SubeventBecomelover",
+    "ID": 409,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SubeventGivebirth",
+    "ID": 410,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SubeventDatingPartner",
+    "ID": 411,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SubeventDatingPartnerRelease",
+    "ID": 412,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "SubeventDatingBroke",
+    "ID": 413,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "EventPictureDisplay",
+    "ID": 414,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "EventPictureHidden",
+    "ID": 415,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "NpcJealousyOnoff",
+    "ID": 416,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "NpcAngryProceed",
+    "ID": 417,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "SubeventFailure",
+    "ID": 418,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "DateEnd",
+    "ID": 419,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "NpcItempresent",
+    "ID": 421,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "SkillLvup",
+    "ID": 422,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "GetRecipe",
+    "ID": 423,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "HealBadStatus",
+    "ID": 424,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "BythewayTopartnerResultStep",
+    "ID": 431,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int"
+    }
+  },
+  {
+    "Name": "BythewayInvitedateSelectMessage",
+    "ID": 432,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "BythewayInvitedateBranch",
+    "ID": 433,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "BythewayNpcSuggestion",
+    "ID": 434,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "BythewaySelectMessage",
+    "ID": 435,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "DateTalkStart",
+    "ID": 441,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "SelectDatePhysicalContact",
+    "ID": 442,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int"
+    }
+  },
+  {
+    "Name": "CheckLovEventflagPoint",
+    "ID": 451,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "SetLovEventflagPoint",
+    "ID": 452,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "CheckNpcmanageEventflagPoint",
+    "ID": 453,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "SetNpcmanageEventflagPoint",
+    "ID": 454,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "ToPartner",
+    "ID": 461,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "PartnerRelease",
+    "ID": 462,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "PartnerReleaseImmediate",
+    "ID": 463,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "TakeLicense",
+    "ID": 471,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "MakingOpen",
+    "ID": 472,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "ChangeDifficulty",
+    "ID": 473,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "Child1DecisionPregnant",
+    "ID": 481,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "Child1DecisionGender",
+    "ID": 482,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "Child1DecisionPersonality",
+    "ID": 483,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "ChildE2DecisionPregnant",
+    "ID": 484,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "ChildE2DecisionBoyPersonality",
+    "ID": 485,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "ChildE2DecisionGirlPersonality",
+    "ID": 486,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "StaffrollPlay",
+    "ID": 490,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  },
+  {
+    "Name": "StaffrollStop",
+    "ID": 491,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "FacilityCheckBuyRecipepan",
+    "ID": 501,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "FacilityBuyRecipepan",
+    "ID": 502,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckRecieveClothshop",
+    "ID": 503,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckBuyClothshop",
+    "ID": 504,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "FacilityBuyClothshop",
+    "ID": 505,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckBuyHotspring",
+    "ID": 506,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityBuyHotspring",
+    "ID": 507,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckBuyVaccination",
+    "ID": 508,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityBuyVaccination",
+    "ID": 509,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityShowlistAdvshop",
+    "ID": 510,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "string",
+      "unk_5": "int"
+    }
+  },
+  {
+    "Name": "FacilityTradeCrystal",
+    "ID": 511,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityOpenWanted",
+    "ID": 512,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckFreeHotspring",
+    "ID": 513,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "FacilitySeedRankUp",
+    "ID": 514,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FacilityGetBadge",
+    "ID": 515,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FacilityOpenWantedReport",
+    "ID": 516,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckHotspringPresent",
+    "ID": 517,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckHotspringPresentRe",
+    "ID": 518,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityWantedReportNext",
+    "ID": 519,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FacilityWantedReportComplete",
+    "ID": 520,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FacilityEquipAppraisalSelect",
+    "ID": 521,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityCheckEquipAppraisal",
+    "ID": 522,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "FacilityEquipBaseLevelNext",
+    "ID": 523,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int"
+    }
+  },
+  {
+    "Name": "FacilityEquipMaterialLevelNext",
+    "ID": 524,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int"
+    }
+  },
+  {
+    "Name": "MagicPowerUp",
+    "ID": 525,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "AddSeedPoint",
+    "ID": 526,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "AddSeedbadge",
+    "ID": 527,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "FurnitureCommand",
+    "ID": 551,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "Dualwork",
+    "ID": 552,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "DoorClose",
+    "ID": 553,
+    "Description": null,
+    "Params": {
+      "unk_1": "string"
+    }
+  },
+  {
+    "Name": "FacilitySetHotspring",
+    "ID": 554,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "MonsterDoctorAmount",
+    "ID": 561,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "MonsterDoctorScale",
+    "ID": 562,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "MonsterDoctorBonus",
+    "ID": 563,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int",
+      "unk_5": "int",
+      "unk_6": "int",
+      "unk_7": "int",
+      "unk_8": "int",
+      "unk_9": "int",
+      "unk_10": "int"
+    }
+  },
+  {
+    "Name": "MonsterDoctorLevel",
+    "ID": 564,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int"
+    }
+  },
+  {
+    "Name": "MonsterDoctorLove",
+    "ID": 565,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "RenameA",
+    "ID": 571,
+    "Description": null,
+    "Params": {
+      "unk_1": "int"
+    }
+  },
+  {
+    "Name": "EventPictureDisplayWithtime",
+    "ID": 572,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int",
+      "unk_3": "int",
+      "unk_4": "int"
+    }
+  },
+  {
+    "Name": "EventPictureHiddenWithtime",
+    "ID": 573,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "int"
+    }
+  },
+  {
+    "Name": "CharaSetPositionId",
+    "ID": 580,
+    "Description": null,
+    "Params": {
+      "unk_1": "int",
+      "unk_2": "string"
+    }
+  }
+]

@@ -17,6 +17,7 @@
 				  CanUserReorderColumns="False">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+				<DataGridTextColumn Header="Platform" Binding="{Binding Platform}" />
 				<DataGridTextColumn Header="Game Language" Binding="{Binding GameLanguage}" />
 				<DataGridTextColumn Header="ROM Path" Binding="{Binding ROMPath}" />
 				<DataGridTextColumn Header="Project Path" Binding="{Binding ProjectPath}" />

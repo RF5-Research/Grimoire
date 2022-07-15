@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using GrimoireGUI.Views;
-using System.Diagnostics;
 
 namespace GrimoireGUI
 {

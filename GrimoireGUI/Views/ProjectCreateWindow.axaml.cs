@@ -5,7 +5,10 @@ using Grimoire.Models.UnityEngine;
 using GrimoireGUI.Models;
 using GrimoireGUI.ViewModels;
 using PropertyChanged;
+using System;
 using System.IO;
+using System.Linq;
+using static GrimoireGUI.Models.Settings;
 
 namespace GrimoireGUI.Views
 {
@@ -23,6 +26,7 @@ namespace GrimoireGUI.Views
             CancelButton.Click += CancelButton_Click;
             CreateButton.Click += CreateButton_Click;
             GameLanguageComboBox.Items = AssetsLoader.GameLanguages.Keys;
+            PlatformComboBox.Items = Enum.GetValues(typeof(Platform)).Cast<Platform>();
         }
 
         private void CreateButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -30,7 +34,7 @@ namespace GrimoireGUI.Views
             if (!Directory.Exists(ProjectPathTextBox.Text))
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
-            var project = new Project(NameTextBox.Text, ROMPathTextBox.Text, ProjectPathTextBox.Text, (SystemLanguage)GameLanguageComboBox.SelectedItem);
+            var project = new Project(NameTextBox.Text, (Platform)PlatformComboBox.SelectedItem, (SystemLanguage)GameLanguageComboBox.SelectedItem, ROMPathTextBox.Text, ProjectPathTextBox.Text);
             ((MainWindow)Owner)!.Settings.Projects.Add(project);
             _ = ((MainWindow)Owner).OpenProject(project);
             Close();

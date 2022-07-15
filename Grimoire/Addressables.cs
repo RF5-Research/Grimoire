@@ -13,17 +13,14 @@ namespace Grimoire
 {
     public static class Addressables
     {
+        public static string AddressableAssetsPath { get => $"{Application.StreamingAssetsPath}/aa"; }
         public static ResourceLocationMap ResourceLocationMap;
-        public static string? ROMPath;
-        public static string? ProjectPath;
-
         /// <summary>
         /// Required before usage
         /// </summary>
-        public static void Initialize(string catalogPath, string? romPath, string? projectPath)
+        public static void Initialize()
         {
-            ROMPath = romPath;
-            ProjectPath = projectPath;
+            string catalogPath = $"{AddressableAssetsPath}/catalog.json";
             using (var fs = new FileStream(catalogPath, FileMode.Open, FileAccess.Read))
             using (var reader = new StreamReader(fs))
             {
@@ -175,7 +172,7 @@ namespace Grimoire
 
         public static string GetRuntimePath(string path)
         {
-            return path.Replace("UnityEngine.AddressableAssets.Addressables.RuntimePath", Path.GetFullPath($"{ROMPath}/Data/StreamingAssets/aa"));
+            return path.Replace("UnityEngine.AddressableAssets.Addressables.RuntimePath", Path.GetFullPath($"{Application.DataPath}/StreamingAssets/aa"));
         }
 
         /// <summary>
@@ -236,7 +233,7 @@ namespace Grimoire
             var bundles = new List<string>(dependencies.Count);
             foreach (var path in dependencies)
             {
-                bundles.Add(PathUtilities.GetFilePath(path, ROMPath, ProjectPath));
+                bundles.Add(PathUtilities.GetFilePath(path, Application.ROMPath, Application.ProjectPath));
             }
             return bundles;
         }

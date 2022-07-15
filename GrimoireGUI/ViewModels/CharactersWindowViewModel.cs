@@ -63,8 +63,8 @@ namespace GrimoireGUI.ViewModels
         {
             List = new List<Character>();
             var am = new AssetsManager();
-            var npcNames = AssetsLoader.LoadID<UISystemTextData>((int)Master.NPCNAMEDATA, am);
-            NpcDiscript = AssetsLoader.LoadID<UISystemTextData>((int)Master.NPCDISCRIPTDATA, am);
+            var npcNames = AssetsLoader.LoadID<UISystemTextData>(AssetsLoader.Master["NPCNAMEDATA"], am);
+            NpcDiscript = AssetsLoader.LoadID<UISystemTextData>(AssetsLoader.Master["NPCDISCRIPTDATA"], am);
 
             if (npcNames != null)
             {

@@ -5,7 +5,9 @@ using Grimoire.Models.UnityEngine;
 using GrimoireGUI.Models;
 using GrimoireGUI.ViewModels;
 using PropertyChanged;
+using System;
 using System.IO;
+using System.Linq;
 
 namespace GrimoireGUI.Views
 {
@@ -20,6 +22,7 @@ namespace GrimoireGUI.Views
             ROMPathTextBox.Text = Settings.ROMPath;
             ProjectPathTextBox.Text = Settings.ProjectPath;
             GameLanguageComboBox.SelectedItem = Settings.GameLanguage;
+            PlatformComboBox.SelectedItem = Settings.Platform;
         }
 
         public ProjectSettingsWindow()
@@ -39,6 +42,8 @@ namespace GrimoireGUI.Views
             CancelButton.Click += CancelButton_Click;
             SaveButton.Click += SaveButton_Click;
             GameLanguageComboBox.Items = AssetsLoader.GameLanguages.Keys;
+            PlatformComboBox.Items = Enum.GetValues(typeof(Platform)).Cast<Platform>();
+
         }
 
         private void SaveButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -50,7 +55,7 @@ namespace GrimoireGUI.Views
             Settings.ROMPath = ROMPathTextBox.Text;
             Settings.ProjectPath = ProjectPathTextBox.Text;
             Settings.GameLanguage = (SystemLanguage)GameLanguageComboBox.SelectedItem;
-
+            Settings.Platform = (Platform)PlatformComboBox.SelectedItem;
             Close();
         }
 

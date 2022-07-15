@@ -17,7 +17,7 @@ namespace Grimoire
         /// <returns></returns>
         public static string GetExportPath(string fileROMPath)
         {
-            fileROMPath = Path.GetFullPath(fileROMPath.Replace(Path.GetFullPath(Addressables.ROMPath), Path.GetFullPath(Addressables.ProjectPath)));
+            fileROMPath = Path.GetFullPath(fileROMPath.Replace(Path.GetFullPath(Application.ROMPath), Path.GetFullPath(Application.ProjectPath)));
             new FileInfo(fileROMPath).Directory!.Create();
             return fileROMPath;
         }
