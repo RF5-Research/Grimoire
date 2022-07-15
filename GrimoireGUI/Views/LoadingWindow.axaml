@@ -7,7 +7,8 @@
 		Height="250"
         WindowStartupLocation ="CenterScreen"
         Title="Loading...">
-	<Panel>
-		<ProgressBar Name="LoadingBar" IsIndeterminate="True"/>
-	</Panel>
+	<StackPanel VerticalAlignment="Center">
+		<ProgressBar Name="LoadingBar" IsIndeterminate="True" Margin="30"/>
+		<Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Center"/>
+	</StackPanel>
 </Window>

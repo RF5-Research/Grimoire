@@ -1,7 +1,6 @@
 ﻿using AssetsTools.NET.Extra;
 using Grimoire.Models.RF5;
 using Grimoire.Models.RF5.Define;
-using Grimoire.Models.RF5.Loader.ID;
 using Grimoire.Models.UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -230,15 +229,15 @@ namespace Grimoire
             }
         }
 
-        public Dictionary<AdvScriptId, string> LoadPackScript()
+        public Dictionary<AdvScriptId, string> LoadPackScript(int advIndexDataID, int packID)
         {
             var am = new AssetsManager();
-            AdvIndexData = AssetsLoader.LoadID<AdvIndexData>(AssetsLoader.Master["ADVINDEXDATA"], am);
-            Pack = AssetsLoader.LoadID<TextAsset>(AssetsLoader.Event["PACK"], am);
+            AdvIndexData = AssetsLoader.LoadID<AdvIndexData>(advIndexDataID, am);
+            Pack = AssetsLoader.LoadID<TextAsset>(packID, am);
             return DecompilePack(Pack.m_Script, AdvIndexData);
         }
 
-        public void SavePackScript(string[] scripts)
+        public void SavePackScript(string[] scripts, int advIndexDataID, int packID)
         {
             var scriptsData = new List<List<Command>>();
             foreach (var script in scripts)
@@ -246,8 +245,8 @@ namespace Grimoire
                 scriptsData.Add(Tokenize(script));
             }
             Parse(scriptsData);
-            AssetsLoader.WriteAsset(AdvIndexData, AssetsLoader.Master["ADVINDEXDATA"]);
-            AssetsLoader.WriteAsset(Pack, AssetsLoader.Event["PACK"]);
+            AssetsLoader.WriteAsset(AdvIndexData, advIndexDataID);
+            AssetsLoader.WriteAsset(Pack, packID);
         }
 
         private static string ToLiteral(string input)

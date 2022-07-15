@@ -5,6 +5,7 @@ using Grimoire.Models.RF5;
 using Grimoire.Models.RF5.Define;
 using Grimoire.Models.RF5.Loader.ID;
 using Grimoire.Models.UnityEngine;
+using GrimoireGUI.Core;
 using GrimoireGUI.Core.Texture;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -51,7 +52,7 @@ namespace GrimoireGUI.ViewModels
 
         public CharactersWindowViewModel()
         {
-            AdvBustupResManager = new();
+            AdvBustupResManager = new(LoaderID.Master["UIDATA_BUSTUPDATATABLE"]);
             this.WhenAnyValue(x => x.SelectedIndex)
                 .Throttle(TimeSpan.FromMilliseconds(400))
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -63,8 +64,8 @@ namespace GrimoireGUI.ViewModels
         {
             List = new List<Character>();
             var am = new AssetsManager();
-            var npcNames = AssetsLoader.LoadID<UISystemTextData>(AssetsLoader.Master["NPCNAMEDATA"], am);
-            NpcDiscript = AssetsLoader.LoadID<UISystemTextData>(AssetsLoader.Master["NPCDISCRIPTDATA"], am);
+            var npcNames = AssetsLoader.LoadID<UISystemTextData>(LoaderID.Master["NPCNAMEDATA"], am);
+            NpcDiscript = AssetsLoader.LoadID<UISystemTextData>(LoaderID.Master["NPCDISCRIPTDATA"], am);
 
             if (npcNames != null)
             {
@@ -84,7 +85,6 @@ namespace GrimoireGUI.ViewModels
                         );
                 }
             }
-
         }
 
         private async void LoadImage(int _ = 0)

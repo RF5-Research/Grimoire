@@ -8,6 +8,7 @@ namespace GrimoireGUI.Views
     public partial class ProjectMainWindow : Window
     {
         public bool IsClosingProject;
+        private ScriptWindow ScriptWindow;
         public ProjectMainWindow()
         {
             InitializeComponent();
@@ -59,9 +60,12 @@ namespace GrimoireGUI.Views
 
         private void ScriptEditorButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var window = new ScriptWindow();
-            Save += window.Save;
-            window.Show(this);
+            if (ScriptWindow == null)
+            {
+                ScriptWindow = new ScriptWindow();
+                Save += ScriptWindow.Save;
+                ScriptWindow.Show(this);
+            }
         }
     }
 }

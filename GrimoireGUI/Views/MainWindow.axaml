@@ -11,6 +11,7 @@
 				  ColumnWidth="Auto"
 				  HorizontalScrollBarVisibility="Auto"
 				  Name="ProjectDataGrid"
+				  Items="{Binding Projects}"
 				  SelectedIndex="{Binding SelectedIndex}"
 				  IsReadOnly="True"
 				  CanUserResizeColumns="True"

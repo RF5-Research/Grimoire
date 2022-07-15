@@ -1,4 +1,5 @@
 ﻿using Grimoire;
+using GrimoireGUI.Core;
 using System.IO;
 
 namespace GrimoireGUI.Models
@@ -43,7 +44,9 @@ namespace GrimoireGUI.Models
         {
             Application.Initialize(Project.ROMPath, Project.ProjectPath, Project.Platform);
             Addressables.Initialize();
-            AssetsLoader.Initialize(Project.GameLanguage, Directory.GetCurrentDirectory());
+            AssetsLoader.Initialize(Project.GameLanguage);
+            LoaderID.Initialize();
+            DefineID.Initialize();
         }
     }
 }

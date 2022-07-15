@@ -36,7 +36,7 @@ namespace GrimoireGUI.ViewModels
             var platform = ProjectManager.Project.Platform == Platform.Switch ? "Switch" : "Steam";
             AdvScript = new AdvScript($"Resources/{platform}/AdvScriptFunctions.json");
 
-            Scripts = AdvScript.LoadPackScript();
+            Scripts = AdvScript.LoadPackScript(LoaderID.Master["ADVINDEXDATA"], LoaderID.Event["PACK"]);
             ScriptList = new ObservableCollection<AdvScriptId>(Scripts.Keys);
             ScriptText = Scripts[SelectedItem + 1];
         }
@@ -46,12 +46,10 @@ namespace GrimoireGUI.ViewModels
             return AdvScript.Commands;
         }
 
-        //TODO: High priority unload assets to prevent file read locks
-        //TODO: Set changes to current script manually when saving
         public void Save()
         {
             Scripts[selectedItem + 1] = ScriptText;
-            AdvScript.SavePackScript(Scripts.Values.ToArray());
+            AdvScript.SavePackScript(Scripts.Values.ToArray(), LoaderID.Master["ADVINDEXDATA"], LoaderID.Event["PACK"]);
         }
     }
 }

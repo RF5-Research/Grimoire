@@ -21,7 +21,6 @@ namespace GrimoireGUI.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
-            DataContext = new MainWindowViewModel();
             if (File.Exists(SettingsFilename))
             {
                 using (var fs = new FileStream(SettingsFilename, FileMode.Open, FileAccess.Read))
@@ -44,7 +43,8 @@ namespace GrimoireGUI.Views
             {
                 Settings = new();
             }
-            ProjectDataGrid.Items = Settings.Projects;
+
+            DataContext = new MainWindowViewModel(Settings.Projects);
 
             NewProjectButton.Click += NewProjectButton_Click;
             OpenProjectButton.Click += OpenProjectButton_Click;
@@ -92,34 +92,12 @@ namespace GrimoireGUI.Views
 
         internal async Task OpenProject(Project project)
         {
-            var dialog = new LoadingWindow();
-            _ = dialog.ShowDialog(this);
-
-            var cancellationToken = new CancellationTokenSource();
-            dialog.Closed += (object? sender, System.EventArgs e) => cancellationToken.Cancel();
-
-#if DEBUG
-            await Task.Run(() => ProjectManager.Initialize(project), cancellationToken.Token);
-#else
-            try
+            var dialog = new LoadingWindow(() => ProjectManager.Initialize(project), () =>
             {
-                await Task.Run(() => ProjectManager.Initialize(project), cancellationToken.Token);
-            }
-            catch (Exception ex)
-            {
-                dialog.Close();
-                var window = new Window();
-                window.Content = ex.ToString();
-                await window.ShowDialog(this);
-            }
-#endif
-
-            if (cancellationToken.IsCancellationRequested != true)
-            {
-                var window = new ProjectMainWindow();
-                window.Show();
+                new ProjectMainWindow().Show();
                 Close();
-            }
+            });
+            await dialog.ShowDialog(this);
         }
     }
 }

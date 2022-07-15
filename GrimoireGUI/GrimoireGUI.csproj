@@ -21,6 +21,8 @@
 	  <AvaloniaResource Include="Assets\**" />
 	  <AvaloniaResource Include="Resources\**" />
 	  <None Remove=".gitignore" />
+	  <None Remove="Assets\DarkMode\loading_sprite.gif" />
+	  <None Remove="Assets\LightMode\loading_sprite.gif" />
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="Resources\**">
