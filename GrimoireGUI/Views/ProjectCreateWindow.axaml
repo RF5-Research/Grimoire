@@ -26,8 +26,8 @@
 			<ComboBox Name="GameLanguageComboBox" SelectedIndex="{Binding GameLanguageSelectedIndex}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"/>
 
 			<TextBlock Text="ROM Path:" Grid.Column="0" Grid.Row="3"/>
-			<TextBox Name="ROMPathTextBox" Text="{Binding ROMPathText}" Grid.Column="1" Grid.Row="3"></TextBox>
-			<Button Name="ROMPathBrowseButton" Content="Browse..." Grid.Column="2" Grid.Row="3"/>
+			<TextBox Name="GamePathTextBox" Text="{Binding GamePathText}" Grid.Column="1" Grid.Row="3"></TextBox>
+			<Button Name="GamePathBrowseButton" Content="Browse..." Grid.Column="2" Grid.Row="3"/>
 
 			<TextBlock Text="Project Path:" Grid.Column="0" Grid.Row="4"/>
 			<TextBox Name="ProjectPathTextBox" Text="{Binding ProjectPathText}" Grid.Column="1" Grid.Row="4"></TextBox>

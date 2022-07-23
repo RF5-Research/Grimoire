@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:material="using:Material.Icons.Avalonia"
+        xmlns:AvaloniaEdit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+		xmlns:ui="using:FluentAvalonia.UI.Controls"
+		xmlns:input="using:FluentAvalonia.UI.Input"
+		xmlns:controls="using:GrimoireGUI.Controls"
+        x:Class="GrimoireGUI.Views.AdvScriptWindow"
+		Padding="0"
+        Title="ScriptWindow">
+
+	<DockPanel>
+		<StackPanel Name="StatusBar" Background="{DynamicResource SystemAccentColor}" Height="25" DockPanel.Dock="Bottom" Orientation="Horizontal">
+			<TextBlock Name="StatusTextBlock" Text="Ready" Margin="5 0 0 0" VerticalAlignment="Center" FontSize="12"/>
+		</StackPanel>
+
+		<SplitView Name="SplitView" IsPaneOpen="True"
+			   DisplayMode="CompactInline"
+			   OpenPaneLength="348">
+		<SplitView.Pane>
+			<Grid ColumnDefinitions="48,Auto" RowDefinitions="Auto,*">
+				
+				<ui:Button Name="TogglePaneButton"
+						   Classes="PaneToggleButtonStyle"
+						   Grid.Column="0"/>
+				<TextBox Text="{Binding SearchText}"
+						 Grid.Row="0"
+						 Grid.Column="1"
+						 Classes="clearButton"
+						 CornerRadius="0,0,0,0"
+						 Watermark="Search">
+					<TextBox.InnerLeftContent>
+						<material:MaterialIcon Kind="Search" Margin="5"/>
+					</TextBox.InnerLeftContent>
+				</TextBox>
+				<ListBox Items="{Binding ScriptList}"
+						 SelectedIndex="{Binding SelectedItem}"
+						 Width="300"
+						 Grid.Row="1"
+						 Grid.Column="1">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding}" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</SplitView.Pane>
+			<controls:ScriptTextEditor Name="ScriptTextEditor" Text="{Binding ScriptText, Mode=TwoWay}"/>
+		</SplitView>
+	</DockPanel>
+</Window>

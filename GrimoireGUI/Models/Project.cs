@@ -10,15 +10,15 @@ namespace GrimoireGUI.Models
         public string Name { get; set; }
         public Platform Platform { get; set; }
         public SystemLanguage GameLanguage { get; set; }
-        public string ROMPath { get; set; }
+        public string GamePath { get; set; }
         public string ProjectPath { get; set; }
 
-        public Project(string name, Platform platform, SystemLanguage gameLanguage, string romPath, string projectPath)
+        public Project(string name, Platform platform, SystemLanguage gameLanguage, string gamePath, string projectPath)
         {
             Name = name;
             Platform = platform;
             GameLanguage = gameLanguage;
-            ROMPath = romPath;
+            GamePath = gamePath;
             ProjectPath = projectPath;
         }
 

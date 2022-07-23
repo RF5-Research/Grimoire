@@ -35,14 +35,14 @@ namespace GrimoireGUI.Models
         /// <returns></returns>
         public static string GetExportPath(string path)
         {
-            path = path.Replace(Project.ROMPath, Project.ProjectPath);
+            path = path.Replace(Project.GamePath, Project.ProjectPath);
             new FileInfo(path).Directory!.Create();
             return path;
         }
 
         public static void InitializeGlobalServices()
         {
-            Application.Initialize(Project.ROMPath, Project.ProjectPath, Project.Platform);
+            Application.Initialize(Project.GamePath, Project.ProjectPath, Project.Platform);
             Addressables.Initialize();
             AssetsLoader.Initialize(Project.GameLanguage);
             LoaderID.Initialize();

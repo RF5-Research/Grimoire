@@ -294,7 +294,7 @@ namespace Grimoire
             }
             var bunRepl = new BundleReplacerFromMemory(extAsset.file.name, null, true, newAssetData, -1);
 
-            //TODO: Figure out how to not couple the export function this with this class
+            //TODO: Use a callback to provide flexibility
             var bundle = extAsset.file.parentBundle;
             using (var bunWriter = new AssetsFileWriter(File.Create(PathUtilities.GetExportPath(bundle.path))))
             {

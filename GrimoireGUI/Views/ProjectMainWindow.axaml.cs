@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using ReactiveUI;
 using System;
 
 namespace GrimoireGUI.Views
@@ -8,7 +9,7 @@ namespace GrimoireGUI.Views
     public partial class ProjectMainWindow : Window
     {
         public bool IsClosingProject;
-        private ScriptWindow ScriptWindow;
+        private AdvScriptWindow AdvScriptWindow;
         public ProjectMainWindow()
         {
             InitializeComponent();
@@ -20,7 +21,14 @@ namespace GrimoireGUI.Views
 
             //CharactersButton.Click += CharactersButton_Click;
             ScriptEditorButton.Click += ScriptEditorButton_Click;
+            RigbarthScriptEditorButton.Click += RigbarthScriptEditorButton_Click;
             AssetsButton.Click += AssetsButton_Click;
+        }
+
+        private void RigbarthScriptEditorButton_Click(object? sender, RoutedEventArgs e)
+        {
+            var window = new RigbarthAdvScriptWindow();
+            window.Show(this);
         }
 
         public static readonly RoutedEvent<RoutedEventArgs> SaveEvent =
@@ -60,12 +68,19 @@ namespace GrimoireGUI.Views
 
         private void ScriptEditorButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            if (ScriptWindow == null)
-            {
-                ScriptWindow = new ScriptWindow();
-                Save += ScriptWindow.Save;
-                ScriptWindow.Show(this);
-            }
+            AdvScriptWindow = new AdvScriptWindow();
+            Save += AdvScriptWindow.Save;
+            AdvScriptWindow.Show(this);
+
+            //Implement later
+            //if (AdvScriptWindow == null)
+            //{
+            //    AdvScriptWindow = new AdvScriptWindow();
+            //    Save += AdvScriptWindow.Save;
+            //    AdvScriptWindow.Show(this);
+            //}
+            //else if (!AdvScriptWindow.IsVisible)
+            //    AdvScriptWindow.Show();
         }
     }
 }

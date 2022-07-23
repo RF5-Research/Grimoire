@@ -19,7 +19,7 @@ namespace GrimoireGUI.Views
             Setup();
             Settings = settings;
             NameTextBox.Text = Settings.Name;
-            ROMPathTextBox.Text = Settings.ROMPath;
+            GamePathTextBox.Text = Settings.GamePath;
             ProjectPathTextBox.Text = Settings.ProjectPath;
             GameLanguageComboBox.SelectedItem = Settings.GameLanguage;
             PlatformComboBox.SelectedItem = Settings.Platform;
@@ -37,13 +37,12 @@ namespace GrimoireGUI.Views
             this.AttachDevTools();
 #endif
             DataContext = new ProjectSettingsViewModel();
-            ROMPathBrowseButton.Click += ROMPathBrowseButton_Click;
+            GamePathBrowseButton.Click += GamePathBrowseButton_Click;
             ProjectPathBrowseButton.Click += ProjectPathBrowseButton_Click;
             CancelButton.Click += CancelButton_Click;
             SaveButton.Click += SaveButton_Click;
             GameLanguageComboBox.Items = AssetsLoader.GameLanguages.Keys;
             PlatformComboBox.Items = Enum.GetValues(typeof(Platform)).Cast<Platform>();
-
         }
 
         private void SaveButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -52,7 +51,7 @@ namespace GrimoireGUI.Views
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
             Settings.Name = NameTextBox.Text;
-            Settings.ROMPath = ROMPathTextBox.Text;
+            Settings.GamePath = GamePathTextBox.Text;
             Settings.ProjectPath = ProjectPathTextBox.Text;
             Settings.GameLanguage = (SystemLanguage)GameLanguageComboBox.SelectedItem;
             Settings.Platform = (Platform)PlatformComboBox.SelectedItem;
@@ -64,16 +63,20 @@ namespace GrimoireGUI.Views
             Close();
         }
 
-        private async void ROMPathBrowseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private async void GamePathBrowseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var dialog = new OpenFolderDialog();
-            ROMPathTextBox.Text = await dialog.ShowAsync(this);
+            var text = await dialog.ShowAsync(this);
+            if (!string.IsNullOrEmpty(text))
+                GamePathTextBox.Text = text;
         }
 
         private async void ProjectPathBrowseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var dialog = new OpenFolderDialog();
-            ProjectPathTextBox.Text = await dialog.ShowAsync(this);
+            var text = await dialog.ShowAsync(this);
+            if (!string.IsNullOrEmpty(text))
+                ProjectPathTextBox.Text = text;
         }
     }
 }

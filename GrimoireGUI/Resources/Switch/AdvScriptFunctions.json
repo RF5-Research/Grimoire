@@ -176,7 +176,7 @@
   {
     "Name": "SelectMessage",
     "ID": 21,
-    "Description": "Sets a choice option",
+    "Description": "Sets a choice option. Ends the current event and loads the next selected event.",
     "Params": {
       "nameTextID": "string",
       "groupID": "int",

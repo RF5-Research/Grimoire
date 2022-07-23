@@ -22,6 +22,7 @@
 				<Button Name="AssetsButton" Content="Assets"/>
 				<!--<Button Name="CharactersButton" Content="Characters"/>-->
 				<Button Name="ScriptEditorButton" Content="Script Editor"/>
+				<Button Name="RigbarthScriptEditorButton" Content="Rigbarth Script Editor"/>
 			</StackPanel>
 		</Grid>
 	</DockPanel>

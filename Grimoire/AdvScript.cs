@@ -115,6 +115,7 @@ namespace Grimoire
             return null;
         }
 
+        //TODO: Need to fix regex for end line
         private List<Command> Tokenize(string script)
         {
             var commands = new List<Command>();
@@ -165,7 +166,7 @@ namespace Grimoire
             return commands;
         }
 
-        private void Parse(List<List<Command>> scriptsData)
+        private void ParsePackScript(List<List<Command>> scriptsData)
         {
             AdvIndexData.offset = new List<int>();
             using (var ms = new MemoryStream())
@@ -229,12 +230,82 @@ namespace Grimoire
             }
         }
 
+        //TODO: make a common function for both 
+        private byte[] ParseScript(List<Command> script)
+        {
+            using (var ms = new MemoryStream())
+            using (var writer = new BinaryWriter(ms))
+            {
+                var stringTable = new Dictionary<long, byte[]>();
+                if (script.Count != 0)
+                    writer.Write(script.Count);
+                foreach (var cmd in script)
+                {
+                    writer.Write(cmd.Data.ID);
+                    var argsData = cmd.Data.Params.Values.ToArray();
+                    for (int index = 0; index < argsData.Length; index++)
+                    {
+                        switch (argsData[index])
+                        {
+                            case "string":
+                                {
+                                    //Special case where this isn't actually used??
+                                    if (cmd.Data.ID == 71)
+                                    {
+                                        writer.Write(0x0);
+                                        writer.Write(0x8);
+                                        break;
+                                    }
+                                    var text = Encoding.Unicode.GetBytes($"{cmd.Args[index].Trim('\"')}\0");
+                                    writer.Write(text.Length / 2);
+                                    stringTable.Add(ms.Position, text);
+                                    writer.Write(0x0);
+                                }
+                                break;
+                            case "bool":
+                            case "int":
+                                {
+                                    int.TryParse(cmd.Args[index], out int value);
+                                    writer.Write(value);
+                                    //Add error handling here
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                //Resolve string table
+                foreach (var item in stringTable)
+                {
+                    var startOffset = ms.Position;
+                    writer.Write(item.Value);
+                    var curOffset = ms.Position;
+                    ms.Position = item.Key;
+                    writer.Write((int)startOffset);
+                    ms.Position = curOffset;
+                }
+                return ms.ToArray();
+            }
+        }
+
         public Dictionary<AdvScriptId, string> LoadPackScript(int advIndexDataID, int packID)
         {
             var am = new AssetsManager();
             AdvIndexData = AssetsLoader.LoadID<AdvIndexData>(advIndexDataID, am);
             Pack = AssetsLoader.LoadID<TextAsset>(packID, am);
             return DecompilePack(Pack.m_Script, AdvIndexData);
+        }
+
+        public string LoadScript(string path)
+        {
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                var buffer = new byte[fs.Length];
+                fs.Read(buffer, 0, (int)fs.Length);
+                
+                return DecompileScript(buffer);
+            }
         }
 
         public void SavePackScript(string[] scripts, int advIndexDataID, int packID)
@@ -244,9 +315,18 @@ namespace Grimoire
             {
                 scriptsData.Add(Tokenize(script));
             }
-            Parse(scriptsData);
+            ParsePackScript(scriptsData);
             AssetsLoader.WriteAsset(AdvIndexData, advIndexDataID);
             AssetsLoader.WriteAsset(Pack, packID);
+        }
+
+        public void SaveScript(string script, string path)
+        {
+            var cmds = Tokenize(script);
+            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                fs.Write(ParseScript(cmds));
+            }
         }
 
         private static string ToLiteral(string input)

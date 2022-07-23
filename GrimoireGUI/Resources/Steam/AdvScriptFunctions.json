@@ -8,12 +8,12 @@
   {
     "Name": "NpcCutin",
     "ID": 1,
-    "Description": null,
+    "Description": "Sets the character bust-up",
     "Params": {
-      "unk_1": "int",
-      "unk_2": "int",
-      "unk_3": "int",
-      "unk_4": "int"
+      "npcID": "int",
+      "variationID": "int",
+      "positionID": "int",
+      "motionID": "int"
     }
   },
   {
@@ -58,7 +58,7 @@
   {
     "Name": "E2DpartClose",
     "ID": 6,
-    "Description": null,
+    "Description": "Sets the alpha of the texture element to zero; makes it invisible",
     "Params": {
       "unk_1": "int"
     }
@@ -103,17 +103,17 @@
   {
     "Name": "Message",
     "ID": 11,
-    "Description": null,
+    "Description": "Sets the message",
     "Params": {
-      "unk_1": "string",
-      "unk_2": "int",
-      "unk_3": "int",
-      "unk_4": "int",
-      "unk_5": "string",
-      "unk_6": "string",
-      "unk_7": "int",
-      "unk_8": "int",
-      "unk_9": "int",
+      "nameTextID": "string",
+      "npcID": "int",
+      "variationID": "int",
+      "positionID": "int",
+      "message": "string",
+      "playVoice": "string",
+      "emotePositionID": "int",
+      "number": "int",
+      "isLoop": "int",
       "unk_10": "int"
     }
   },
@@ -176,15 +176,15 @@
   {
     "Name": "SelectMessage",
     "ID": 21,
-    "Description": null,
+    "Description": "Sets a choice option. Ends the current event and loads the next selected event.",
     "Params": {
-      "unk_1": "string",
-      "unk_2": "int",
-      "unk_3": "int",
-      "unk_4": "string",
-      "unk_5": "int",
-      "unk_6": "int",
-      "unk_7": "int",
+      "nameTextID": "string",
+      "groupID": "int",
+      "answerID": "int",
+      "message": "string",
+      "nextStep": "int",
+      "useCancelButton": "bool",
+      "npcID": "int",
       "unk_8": "int"
     }
   },
@@ -251,7 +251,7 @@
     "ID": 31,
     "Description": null,
     "Params": {
-      "unk_1": "int"
+      "nextStep": "int"
     }
   },
   {
@@ -292,8 +292,8 @@
     "ID": 39,
     "Description": null,
     "Params": {
-      "unk_1": "int",
-      "unk_2": "string"
+      "npcID": "int",
+      "scriptName": "string"
     }
   },
   {
@@ -601,8 +601,8 @@
     "ID": 72,
     "Description": null,
     "Params": {
-      "unk_1": "string",
-      "unk_2": "string"
+      "waitTime_1": "string",
+      "waitTime_2": "string"
     }
   },
   {

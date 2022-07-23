@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:GrimoireGUI"
 			 xmlns:sty="using:FluentAvalonia.Styling"
+			 xmlns:cc="clr-namespace:AvaloniaEdit.CodeCompletion;assembly=AvaloniaEdit"
              x:Class="GrimoireGUI.App">
 	<Application.DataTemplates>
         <local:ViewLocator/>
@@ -14,8 +15,49 @@
 	</Application.Styles>
 	
 	<Application.Styles>
-		<Style Selector="Window">
-			<!--<Setter Property="Padding" Value="10"/>-->
+		<Style Selector="cc|CompletionList">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<cc:CompletionListBox Name="PART_ListBox"
+										  HorizontalAlignment="Stretch"
+										  Background="{DynamicResource SolidBackgroundFillColorBase}"
+										  BorderThickness="1"
+										  BorderBrush="{DynamicResource ListBoxBorder}" >
+						<cc:CompletionListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal"
+											VerticalAlignment="Center"
+											Height="18">
+									<!--<material:MaterialIcon Kind="Function"/>-->
+									<TextBlock VerticalAlignment="Center"
+											   Margin="10,0,0,0"
+											   Text="{Binding Content}"
+											   FontSize="15"
+											   FontFamily="Consolas"/>
+								</StackPanel>
+							</DataTemplate>
+						</cc:CompletionListBox.ItemTemplate>
+					</cc:CompletionListBox>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+
+
+		<Style Selector="ContentControl.ToolTip">
+			<Setter Property="MinHeight" Value="22"/>
+			<Setter Property="BorderThickness"
+					Value="1" />
+			<Setter Property="BorderBrush"
+					Value="{DynamicResource ToolTipBorderBrush}" />
+			<Setter Property="Background"
+					Value="{DynamicResource ToolTipBackgroundBrush}" />
+			<Setter Property="Padding"
+					Value="2" />
+		</Style>
+
+		<Style Selector="cc|OverloadViewer">
+			<Setter Property="Foreground" Value="{DynamicResource TextFillPrimaryColor}"/>
+			<Setter Property="Background" Value="{DynamicResource ToolTipBackgroundBrush}"/>
 		</Style>
 	</Application.Styles>
 </Application>

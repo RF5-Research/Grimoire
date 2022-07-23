@@ -1,17 +1,19 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 using GrimoireGUI.Models;
 using GrimoireGUI.ViewModels;
+using ReactiveUI;
 using System;
 using System.IO;
 using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace GrimoireGUI.Views
 {
     public partial class MainWindow : Window
     {
+        //TODO: databind in code
         internal Settings Settings;
         private const string SettingsFilename = "settings.json";
 
@@ -21,36 +23,42 @@ namespace GrimoireGUI.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+
+            NewProjectButton.Click += NewProjectButton_Click;
+            OpenProjectButton.Click += OpenProjectButton_Click;
+            DeleteProjectButton.Click += DeleteProjectButton_Click;
+            ProjectSettingsButton.Click += ProjectSettingsButton_Click;
+            Opened += MainWindow_Opened;
+            Closed += MainWindow_Closed;
+        }
+
+        private async void MainWindow_Opened(object? sender, EventArgs e)
+        {
             if (File.Exists(SettingsFilename))
             {
                 using (var fs = new FileStream(SettingsFilename, FileMode.Open, FileAccess.Read))
                 using (var reader = new StreamReader(fs))
                 {
-                    Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
-                    //try
-                    //{
-                    //    Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
-                    //    Projects = Settings.Projects;
-                    //}
-                    //catch
-                    //{
-                    //    Settings = new Settings();
-                    //    Projects = new ObservableCollection<Project>();
-                    //}
+                    try
+                    {
+                        Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
+                    }
+                    catch
+                    {
+                        var dialog = MessageBox.Avalonia.MessageBoxManager
+                            .GetMessageBoxStandardWindow(
+                            "Error",
+                            $"Failed to read {SettingsFilename}.\nCreating new settings");
+                        await dialog.ShowDialog(this);
+                        Settings = new();
+                    }
                 }
             }
             else
             {
                 Settings = new();
             }
-
             DataContext = new MainWindowViewModel(Settings.Projects);
-
-            NewProjectButton.Click += NewProjectButton_Click;
-            OpenProjectButton.Click += OpenProjectButton_Click;
-            DeleteProjectButton.Click += DeleteProjectButton_Click;
-            ProjectSettingsButton.Click += ProjectSettingsButton_Click;
-            Closed += MainWindow_Closed;
         }
 
         private void MainWindow_Closed(object? sender, System.EventArgs e)

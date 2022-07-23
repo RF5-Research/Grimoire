@@ -1,32 +1,25 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.ReactiveUI;
 using AvaloniaEdit.CodeCompletion;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Editing;
-using AvaloniaEdit.Rendering;
-using AvaloniaEdit.TextMate;
 using DynamicData;
 using GrimoireGUI.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using TextMateSharp.Grammars;
 
 namespace GrimoireGUI.Views
 {
-    public partial class ScriptWindow : Window
+    public partial class AdvScriptWindow : ReactiveWindow<AdvScriptWindowViewModel>
     {
         private CompletionWindow? CompletionWindow;
         private OverloadInsightWindow? _insightWindow;
 
-        public ScriptWindow()
+        public AdvScriptWindow()
         {
             InitializeComponent();
             DataContext = new AdvScriptWindowViewModel();
@@ -63,7 +56,7 @@ namespace GrimoireGUI.Views
             }, RoutingStrategies.Bubble, true);
         }
 
-        public void Save(object? sender, RoutedEventArgs e)
+        public async void Save(object? sender, RoutedEventArgs e)
         {
             ((AdvScriptWindowViewModel)DataContext).Save();
         }

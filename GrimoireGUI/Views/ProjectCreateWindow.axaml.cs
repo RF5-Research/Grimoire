@@ -21,7 +21,7 @@ namespace GrimoireGUI.Views
             this.AttachDevTools();
 #endif
             DataContext = new ProjectSettingsViewModel();
-            ROMPathBrowseButton.Click += ROMPathBrowseButton_Click;
+            GamePathBrowseButton.Click += GamePathBrowseButton_Click;
             ProjectPathBrowseButton.Click += ProjectPathBrowseButton_Click;
             CancelButton.Click += CancelButton_Click;
             CreateButton.Click += CreateButton_Click;
@@ -34,7 +34,7 @@ namespace GrimoireGUI.Views
             if (!Directory.Exists(ProjectPathTextBox.Text))
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
-            var project = new Project(NameTextBox.Text, (Platform)PlatformComboBox.SelectedItem, (SystemLanguage)GameLanguageComboBox.SelectedItem, ROMPathTextBox.Text, ProjectPathTextBox.Text);
+            var project = new Project(NameTextBox.Text, (Platform)PlatformComboBox.SelectedItem, (SystemLanguage)GameLanguageComboBox.SelectedItem, GamePathTextBox.Text, ProjectPathTextBox.Text);
             ((MainWindow)Owner)!.Settings.Projects.Add(project);
             _ = ((MainWindow)Owner).OpenProject(project);
             Close();
@@ -45,16 +45,20 @@ namespace GrimoireGUI.Views
             Close();
         }
 
-        private async void ROMPathBrowseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private async void GamePathBrowseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var dialog = new OpenFolderDialog();
-            ROMPathTextBox.Text = await dialog.ShowAsync(this);
+            var text = await dialog.ShowAsync(this);
+            if (!string.IsNullOrEmpty(text))
+                GamePathTextBox.Text = text;
         }
 
         private async void ProjectPathBrowseButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var dialog = new OpenFolderDialog();
-            ProjectPathTextBox.Text = await dialog.ShowAsync(this);
+            var text = await dialog.ShowAsync(this);
+            if (!string.IsNullOrEmpty(text))
+                ProjectPathTextBox.Text = text;
         }
     }
 }
