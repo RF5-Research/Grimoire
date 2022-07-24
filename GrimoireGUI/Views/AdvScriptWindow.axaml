@@ -19,37 +19,50 @@
 
 		<SplitView Name="SplitView" IsPaneOpen="True"
 			   DisplayMode="CompactInline"
-			   OpenPaneLength="348">
+			   OpenPaneLength="448">
 		<SplitView.Pane>
 			<Grid ColumnDefinitions="48,Auto" RowDefinitions="Auto,*">
 				
 				<ui:Button Name="TogglePaneButton"
 						   Classes="PaneToggleButtonStyle"
-						   Grid.Column="0"/>
-				<TextBox Text="{Binding SearchText}"
-						 Grid.Row="0"
-						 Grid.Column="1"
-						 Classes="clearButton"
-						 CornerRadius="0,0,0,0"
-						 Watermark="Search">
-					<TextBox.InnerLeftContent>
-						<material:MaterialIcon Kind="Search" Margin="5"/>
-					</TextBox.InnerLeftContent>
-				</TextBox>
-				<ListBox Items="{Binding ScriptList}"
-						 SelectedIndex="{Binding SelectedItem}"
-						 Width="300"
+						   Grid.Column="0"
+						   Grid.Row="0"/>
+				
+				<DockPanel Grid.Row="0"
+						   Grid.Column="1">
+					<ComboBox
+						VerticalContentAlignment="Center"
+						Items="{Binding Filters}"
+						SelectedIndex="{Binding FilterSelectedIndex}"
+						Height="40"
+						Width="100"
+						CornerRadius="0,0,0,0"/>
+					<TextBox Text="{Binding SearchText}"
+							 VerticalContentAlignment="Center"
+							 Classes="clearButton"
+							 Height="40"
+							 Width="300"
+							 CornerRadius="0,0,0,0"
+							 Watermark="Search">
+						<TextBox.InnerLeftContent>
+							<material:MaterialIcon Kind="Search" Margin="5"/>
+						</TextBox.InnerLeftContent>
+					</TextBox>
+				</DockPanel>
+				<ListBox Items="{Binding SearchScriptList}"
+						 SelectedItem="{Binding SelectedItem}"
+						 Width="400"
 						 Grid.Row="1"
 						 Grid.Column="1">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<TextBlock Text="{Binding}" />
+							<TextBlock Text="{Binding ScriptName}" />
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</Grid>
 		</SplitView.Pane>
-			<controls:ScriptTextEditor Name="ScriptTextEditor" Text="{Binding ScriptText, Mode=TwoWay}"/>
+			<controls:ScriptTextEditor Name="ScriptTextEditor" Text="{Binding SelectedItem.Text, Mode=TwoWay}"/>
 		</SplitView>
 	</DockPanel>
 </Window>
