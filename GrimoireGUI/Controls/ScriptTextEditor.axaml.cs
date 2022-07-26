@@ -162,7 +162,7 @@ namespace GrimoireGUI.Controls
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
-            private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
@@ -180,7 +180,7 @@ namespace GrimoireGUI.Controls
             /// <param name="startOffset">Start offset.</param>
             public override int GetFirstInterestedOffset(int startOffset)
             {
-                int pos = controls.BinarySearch(new Pair(startOffset, null), this);
+                int pos = controls.BinarySearch(new Pair(startOffset, null!), this);
                 if (pos < 0)
                     pos = ~pos;
                 if (pos < controls.Count)
@@ -191,7 +191,7 @@ namespace GrimoireGUI.Controls
 
             public override VisualLineElement? ConstructElement(int offset)
             {
-                int pos = controls.BinarySearch(new Pair(offset, null), this);
+                int pos = controls.BinarySearch(new Pair(offset, null!), this);
                 if (pos >= 0)
                     return new InlineObjectElement(0, controls[pos].Value);
                 else

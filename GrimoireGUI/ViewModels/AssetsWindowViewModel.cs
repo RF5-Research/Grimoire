@@ -28,8 +28,8 @@ namespace GrimoireGUI.ViewModels
 
         private string[] Filters =>  new string[]
         {
-            "Key",
-            "Name"
+            "Name",
+            "Key"
         };
 
         [Reactive] private int FilterSelectedIndex { get; set; } = 0;
@@ -72,8 +72,8 @@ namespace GrimoireGUI.ViewModels
             if (search)
             {
                 var items = FilterSelectedIndex == 0 ?
-                    Assets.Where(x => x.Location.PrimaryKey.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) :
-                    Assets.Where(x => x.Location.InternalId.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                    Assets.Where(x => x.Location.InternalId.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) :
+                Assets.Where(x => x.Location.PrimaryKey.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
                 Items = items.ToList();
             }
             else

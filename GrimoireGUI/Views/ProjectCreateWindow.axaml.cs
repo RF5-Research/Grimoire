@@ -34,7 +34,7 @@ namespace GrimoireGUI.Views
             if (!Directory.Exists(ProjectPathTextBox.Text))
                 Directory.CreateDirectory(ProjectPathTextBox.Text);
 
-            var project = new Project(NameTextBox.Text, (Platform)PlatformComboBox.SelectedItem, (SystemLanguage)GameLanguageComboBox.SelectedItem, GamePathTextBox.Text, ProjectPathTextBox.Text);
+            var project = new Project(NameTextBox.Text, (Platform)PlatformComboBox.SelectedItem!, (SystemLanguage)GameLanguageComboBox.SelectedItem!, GamePathTextBox.Text, ProjectPathTextBox.Text);
             ((MainWindow)Owner)!.Settings.Projects.Add(project);
             _ = ((MainWindow)Owner).OpenProject(project);
             Close();

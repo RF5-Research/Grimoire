@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 using GrimoireGUI.Models;
 using GrimoireGUI.ViewModels;
@@ -14,7 +15,7 @@ namespace GrimoireGUI.Views
     public partial class MainWindow : Window
     {
         //TODO: databind in code
-        internal Settings Settings;
+        internal Settings Settings = new();
         private const string SettingsFilename = "settings.json";
 
         public MainWindow()
@@ -23,7 +24,6 @@ namespace GrimoireGUI.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
-
             NewProjectButton.Click += NewProjectButton_Click;
             OpenProjectButton.Click += OpenProjectButton_Click;
             DeleteProjectButton.Click += DeleteProjectButton_Click;
@@ -39,24 +39,18 @@ namespace GrimoireGUI.Views
                 using (var fs = new FileStream(SettingsFilename, FileMode.Open, FileAccess.Read))
                 using (var reader = new StreamReader(fs))
                 {
-                    try
-                    {
-                        Settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
-                    }
-                    catch
+                    var settings = JsonSerializer.Deserialize<Settings>(reader.ReadToEnd());
+                    if (settings != null)
+                        Settings = settings;
+                    else
                     {
                         var dialog = MessageBox.Avalonia.MessageBoxManager
                             .GetMessageBoxStandardWindow(
                             "Error",
-                            $"Failed to read {SettingsFilename}.\nCreating new settings");
+                            $"Failed to read {SettingsFilename}.\nCreating new settings.");
                         await dialog.ShowDialog(this);
-                        Settings = new();
                     }
                 }
-            }
-            else
-            {
-                Settings = new();
             }
             DataContext = new MainWindowViewModel(Settings.Projects);
         }
@@ -88,24 +82,28 @@ namespace GrimoireGUI.Views
             await dialog.ShowDialog(this);
         }
 
+        //Maybe add to VM
         internal void SaveSettings()
         {
-            if (Settings != null)
-            {
-                using (var fs = new FileStream(SettingsFilename, FileMode.Create, FileAccess.Write))
-                using (var writer = new StreamWriter(fs))
-                    writer.Write(JsonSerializer.Serialize(Settings));
-            }
+            using var fs = new FileStream(SettingsFilename, FileMode.Create, FileAccess.Write);
+            using var writer = new StreamWriter(fs);
+            writer.Write(JsonSerializer.Serialize(Settings));
         }
 
         internal async Task OpenProject(Project project)
         {
-            var dialog = new LoadingWindow(() => ProjectManager.Initialize(project), () =>
+            var dialog = new LoadingWindow();
+            var task = Task.Run(() => ProjectManager.InitializeAsync(project, dialog.Cts), dialog.Cts.Token);
+            _ = dialog.ShowDialog(this);
+            await task;
+
+            if (task.IsCompletedSuccessfully)
             {
-                new ProjectMainWindow().Show();
+                var window = new ProjectMainWindow();
+                App.SwapMainWindow(window);
+                window.Show();
                 Close();
-            });
-            await dialog.ShowDialog(this);
+            }
         }
     }
 }

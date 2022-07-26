@@ -75,7 +75,7 @@ namespace GrimoireGUI.Views
             };
             var path = await dialog.ShowAsync(this);
             if (path != null)
-                ((RigbarthAdvScriptWindowViewModel)DataContext).Load(path[0]);
+                ((RigbarthAdvScriptWindowViewModel)DataContext!).Load(path[0]);
         }
 
         private async void SaveAsMenuItem_Click(object? sender, RoutedEventArgs e)
@@ -91,7 +91,7 @@ namespace GrimoireGUI.Views
             };
             var path = await dialog.ShowAsync(this);
             if (!string.IsNullOrEmpty(path))
-                ((RigbarthAdvScriptWindowViewModel)DataContext).Save(path);
+                ((RigbarthAdvScriptWindowViewModel)DataContext!).Save(path);
         }
 
         private void ShowCompletionWindow()
@@ -119,7 +119,7 @@ namespace GrimoireGUI.Views
             if (CompletionWindow != null)
             {
                 var completionPrefix = GetCompletionPrefix();
-                var completionData = ((RigbarthAdvScriptWindowViewModel)DataContext).GetSymbols()
+                var completionData = ((RigbarthAdvScriptWindowViewModel)DataContext!).GetSymbols()
                     .Where(x => x.Name.Contains(completionPrefix, StringComparison.OrdinalIgnoreCase))
                     .Select(x => new CompletionData(x.Name, x.Description));
                 if (completionData.Count() > 0)

@@ -8,7 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace GrimoireGUI.ViewModels
 {
@@ -35,9 +40,9 @@ namespace GrimoireGUI.ViewModels
         private AdvScript AdvScript;
 
         private ObservableCollection<Item> SearchScriptList { get; set; }
-        [Reactive] private string ScriptText { get; set; }
-        [Reactive] private Item SelectedItem { get; set; }
-        [Reactive] private string SearchText { get; set; }
+        [Reactive] private string? ScriptText { get; set; }
+        [Reactive] private Item? SelectedItem { get; set; }
+        [Reactive] private string? SearchText { get; set; }
 
         public AdvScriptWindowViewModel()
         {
@@ -53,16 +58,15 @@ namespace GrimoireGUI.ViewModels
             SearchScriptList = new ObservableCollection<Item>(Scripts);
 
             this.WhenAnyValue(x => x.ScriptText)
-                .Subscribe(UpdateText);
+                .Subscribe(UpdateText!);
 
             this.WhenAnyValue(
                 x => x.SearchText, x => x.FilterSelectedIndex,
                 (searchText, searchFilter) => !string.IsNullOrEmpty(searchText)
-            )
-            .Subscribe(Search);
+            ).Subscribe(Search);
             
             this.WhenAnyValue(x => x.SelectedItem)
-                .Subscribe(LoadScript);
+                .Subscribe(LoadScript!);
         }
 
         public List<CommandData> GetSymbols()
@@ -75,7 +79,7 @@ namespace GrimoireGUI.ViewModels
             if (SelectedItem != null)
             {
                 var item = Scripts.Find(x => x.ScriptName == SelectedItem.ScriptName);
-                item.Text = scriptText;
+                item!.Text = scriptText;
             }
         }
 
@@ -103,9 +107,26 @@ namespace GrimoireGUI.ViewModels
             }
         }
 
-        public void Save()
+        //private async Task SaveAsync()
+        //{
+        //    var vm = new SavingWindowViewModel();
+        //    var task = Task.Run(() =>
+        //    {
+        //        AdvScript.SavePackScript(Scripts.Select(x => x.Text).ToArray(), LoaderID.Master["ADVINDEXDATA"], LoaderID.Event["PACK"], vm.Cts);
+        //    }, vm.Cts.Token);
+        //    await task;
+        //    //var success = await ShowSavingDialog.Handle(vm);
+        //    //if (success)
+        //    //{
+        //    //    await task;
+        //    //}
+        //}
+        public Task SaveAsync(CancellationTokenSource cts)
         {
-            AdvScript.SavePackScript(Scripts.Select(x => x.Text).ToArray(), LoaderID.Master["ADVINDEXDATA"], LoaderID.Event["PACK"]);
+            return Task.Run(() =>
+            {
+                AdvScript.SavePackScript(Scripts.Select(x => x.Text).ToArray(), LoaderID.Master["ADVINDEXDATA"], LoaderID.Event["PACK"], cts);
+            }, cts.Token);
         }
     }
 }

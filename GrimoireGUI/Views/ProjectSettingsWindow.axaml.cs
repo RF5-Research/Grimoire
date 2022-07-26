@@ -53,8 +53,8 @@ namespace GrimoireGUI.Views
             Settings.Name = NameTextBox.Text;
             Settings.GamePath = GamePathTextBox.Text;
             Settings.ProjectPath = ProjectPathTextBox.Text;
-            Settings.GameLanguage = (SystemLanguage)GameLanguageComboBox.SelectedItem;
-            Settings.Platform = (Platform)PlatformComboBox.SelectedItem;
+            Settings.GameLanguage = (SystemLanguage)GameLanguageComboBox.SelectedItem!;
+            Settings.Platform = (Platform)PlatformComboBox.SelectedItem!;
             Close();
         }
 

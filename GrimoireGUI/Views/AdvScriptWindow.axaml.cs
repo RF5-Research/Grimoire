@@ -1,4 +1,6 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
@@ -8,21 +10,34 @@ using AvaloniaEdit.Document;
 using AvaloniaEdit.Editing;
 using DynamicData;
 using GrimoireGUI.ViewModels;
+using ReactiveUI;
 using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GrimoireGUI.Views
 {
-    public partial class AdvScriptWindow : ReactiveWindow<AdvScriptWindowViewModel>
+    public partial class AdvScriptWindow : Window
     {
         private CompletionWindow? CompletionWindow;
         private OverloadInsightWindow? _insightWindow;
-
+        private Window? ProjectWindow;
         public AdvScriptWindow()
         {
+
             InitializeComponent();
             DataContext = new AdvScriptWindowViewModel();
+
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                ProjectWindow = desktop.MainWindow;
+                ((ProjectMainWindow)ProjectWindow).Save += AdvScriptWindow_Save;
+            }
 
             TogglePaneButton.Click += TogglePaneButton_Click;
             ScriptTextEditor.TextEditor.TextArea.TextEntered += TextArea_TextEntered;
@@ -56,9 +71,25 @@ namespace GrimoireGUI.Views
             }, RoutingStrategies.Bubble, true);
         }
 
-        public async void Save(object? sender, RoutedEventArgs e)
+        private async void AdvScriptWindow_Save(object? sender, RoutedEventArgs e)
         {
-            ((AdvScriptWindowViewModel)DataContext).Save();
+            try
+            {
+                var dialog = new LoadingWindow();
+                var task = ((AdvScriptWindowViewModel)DataContext).SaveAsync(dialog.Cts);
+                _ = dialog.ShowDialog(this);
+                await task;
+                if (task.IsCompletedSuccessfully)
+                {
+                    dialog.Close();
+                }
+            }
+            catch (OperationCanceledException) {}
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+
+            }
         }
 
         private void ShowCompletionWindow()
@@ -86,10 +117,10 @@ namespace GrimoireGUI.Views
             if (CompletionWindow != null)
             {
                 var completionPrefix = GetCompletionPrefix();
-                var completionData = ((AdvScriptWindowViewModel)DataContext).GetSymbols()
+                var completionData = ((AdvScriptWindowViewModel)DataContext)?.GetSymbols()
                     .Where(x => x.Name.Contains(completionPrefix, StringComparison.OrdinalIgnoreCase))
                     .Select(x => new CompletionData(x.Name, x.Description));
-                if (completionData.Count() > 0)
+                if (completionData != null && completionData.Count() > 0)
                 {
                     CompletionWindow.CompletionList.CompletionData.Clear();
                     CompletionWindow.CompletionList.CompletionData.Add(completionData);
@@ -180,7 +211,7 @@ namespace GrimoireGUI.Views
             //}
         }
 
-        private void Caret_PositionChanged(object sender, EventArgs e)
+        private void Caret_PositionChanged(object? sender, EventArgs e)
         {
             StatusTextBlock.Text = string.Format("Line {0} Column {1}",
                 ScriptTextEditor.TextEditor.TextArea.Caret.Line,
@@ -195,7 +226,7 @@ namespace GrimoireGUI.Views
                 Description = description;
             }
 
-            public IBitmap Image => null;
+            public IBitmap? Image => null;
 
             public string Text { get; }
 

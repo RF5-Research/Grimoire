@@ -9,11 +9,17 @@
 		xmlns:input="using:FluentAvalonia.UI.Input"
 		xmlns:controls="using:GrimoireGUI.Controls"
         x:Class="GrimoireGUI.Views.AdvScriptWindow"
+        xmlns:vm="using:GrimoireGUI.ViewModels"
 		Padding="0"
         Title="ScriptWindow">
 
+	<!--<Design.DataContext>
+		<vm:AdvScriptWindowViewModel />
+	</Design.DataContext>-->
+
 	<DockPanel>
 		<StackPanel Name="StatusBar" Background="{DynamicResource SystemAccentColor}" Height="25" DockPanel.Dock="Bottom" Orientation="Horizontal">
+			<Button Name="Testf">Test</Button>
 			<TextBlock Name="StatusTextBlock" Text="Ready" Margin="5 0 0 0" VerticalAlignment="Center" FontSize="12"/>
 		</StackPanel>
 

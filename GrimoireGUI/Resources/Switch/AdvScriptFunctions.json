@@ -1605,12 +1605,12 @@
   {
     "Name": "SubeventDatingReservation",
     "ID": 407,
-    "Description": null,
+    "Description": "Calls NpcData.ReserveLoveStoryDate",
     "Params": {
-      "unk_1": "int",
-      "unk_2": "int",
-      "unk_3": "int",
-      "unk_4": "int"
+      "npcID": "int",
+      "isKokuhaku": "int",
+      "dateSpot": "int",
+      "dateTime": "int"
     }
   },
   {

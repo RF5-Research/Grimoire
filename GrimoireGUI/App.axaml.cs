@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using GrimoireGUI.Views;
@@ -21,5 +22,14 @@ namespace GrimoireGUI
 
             base.OnFrameworkInitializationCompleted();
         }
+
+        public static void SwapMainWindow(Window window)
+        {
+            if (Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.MainWindow = window;
+            }
+        }
     }
+
 }

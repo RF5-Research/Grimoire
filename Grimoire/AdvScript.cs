@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Grimoire
 {
@@ -58,7 +59,7 @@ namespace Grimoire
             }
         }
 
-        private string? ParseArg(string text, ref int start, string param)
+        private string ParseArg(string text, ref int start, string param)
         {
             switch (param)
             {
@@ -166,14 +167,80 @@ namespace Grimoire
             return commands;
         }
 
-        private void ParsePackScript(List<List<Command>> scriptsData)
+        //private void ParsePackScript(List<List<Command>> scriptsData)
+        //{
+        //    AdvIndexData.offset = new List<int>();
+        //    using (var ms = new MemoryStream())
+        //    using (var writer = new BinaryWriter(ms))
+        //    {
+        //        foreach (var script in scriptsData)
+        //        {
+        //            var relativeOffset = ms.Position;
+        //            var stringTable = new Dictionary<long, byte[]>();
+        //            if (script.Count != 0)
+        //                writer.Write(script.Count);
+        //            foreach (var cmd in script)
+        //            {
+        //                writer.Write(cmd.Data.ID);
+        //                var argsData = cmd.Data.Params.Values.ToArray();
+        //                for (int index = 0; index < argsData.Length; index++)
+        //                {
+        //                    switch (argsData[index])
+        //                    {
+        //                        case "string":
+        //                            {
+        //                                //Special case where this isn't actually used??
+        //                                if (cmd.Data.ID == 71)
+        //                                {
+        //                                    writer.Write(0x0);
+        //                                    writer.Write(0x8);
+        //                                    break;
+        //                                }
+        //                                var text = Encoding.Unicode.GetBytes($"{cmd.Args[index].Trim('\"')}\0");
+        //                                writer.Write(text.Length / 2);
+        //                                stringTable.Add(ms.Position, text);
+        //                                writer.Write(0x0);
+        //                            }
+        //                            break;
+        //                        case "bool":
+        //                        case "int":
+        //                            {
+        //                                int.TryParse(cmd.Args[index], out int value);
+        //                                writer.Write(value);
+        //                                //Add error handling here
+        //                            }
+        //                            break;
+        //                        default:
+        //                            break;
+        //                    }
+        //                }
+        //            }
+        //            //Resolve string table
+        //            foreach (var item in stringTable)
+        //            {
+        //                var startOffset = ms.Position;
+        //                writer.Write(item.Value);
+        //                var curOffset = ms.Position;
+        //                ms.Position = item.Key;
+        //                writer.Write((int)(startOffset - relativeOffset));
+        //                ms.Position = curOffset;
+        //            }
+        //            AdvIndexData.offset.Add((int)ms.Position);
+        //        }
+        //        Pack.m_Script = ms.ToArray();
+        //    }
+        //}
+
+        private void ParsePackScriptAsync(List<List<Command>> scriptsData, CancellationTokenSource cts)
         {
+            var token = cts.Token;
             AdvIndexData.offset = new List<int>();
             using (var ms = new MemoryStream())
             using (var writer = new BinaryWriter(ms))
             {
                 foreach (var script in scriptsData)
                 {
+                    token.ThrowIfCancellationRequested();
                     var relativeOffset = ms.Position;
                     var stringTable = new Dictionary<long, byte[]>();
                     if (script.Count != 0)
@@ -308,17 +375,35 @@ namespace Grimoire
             }
         }
 
-        public void SavePackScript(string[] scripts, int advIndexDataID, int packID)
+        //TODO: refactor to just call sync methods
+        public void SavePackScript(string[] scripts, int advIndexDataID, int packID, CancellationTokenSource cts)
         {
             var scriptsData = new List<List<Command>>();
+            var token = cts.Token;
             foreach (var script in scripts)
             {
+                token.ThrowIfCancellationRequested();
                 scriptsData.Add(Tokenize(script));
             }
-            ParsePackScript(scriptsData);
-            AssetsLoader.WriteAsset(AdvIndexData, advIndexDataID);
+            ParsePackScriptAsync(scriptsData, cts);
+            token.ThrowIfCancellationRequested();
             AssetsLoader.WriteAsset(Pack, packID);
+            token.ThrowIfCancellationRequested();
+            AssetsLoader.WriteAsset(AdvIndexData, advIndexDataID);
+            token.ThrowIfCancellationRequested();
         }
+
+        //public void SavePackScript(string[] scripts, int advIndexDataID, int packID)
+        //{
+        //    var scriptsData = new List<List<Command>>();
+        //    foreach (var script in scripts)
+        //    {
+        //        scriptsData.Add(Tokenize(script));
+        //    }
+        //    ParsePackScript(scriptsData);
+        //    AssetsLoader.WriteAsset(AdvIndexData, advIndexDataID);
+        //    AssetsLoader.WriteAsset(Pack, packID);
+        //}
 
         public void SaveScript(string script, string path)
         {
@@ -338,9 +423,9 @@ namespace Grimoire
                 .Replace("\n", @"\n");
         }
 
-        public static Dictionary<AdvScriptId, string?> DecompilePack(byte[] pack, AdvIndexData advIndexData)
+        public static Dictionary<AdvScriptId, string> DecompilePack(byte[] pack, AdvIndexData advIndexData)
         {
-            var scripts = new Dictionary<AdvScriptId, string?>(advIndexData.offset.Count);
+            var scripts = new Dictionary<AdvScriptId, string>(advIndexData.offset.Count);
             using (var fs = new MemoryStream(pack))
             using (var reader = new BinaryReader(fs))
             {
@@ -358,7 +443,7 @@ namespace Grimoire
             return scripts;
         }
 
-        public static string? DecompileScript(byte[] script)
+        public static string DecompileScript(byte[] script)
         {
             if (script.Length == 0)
                 return null;

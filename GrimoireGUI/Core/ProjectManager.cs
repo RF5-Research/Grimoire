@@ -1,6 +1,9 @@
 ﻿using Grimoire;
 using GrimoireGUI.Core;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GrimoireGUI.Models
 {
@@ -8,10 +11,10 @@ namespace GrimoireGUI.Models
     {
         public static Project Project { get; private set; }
 
-        public static void Initialize(Project project)
+        public static async Task InitializeAsync(Project project, CancellationTokenSource cts)
         {
             Project = project;
-            InitializeGlobalServices();
+            await InitializeServicesAsync(cts);
         }
 
         /// <summary>
@@ -40,13 +43,22 @@ namespace GrimoireGUI.Models
             return path;
         }
 
-        public static void InitializeGlobalServices()
+        public static async Task InitializeServicesAsync(CancellationTokenSource cts)
         {
+            var token = cts.Token;
+            var tasks = new List<Task>()
+            {
+                Task.Run(() => LoaderID.Initialize(), token),
+                Task.Run(() => DefineID.Initialize(), token)
+            };
+            token.ThrowIfCancellationRequested();
             Application.Initialize(Project.GamePath, Project.ProjectPath, Project.Platform);
+            token.ThrowIfCancellationRequested();
             Addressables.Initialize();
+            token.ThrowIfCancellationRequested();
             AssetsLoader.Initialize(Project.GameLanguage);
-            LoaderID.Initialize();
-            DefineID.Initialize();
+            token.ThrowIfCancellationRequested();
+            await Task.WhenAll(tasks);
         }
     }
 }

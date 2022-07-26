@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using ReactiveUI;
 using System;
 
 namespace GrimoireGUI.Views
@@ -62,14 +61,15 @@ namespace GrimoireGUI.Views
         private void CloseProjectMenuItem_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             IsClosingProject = true;
-            new MainWindow().Show();
+            var window = new MainWindow();
+            App.SwapMainWindow(window);
+            window.Show();
             Close();
         }
 
         private void ScriptEditorButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             AdvScriptWindow = new AdvScriptWindow();
-            Save += AdvScriptWindow.Save;
             AdvScriptWindow.Show(this);
 
             //Implement later
