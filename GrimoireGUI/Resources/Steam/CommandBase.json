@@ -1,0 +1,236 @@
+{
+  {
+    "Name": "Quit",
+    "ID": 0,
+    "Description": null,
+    "Params": {}
+  },
+  {
+    "Name": "Wait",
+    "ID": 1,
+    "Description": null,
+    "Params": {
+      "waitTime": {
+        "Description": null,
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "Jump",
+    "ID": 2,
+    "Description": "Jumps to command index",
+    "Params": {
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "SetTS",
+    "ID": 3,
+    "Description": null,
+    "Params": {
+      "isLoaded": {
+        "Description": null,
+        "Type": "string"
+      }
+    }
+  },
+  {
+    "Name": "SetTSLoadId",
+    "ID": 4,
+    "Description": null,
+    "Params": {
+      "TS_Name": {
+        "Description": null,
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "LoadTS",
+    "ID": 5,
+    "Description": null,
+    "Params": {
+      "TS_Name": {
+        "Description": null,
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "Rand",
+    "ID": 6,
+    "Description": "Randomly decides whether or not to jump to the input command",
+    "Params": {
+      "threshold": {
+        "Description": "The value the randomly generated number needs to exceed to not jump to the command",
+        "Type": "int"
+      },
+      "max": {
+        "Description": "Max value to use for UnityEngine.Random.Range",
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfMainFlgOn",
+    "ID": 7,
+    "Description": "Jumps to command if true",
+    "Params": {
+      "value": {
+        "Description": "The boolean",
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfMainFlgOff",
+    "ID": 8,
+    "Description": "Jumps to command if false",
+    "Params": {
+      "value": {
+        "Description": "The boolean",
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfEventOn",
+    "ID": 9,
+    "Description": "Jumps to command if event is on",
+    "Params": {
+      "event": {
+        "Description": "`Event` enum",
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfWeek",
+    "ID": 10,
+    "Description": "Jumps to command if day is on",
+    "Params": {
+      "day": {
+        "Description": "`DayOfWeek` enum",
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "NpcLifeCycleSetHome",
+    "ID": 11,
+    "Description": "Sets NPC's' Home to sleep?",
+    "Params": {
+      "TS_ActorID": {
+        "Description": "`ActorID` enum",
+        "Type": "int"
+      },
+      "TS_NpcID": {
+        "Description": "`NPCID` enum",
+        "Type": "string"
+      },
+      "HomeSleepPoint": {
+        "Description": "`Place` enum?",
+        "Type": "string"
+      }
+    }
+  },
+  {
+    "Name": "IfScriptFlgOn",
+    "ID": 12,
+    "Description": "Jumps to command if script flag is on",
+    "Params": {
+      "eventScriptFlagID": {
+        "Description": null,
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfSubEventOn",
+    "ID": 13,
+    "Description": "Jumps to command if sub-event is on",
+    "Params": {
+      "eventID": {
+        "Description": null,
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfFesDateEventOn",
+    "ID": 14,
+    "Description": "Jumps to command if non-normal date is on",
+    "Params": {
+      "actorID": {
+        "Description": null,
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfDateEventOn",
+    "ID": 15,
+    "Description": "Jumps to command if a date of any type is on",
+    "Params": {
+      "actorID": {
+        "Description": null,
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  },
+  {
+    "Name": "IfMarriage",
+    "ID": 16,
+    "Description": "Jumps to command if NPC is spouse",
+    "Params": {
+      "actorID": {
+        "Description": null,
+        "Type": "int"
+      },
+      "index": {
+        "Description": "The command index",
+        "Type": "int"
+      }
+    }
+  }
+}

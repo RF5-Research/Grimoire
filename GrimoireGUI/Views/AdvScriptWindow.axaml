@@ -19,7 +19,6 @@
 
 	<DockPanel>
 		<StackPanel Name="StatusBar" Background="{DynamicResource SystemAccentColor}" Height="25" DockPanel.Dock="Bottom" Orientation="Horizontal">
-			<Button Name="Testf">Test</Button>
 			<TextBlock Name="StatusTextBlock" Text="Ready" Margin="5 0 0 0" VerticalAlignment="Center" FontSize="12"/>
 		</StackPanel>
 
